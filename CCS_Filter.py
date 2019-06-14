@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding: utf-8
 
 # Program for separating useable ZMW CCSs from unusable. Useable if don't begin with 3' barcode and do end with 3' barcode. 
 # 
@@ -13,15 +12,9 @@
 #         no 3' barcode in beginning region of sample (forward transcript)
 #         no 3' barcode reverse complement in end region of sample (rc transcript)
 
-# In[12]:
-
 
 import numpy as np
 import random as rd
-
-
-# In[13]:
-
 
 #given DNA nucleotide, returns its complement
 def give_nuc_complement (nucleotide):
@@ -37,9 +30,6 @@ def give_nuc_complement (nucleotide):
         return '?'
 
 
-# In[14]:
-
-
 #generates reverse compliment. Returns rc in standard 5' to 3' direction
 def gen_rev_complement(sequence):
     complement_list = []
@@ -49,16 +39,6 @@ def gen_rev_complement(sequence):
     complement_list.reverse()
     return "".join(complement_list)
 
-'''#test this
-test_one = 'ACTG' #expected reverse complement: CAGT
-test_two = 'AAATG' #expect rc CATTT
-assert gen_rev_complement(test_one) == 'CAGT', "expected CAGT but got: " + gen_rev_complement(test_one)
-assert gen_rev_complement(test_two) == 'CATTT', "expected CATTT but got: " + gen_rev_complement(test_two)'''
-a=1
-
-
-# In[15]:
-
 
 #gets your beginning and ending sample from sequence. Either one is 1.5 * passed length. 
 def get_beg_and_end(sample, barcode_length):
@@ -67,12 +47,6 @@ def get_beg_and_end(sample, barcode_length):
     end = sample[len(sample)-segment_length:]
     return [beg,end]
 
-
-# In[16]:
-
-
-#barcodes_list elements: [5', CD1, CD2, CD3] 
-                     #ie [5', 4_D01, 3_C01, 2_B01]
 barcodes_list = []
 with open('barcodes_for_profileHMM.fasta') as f: 
     for line in f:
@@ -83,23 +57,15 @@ barcode_4 = barcodes_list[1]
 barcode_3 = barcodes_list[2]
 barcode_2 = barcodes_list[3]
 barcode_2_rc = gen_rev_complement(barcode_2)
-print('len barcode 2',len(barcode_2))
-print('len barcode 5', len(barcodes_list[0]))
 
 #adapter
 two_adapter = ''
 with open('two_B01.adapters.fasta') as f:
     for line in f: 
         line = line.strip()
-#        print('line',line)
         if line[0]!='>':
             two_adapter = line
-print("len two adapter: ",len(two_adapter))
             
-
-
-# In[17]:
-
 
 #test "CCSs"
 nucleotides = ['A','C','G','T']
@@ -138,9 +104,9 @@ def gen_test_strings(barcode, barcode_rc):
     #Next: mutated matches
     bar2_list = list(barcode)
     rand_subs_list = rd.choices(np.arange(len(barcode)), k=int(len(barcode)/10)) #pacbio MUCH more accurate
-                                                            #here, error in sequencing is 10%
-                                                            #pacbio has error of about 0.001%
-                                                #source: https://www.pacb.com/uncategorized/a-closer-look-at-accuracy-in-pacbio/
+#here, error in sequencing is 10%
+#pacbio has error of about 0.001%
+#source: https://www.pacb.com/uncategorized/a-closer-look-at-accuracy-in-pacbio/
     sub_bar2_list = bar2_list.copy()
     rand_nuc_list = rd.choices(nucleotides, k=len(rand_subs_list))
     for i in np.arange(len(rand_nuc_list)):
@@ -208,24 +174,6 @@ test_4D01_strings = gen_test_strings(barcode_4, gen_rev_complement(barcode_4))
 expected_keep_results = [False, True, True, False, False, True, False, False, False, True, True, True, 
                              True, True, True, False, False, False, 
                              True, True, True]
-#expected_keep_results
-
-
-# In[18]:
-
-
-
-'''#test csv file 
-f = open('test_strings.csv','w+')
-i = 0
-for string in test_strings:
-    f.write("" + str(i)+',' + string + '\n')
-    i += 1
-f.close()'''
-
-
-# In[19]:
-
 
 score_dict = {}
 mismatch_penalty = -2
@@ -247,71 +195,34 @@ score_dict[('T','G')] = mismatch_penalty
 score_dict[('T','T')] = 1
 
 
-#test matrix
-
-'''test = np.zeros((4,3))
-print(test)
-test[3,0] = 9
-print(test)'''
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[20]:
-
-
 #performs SmithWaterman adaptation (glocal alignment). Returns score; no traceback
     #FOR NOW: linear gap penalty d
-    #parameters: gap penalty, seq x (vertical), barcode reference (horizontal),  
+    #parameters: gap penalty, seq y (horizontal), barcode reference (vertical),  
     #initialization: 0s in first row; (i,0) = -i*d
+    #sequence larger than barcode; barcode is reference. 
+        #sequence is 1.5 * barcode length
 def score_alignment(gap_penalty, sequence, barcode, score_dict):
     gap_penalty = np.abs(gap_penalty)
     #matrix
-    num_rows = len(sequence) +1
-    num_cols = len(barcode) +1
+    num_rows = len(barcode) +1
+    num_cols = len(sequence) +1
     F = np.zeros((num_rows, num_cols))
-    #initialization\n",
+    #initialization",
     #row 0 already initialized to zeros
     for i in np.arange(1,num_rows):
         F[i][0] = -1*i*gap_penalty
 
     for i in np.arange(1,num_rows): # i represents the row
         for j in np.arange(1,num_cols): #j represents the col
-#            print('i is', i)
-#            print('j is', j)
-#            print(\"looking at sequence char\", sequence[i-1])
-#            print(\"looking at barcode char\", barcode[j-1])
-            m = F[i-1][j-1] + score_dict[(sequence[i-1],barcode[j-1])]
+            m = F[i-1][j-1] + score_dict[(barcode[i-1],sequence[j-1])]
             ix = F[i-1][j] - gap_penalty
             iy = F[i][j-1] - gap_penalty
-#            print('m is', m)
-#            print('ix is',ix)
-#            print('iy is', iy)
+
 
             F[i][j] = max(m,ix,iy)
     #now matrix is filled\n",
     score = max(F[num_rows-1])
     return score
-
-
-# In[21]:
-
 
 #compute s prime = score + log(pm/pr)
 #score: alignment score
@@ -320,16 +231,9 @@ def score_alignment(gap_penalty, sequence, barcode, score_dict):
 def compute_s_prime(score, pm, pr):
     return score + np.log(pm/pr)
 
-
-# In[22]:
-
-
 #computes sigma function e^x / (1+e^x)
 def compute_sigma(x):
     return np.exp(x)/(1.0+np.exp(x))
-
-
-# In[23]:
 
 
 #calculates score significance with Bayesian approach: P(M|x,y)
@@ -344,8 +248,6 @@ def calc_score_sig(score):
     s_prime = compute_s_prime(score, pr, pm)  
     return compute_sigma(s_prime)
 
-
-# In[24]:
 
 
 #given sequence, of CCS, 
@@ -371,28 +273,16 @@ def should_we_keep(sample, barcode):
     barcode_beg_score_sig = calc_score_sig(score_alignment(1,segments[0],barcode,score_dict))
     barcodeRC_beg_score_sig = calc_score_sig(score_alignment(1,segments[0],barcode_rc,score_dict))
     barcode_end_score_sig = calc_score_sig(score_alignment(1,segments[1],barcode,score_dict))
-#    print("barcode beg score_sig:",barcode_beg_score_sig)
-#    print("barcodeRC_beg_score_sig: ", barcodeRC_beg_score_sig)
-#    print("barcode_end_score_sig:",barcode_end_score_sig)
-#    print()
     
     if barcode_beg_score_sig >0.99999999:
-#        print("beg: barcode in beg. Returning False.")
-#        print()
         return False            
     elif  barcodeRC_beg_score_sig>0.99999999:
-#        print('beg: barcodeRC in beg. Returning True')
-#        print()
         return True
     #end                        
     elif barcode_end_score_sig > 0.99999999:
-#        print("end: barcode in end. Returning True")
-#        print()
         return True
     else: #if we've gottent to this point, either the barcode isn't in teh 
         #sample and/or the barcode rev comp is at the end, which we don't want
-#        print('end: Barcode not in end and/or barcode rc in end; Returning False')
-#        print()
         return False
         
 
@@ -409,9 +299,6 @@ def test_should_we_keep(test_strings, barcode):
 a=1
 #endsIn3RC, begIn3RC, endIn3, begIn3, rand, endIn3
 #endIn3RC, begIn3RC, endIn3, begIn3, rand, endIn3
-
-
-# In[25]:
 
 
 #given csv file and desired file name for kept CCSs, filters CCS
@@ -431,22 +318,7 @@ def filter_ccs(all_ccs_filename, filtered_filename, barcode):
     f.close()  
 
 
-# In[26]:
 
-
-#test the function
-'''
-filter_ccs('test_strings.csv', 'filtered_test_strings.csv', barcode_2)
-'''
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
