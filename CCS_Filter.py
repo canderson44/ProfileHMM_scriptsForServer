@@ -48,7 +48,7 @@ def get_beg_and_end(sample, barcode_length):
     return [beg,end]
 
 barcodes_list = []
-with open('barcodes_for_profileHMM.fasta') as f: 
+with open('/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/barcodes_for_profileHMM.fasta') as f: 
     for line in f:
         line = line.strip()
         if line[0]!='>':
@@ -60,7 +60,7 @@ barcode_2_rc = gen_rev_complement(barcode_2)
 
 #adapter
 two_adapter = ''
-with open('two_B01.adapters.fasta') as f:
+with open('/tier2/deweylab/data/thomson_lab/Pacbio/2_B01/m54178_180915_120213.adapters.fasta') as f:
     for line in f: 
         line = line.strip()
         if line[0]!='>':
