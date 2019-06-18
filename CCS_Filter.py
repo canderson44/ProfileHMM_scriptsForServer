@@ -292,8 +292,8 @@ def test_should_we_keep(test_strings, barcode):
     keep_list = []
     for entry in test_strings:
         keep_list.append(should_we_keep(entry, barcode))
-    print('results ',keep_list)
-    print('expected',expected_keep_results)
+#    print('results ',keep_list)
+#    print('expected',expected_keep_results)
     
 #test_should_we_keep(test_4D01_strings, barcode_4)    
 a=1
