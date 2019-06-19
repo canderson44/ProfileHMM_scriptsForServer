@@ -15,6 +15,7 @@
 
 import numpy as np
 import random as rd
+from time import sleep
 
 #given DNA nucleotide, returns its complement
 def give_nuc_complement (nucleotide):
@@ -156,7 +157,7 @@ def gen_test_strings(barcode, barcode_rc):
     test_strings.append(test_beg3p_sub)
     test_strings.append(test_beg3p_insert)
     test_strings.append(test_beg3p_del)
-
+    
     #keep
     test_end3p_sub = "".join(rd.choices(nucleotides, k=1000)) + sub_bar2_str
     test_end3p_insert = "".join(rd.choices(nucleotides, k=1000)) + insert_bar2_str
@@ -305,15 +306,18 @@ a=1
 def filter_ccs(all_ccs_filename, filtered_filename, barcode):
     retained_csv_list = []
     with open(all_ccs_filename) as f:
+        sleep (0.2)
         for line in f:
             line = line.strip()
             line_list = line.split(',')
             ccs = line_list[1]
             if should_we_keep(ccs, barcode):
                 retained_csv_list.append(line_list)
+            sleep(0.2)
     f = open(filtered_filename, 'w+')
     for entry in retained_csv_list:
         f.write(entry[0] + ',' + entry[1])
+        sleep(0.2)
         f.write('\n')
     f.close()  
 
