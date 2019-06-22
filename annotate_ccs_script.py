@@ -6,7 +6,7 @@
 #     adapter and 3' barcode 
 #uses Annotate_CCS.py in envir0 virtural environment
 
-import Annotate_CCS.py as ac
+import Annotate_CCS as ac
 import numpy as np
 
 cells = ['2_B01', '3_C01', '4_D01']
@@ -19,13 +19,16 @@ for i in np.arange(3):
     ref_list = [[ac.fivePBarcode,'5'], [barcodes3p[i],barcode_chars[i]], [adapters[i],'A']]
     input_filename = path_stub + cell + '_first10lines.csv'
     output_filename = path_stub + 'annotated_ccs/' + cell + '_annotatedCCS.txt'
+    to_write_list = []
     with open(input_filename) as input:
-        with open(output_filename, 'w+') as output:
-            for line in input:
-                line = line.strip()
-                ccs = line.split(',')[1]
-                output.write(ac.annotate_seq(ccs,ref_list) + '\n')
-                output.write('\n')
+#        with open(output_filename, 'w+') as output:
+        for line in input:
+            to_write_list.append(line.strip)
+    with open(output_filename, 'w+') as output:
+        for line in to_write_list:
+            ccs = line.split(',')[1]
+            output.write(ac.annotate_seq(ccs,ref_list) + '\n')
+            output.write('\n')
 
 
             
