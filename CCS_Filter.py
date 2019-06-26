@@ -11,8 +11,8 @@
 #     2. 
 #         no 3' barcode in beginning region of sample (forward transcript)
 #         no 3' barcode reverse complement in end region of sample (rc transcript)
-
-
+import traceback
+import os
 import numpy as np
 import random as rd
 from time import sleep
@@ -305,22 +305,28 @@ a=1
 #given csv file and desired file name for kept CCSs, filters CCS
 def filter_ccs(all_ccs_filename, filtered_filename, barcode):
     retained_csv_list = []
-    with open(all_ccs_filename) as f:
-        sleep (0.2)
-        for line in f:
-            line = line.strip()
-            line_list = line.split(',')
-            ccs = line_list[1]
-            if should_we_keep(ccs, barcode):
-                retained_csv_list.append(line_list)
-            sleep(0.2)
-    f = open(filtered_filename, 'w+')
-    for entry in retained_csv_list:
-        f.write(entry[0] + ',' + entry[1])
-        sleep(0.2)
-        f.write('\n')
-    f.close()  
-
+    with open(all_ccs_filename,'r') as f:
+        if(os.path.exists(all_ccs_filename)):
+            test_var = 1
+            lines = f.readlines()
+            for line in lines:
+                line = line.strip()
+                line_list = line.split(',')
+                ccs = line_list[1]
+                if should_we_keep(ccs, barcode):
+                    retained_csv_list.append(line_list)
+            try:
+                f = open(filtered_filename, 'w+')
+                for entry in retained_csv_list:
+                    f.write(entry[0] + ',' + entry[1])
+                    sleep(0.2)
+                    f.write('\n')
+                f.close()  
+            except:
+                print("Exception: something went wrong working with filtered_filename: " + filtered_filename)
+                print("here's the traceback: " + traceback + print_exc())
+        else:
+            print("Sorry!! all_ccs_filepath: " + all_ccs_filename + "doesn't exist!!") 
 
 
 
