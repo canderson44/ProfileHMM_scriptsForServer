@@ -20,15 +20,22 @@ for i in np.arange(3):
     input_filename = path_stub + cell + '_first10lines.csv'
     output_filename = path_stub + 'annotated_ccs/' + cell + '_annotatedCCS.txt'
     to_write_list = []
-    with open(input_filename) as input:
-#        with open(output_filename, 'w+') as output:
-        for line in input:
-            to_write_list.append(line.strip)
     with open(output_filename, 'w+') as output:
+        test_phrase = "this is a test"
+        output.write(test_phrase + '\n')
+        output.write("second line? or still first?")
+        output.write('\n')
+    with open(input_filename) as input:
+        for line in input:
+            to_write_list.append(line.strip())
+    with open(output_filename, 'a+') as output:
         for line in to_write_list:
-            ccs = line.split(',')[1]
-            output.write(ac.annotate_seq(ccs,ref_list) + '\n')
-            output.write('\n')
+            ccs = str(line).split(',')[1]
+            annotated_ccs = str(ac.annotate_seq(ccs, ref_list))
+            print("annotated_ccs:",annotated_ccs)
+            print()
+            output.write("testing 1234     \n")
+            output.write(annotated_ccs + '\n')
 
 
             
