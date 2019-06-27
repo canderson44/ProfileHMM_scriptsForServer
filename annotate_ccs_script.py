@@ -8,33 +8,34 @@
 
 import Annotate_CCS as ac
 import numpy as np
-
 cells = ['2_B01', '3_C01', '4_D01']
 barcode_chars = ['2','3','4']
 barcodes3p = [ac.barcode2, ac.barcode3, ac.barcode4]
 adapters = [ac.two_adapter, ac.three_adapter, ac.four_adapter]
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/'
+
 for i in np.arange(3):
     cell = cells[i]
     ref_list = [[ac.fivePBarcode,'5'], [barcodes3p[i],barcode_chars[i]], [adapters[i],'A']]
     input_filename = path_stub + cell + '_first10lines.csv'
     output_filename = path_stub + 'annotated_ccs/' + cell + '_annotatedCCS.txt'
     to_write_list = []
-    with open(output_filename, 'w+') as output:
-        test_phrase = "this is a test"
-        output.write(test_phrase + '\n')
-        output.write("second line? or still first?")
-        output.write('\n')
     with open(input_filename) as input:
         for line in input:
-            to_write_list.append(line.strip())
-    with open(output_filename, 'a+') as output:
+            if ',' in line:
+                strip_line = line.strip()
+                split_list = strip_line.split(',')
+#                print(split_list)
+                to_write_list.append(split_list[1])
+#               print("successfully appended")
+#            print()
+    with open(output_filename, 'w') as output:
         for line in to_write_list:
-            ccs = str(line).split(',')[1]
+            ccs = line
             annotated_ccs = str(ac.annotate_seq(ccs, ref_list))
-            print("annotated_ccs:",annotated_ccs)
-            print()
-            output.write("testing 1234     \n")
+#            print("annotated_ccs:",annotated_ccs)
+#            print()
+            #output.write("testing 1234     \n")
             output.write(annotated_ccs + '\n')
 
 
