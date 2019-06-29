@@ -192,6 +192,7 @@ def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):
 #only includes reference(s) with a score significance of >0.99999999
 #RETURN: of the references that pass the score significance filter, 
     #returns fusion of the alignment strings returned by glocal alignment function
+    #of a region and its reverse complement, will include a max of one of them, whichever is higher (but only if they pass the score significance fitler)
 #parameters
     #sequence: string
     #ref_list: list of lists
@@ -223,12 +224,21 @@ def annotate_seq(sequence, ref_list):
             
         ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
         rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]
+        useRef = False
         for i in np.arange(len(ref_scoreSig_list)):
-            if ref_scoreSig_list[i]>0.999999999:
-                fuse(fused_list,ref_alignments[i])
-        for i in np.arange(len(rc_scoreSig_list)):
-            if rc_scoreSig_list[i]>0.999999999:
-                fuse(fused_list,rc_alignments[i])
+            for j in np.arange(len(rc_scoreSig_list)):
+                if ref_scoreSig_list[i] > rc_scoreSig_list[j]:
+                    useRef = True
+                else:
+                    useRef = False
+        if useRef == True:
+            for in in np.arange(len(ref_scoreSig_list)):
+                if ref_scoreSig_list[i]>0.999999999:
+                    fuse(fused_list,ref_alignments[i])
+        else: #useRef == False
+            for i in np.arange(len(rc_scoreSig_list)):
+                if rc_scoreSig_list[i]>0.999999999:
+                    fuse(fused_list,rc_alignments[i])
     return_str = "".join(fused_list)
     return return_str
     
