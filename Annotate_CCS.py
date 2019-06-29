@@ -232,7 +232,7 @@ def annotate_seq(sequence, ref_list):
                 else:
                     useRef = False
         if useRef == True:
-            for in in np.arange(len(ref_scoreSig_list)):
+            for i in np.arange(len(ref_scoreSig_list)):
                 if ref_scoreSig_list[i]>0.999999999:
                     fuse(fused_list,ref_alignments[i])
         else: #useRef == False
