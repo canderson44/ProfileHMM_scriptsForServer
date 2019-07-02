@@ -29,6 +29,14 @@ cells = ['2_B01', '3_D01', '4_D01']
 for i in np.arange(3):
     cell = cells[i]
     write_filename = path_stub + cell + '_hmm_initial.txt'
+    match_names = ["M"+str(n) for n in np.arange(141)]
+    print(match_names)
+    print()
+    match_rev_names = []
+    insert_names = []
+    delete_names = []
+    misc_names = []
+
     with open(write_filename, 'w') as f:
-        f.write("this is a test")
-        f.write("second line?")
+        f.write("#initial parameters for cell" + cell + '\n')
+        f.write("model_name = HiddenMarkovModel")
