@@ -31,6 +31,7 @@ for i in np.arange(3):
     write_filename = path_stub + cell + '_hmm_initial.txt'
 
     #state names list
+
     match_names = ["M"+str(n) for n in np.arange(141)]
     match_rev_names = ["Mr"+str(n) for n in np.arange(141)]
     insert_names = ["I"+str(n) for n in np.arange(141)]
@@ -49,7 +50,18 @@ for i in np.arange(3):
         else: #first entry
             states_string = "\"" + entry + "\""
     print(states_string)
+
+    #format transitions: store in list
+    transition_strings = []
+    for key,value in transition_probs_list[i]:
+        print("key is: " + key)
+        print("value is: " + value)
+
+    #write file
     with open(write_filename, 'w') as f:
-        f.write("#initial parameters for cell" + cell + '\n')
+        f.write("# initial parameters for cell: " + cell + '\n')
         f.write("model_name = HiddenMarkovModel + \n")
         f.write("state_names= (" + states_string + ') \n')
+        f.write("observation_symbols= (\"A\", \"C\", \"G\", \"T\" ) \n")
+        f.write("# transition probabilitites \n")
+        f.write("transititions = (" + ') \n')
