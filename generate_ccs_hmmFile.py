@@ -81,7 +81,7 @@ for i in np.arange(3):
                 current_string = current_string + ";"
             emission_strings.append(current_string)
 
-    print()
+ #   print()
 
 
     #write file
@@ -99,7 +99,7 @@ for i in np.arange(3):
         f.write("".rjust(17) + transition_strings[-1] + " )\n")
 
         #emissions
-        f.write("# emission probabilities")
+        f.write("# emission probabilities \n")
         f.write("emission_probabilities = (" + emission_strings[0] +"\n")
         for n in np.arange(1, len(emission_strings) - 1):  # all but first and last
             f.write("".rjust(26) + emission_strings[n] + '\n')
