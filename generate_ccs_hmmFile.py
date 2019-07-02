@@ -64,6 +64,16 @@ for i in np.arange(3):
         transition_strings.append(prob_string)
 
 
+    #format emissions: store in list
+    #key is tuple
+    emission_strings = []
+    num_items = len(emission_probs_list.values())
+    for key,value in emission_probs_list[i].items():
+        print("key is ",key)
+        print("value is",value)
+    print()
+
+
     #write file
     with open(write_filename, 'w') as f:
         f.write("# initial parameters for cell: " + cell + '\n')
@@ -74,6 +84,6 @@ for i in np.arange(3):
         f.write("transititions = (" + transition_strings[0] + "\n")
         for n in np.arange(1,len(transition_strings)-1): #all but first and last entry
             f.write("".rjust(17) + transition_strings[n] + '\n')
-        f.write("".rjust(17) + transition_strings[-1] + ")\n")
+        f.write("".rjust(17) + transition_strings[-1] + " )\n")
         f.write("# emission probabilities")
         f.write("emission_probabilities = (\n")
