@@ -45,9 +45,9 @@ for i in np.arange(3):
     states_string = ""
     for entry in state_names_list:
         if states_string != "":
-            states_string = states_string + ', ' + entry
+            states_string = states_string + ', ' + "\"" + entry + "\""
         else: #first entry
-            states_string = entry
+            states_string = "\"" + entry + "\""
     print(states_string)
     with open(write_filename, 'w') as f:
         f.write("#initial parameters for cell" + cell + '\n')
