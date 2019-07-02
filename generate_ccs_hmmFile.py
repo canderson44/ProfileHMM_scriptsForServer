@@ -41,8 +41,7 @@ for i in np.arange(3):
     misc_names = ['START','END', 'IS', 'ISr', 'DS', 'DSr', 'R', 'Rr', 'IR',
                   'IRr', 'DR', 'DRr']
     #combine into one list
-    state_names_list = match_names + match_rev_names + insert_names + insert_rev_names +
-    delete_names + delete_rev_names + misc_names
+    state_names_list = match_names + match_rev_names + insert_names + insert_rev_names + delete_names + delete_rev_names + misc_names
 
     with open(write_filename, 'w') as f:
         f.write("#initial parameters for cell" + cell + '\n')
