@@ -121,7 +121,8 @@ for i in np.arange(3):
     ###########################
     ###########################
     ###########################
-
+    print("i is:", i)
+    print("RCthreeP_barcodes list is",RCthreeP_barcodes)
     RCbarcode3p = RCthreeP_barcodes[i]
     RCadapter = RCadapters[i]
     # 3p barcode:
