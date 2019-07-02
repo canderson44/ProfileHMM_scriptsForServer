@@ -67,7 +67,7 @@ for i in np.arange(3):
     #format emissions: store in list
     #key is tuple
     emission_strings = []
-    num_items = len(emission_probs_list.values())
+    num_items = len(emission_probs_list[i].values())
     for key,value in emission_probs_list[i].items():
         print("key is ",key)
         print("value is",value)
