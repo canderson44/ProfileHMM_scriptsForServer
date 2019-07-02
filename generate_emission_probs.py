@@ -32,6 +32,9 @@ adapter4rc = ac.four_adapter_RC
 threeP_barcodes = [barcode2, barcode3, barcode4]
 adapters = [adapter2, adapter3, adapter4]
 
+RCthreeP_barcodes = [barcode2rc, barcode3rc, barcode4rc]
+RCadapters = [adapter2rc, adapter3rc, adapter4rc]
+
 cell_emission_list = [] #entry 0 for 2B01, 1 for 3C01, 2 for 4D01
 #key: index in sequence (0 for first character)
 #value: emission probs dict for that position
@@ -54,6 +57,14 @@ for i in np.arange(len(fiveBarcode)):
     fiveP_emission_list[i] = {'A':0.05, 'C':0.05, 'G':0.05, 'T':0.05}
     bp = fiveBarcode[i]
     fiveP_emission_list[i][bp] = 0.95
+
+#5p barcode rc
+RCfiveP_emission_list = [0] *len(fiveBarcode)
+for i in np.arange(len(fiveBarcode)):
+    RCfiveP_emission_list[i] = {'A':0.05, 'C':0.05, 'G':0.05, 'T':0.05}
+    bp = fiveBarcodeRC[i]
+    RCfiveP_emission_list[i][bp] = 0.95
+
 
 cells = ['2_B01', '3_C01', '4_D01']
 for i in np.arange(3):
@@ -102,50 +113,31 @@ for i in np.arange(3):
         insert_str = "I" + str(index)
         this_dict[match_str] = this_bar_emission_list[index-70]
         this_dict[insert_str] = random_dict
-    cell_emission_list.append(this_dict)
 
-###########################
-###########################
-###########################
-#BACKWARD SEQUENCE COMPONENTS
-###########################
-###########################
-###########################
-RCthreeP_barcodes = [barcode2rc, barcode3rc, barcode4rc]
-RCadapters = [adapter2rc, adapter3rc, adapter4rc]
+    ###########################
+    ###########################
+    ###########################
+    # BACKWARD SEQUENCE COMPONENTS
+    ###########################
+    ###########################
+    ###########################
 
-
-
-#5p barcode rc
-#5p barcode
-RCfiveP_emission_list = [0] *len(fiveBarcode)
-for i in np.arange(len(fiveBarcode)):
-    RCfiveP_emission_list[i] = {'A':0.05, 'C':0.05, 'G':0.05, 'T':0.05}
-    bp = fiveBarcodeRC[i]
-    RCfiveP_emission_list[i][bp] = 0.95
-
-
-cells = ['2_B01', '3_C01', '4_D01']
-for i in np.arange(3):
-    cell = cells[i]
     RCbarcode3p = RCthreeP_barcodes[i]
     RCadapter = RCadapters[i]
-    #3p barcode:
-    this_bar_emission_list = [0]*len(RCbarcode3p)
+    # 3p barcode:
+    this_bar_emission_list = [0] * len(RCbarcode3p)
     for j in np.arange(len(RCbarcode3p)):
-        this_bar_emission_list[j] = {'A':0.05, 'C':0.05, 'G':0.05, 'T':0.05}
+        this_bar_emission_list[j] = {'A': 0.05, 'C': 0.05, 'G': 0.05, 'T': 0.05}
         bp = RCbarcode3p[j]
         this_bar_emission_list[j][bp] = 0.95
-    #adapter
-    this_adapter_emission_list = [0]*len(RCadapter)
+    # adapter
+    this_adapter_emission_list = [0] * len(RCadapter)
     for i in np.arange(len(RCadapter)):
-        this_adapter_emission_list[i] = {'A':0.05, 'C':0.05, 'G':0.05, 'T':0.05}
+        this_adapter_emission_list[i] = {'A': 0.05, 'C': 0.05, 'G': 0.05, 'T': 0.05}
         bp = RCadapter[i]
-        this_adapter_emission_list[i][bp]=0.95
+        this_adapter_emission_list[i][bp] = 0.95
 
     # combine into this cell's list of emission dicts
-
-    this_dict = cell_emission_list[i]
     # 3p barcode
     for index in np.arange(71):  # 0 to 70; 3p barcode
         match_str = "Mr" + str(index)
@@ -170,7 +162,7 @@ for i in np.arange(3):
         insert_str = "Ir" + str(index)
         this_dict[match_str] = RCfiveP_emission_list[index - 116]
         this_dict[insert_str] = random_dict
-
+    cell_emission_list.append(this_dict)
 
 #Getters.
 #getter
@@ -190,3 +182,5 @@ def get_3C01_emissions():
 #returns 4D01's emission dict
 def get_4D01_emissions():
     return cell_emission_list[2]
+
+
