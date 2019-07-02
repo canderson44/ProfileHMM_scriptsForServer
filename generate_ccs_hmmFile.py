@@ -62,8 +62,6 @@ for i in np.arange(3):
             prob_string = prob_string + ";"
         transition_strings.append(prob_string)
 
-    print(transition_strings)
-    print()
 
     #write file
     with open(write_filename, 'w') as f:
@@ -72,4 +70,9 @@ for i in np.arange(3):
         f.write("state_names= (" + states_string + ') \n')
         f.write("observation_symbols= (\"A\", \"C\", \"G\", \"T\" ) \n")
         f.write("# transition probabilitites \n")
-        f.write("transititions = (" + ') \n')
+        f.write("transititions = (\n")
+        for entry in transition_strings:
+            f.write(entry + '\n')
+        f.write(")\n")
+        f.write("# emission probabilities")
+        f.write("emission_probabilities = (\n")
