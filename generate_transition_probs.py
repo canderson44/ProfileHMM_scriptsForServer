@@ -25,9 +25,33 @@ for i in np.arange(3):
     cell = cells[i]
     new_dict = {}
     # transition from start
-    new_dict[("M0", "START")] = 0.5
-    new_dict[("Mr0", "START")] = 0.5
+    # 50% chance forward sequence, 50% chance backward sequence
+    new_dict[("M0", "START")] = 0.45 #90% of 0.5
+    # insert state before forward sequence; for junk
+    new_dict[("IS","START")] = 0.025 #5% OF 0.5
+    #delete state; skip first element of 5p barcode
+    new_dict[("DS","START")] = 0.025 #5% OF 0.5
+    new_dict[("Mr0", "START")] = 0.45 #90% of 0.5
+    # insert state before reverse sequence; for junk
+    new_dict[("ISr","START")] = 0.025
+    # delete state; skip first element of 5p barcode
+    new_dict[("DSr", "START")] = 0.025  # 5% OF 0.5
 
+    #transitions from starting junk states
+    #forward
+    new_dict[("IS", "IS")] = 0.5
+    new_dict[("M0", "IS")] = 0.5
+    #backward
+    new_dict[("ISr", "ISr")] = 0.5
+    new_dict[("Mr0", "ISr")] = 0.5
+
+    #transitions from starting delete states
+    #forward
+    new_dict[("D0", "DS")] = 0.5
+    new_dict[("M1", "DS")] = 0.5
+    #backward
+    new_dict[("Dr0", "DSr")] = 0.5
+    new_dict[("Mr1", "DSr")] = 0.5
     #############
     #############
     #############
@@ -230,6 +254,23 @@ for i in np.arange(3):
 
     transition_dict_list.append(new_dict)
 
-
+#getter
+#returns list of transition dictionaries, one per cell
+## entry 0 is dict for 2B01, 1 for 3C01, 2 for 4D01
 def get_transition_probs():
     return transition_dict_list
+
+#getter
+#returns 2B01's transition probability dictionary
+def get_2B01_transitions():
+    return transition_dict_list[0]
+
+#getter
+#returns 3C01's transition probability dictionary
+def get_3C01_transitions():
+    return transition_dict_list[1]
+
+#getter
+#returns 4D01's transition probability dictionary
+def get_4D01_transitions():
+    return transition_dict_list[2]

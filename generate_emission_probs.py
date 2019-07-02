@@ -114,6 +114,9 @@ for i in np.arange(3):
         this_dict[match_str] = this_bar_emission_list[index-70]
         this_dict[insert_str] = random_dict
 
+    #initial junk insert state
+    this_dict["IS"] = random_dict
+
     ###########################
     ###########################
     ###########################
@@ -161,6 +164,12 @@ for i in np.arange(3):
         insert_str = "Ir" + str(index)
         this_dict[match_str] = RCfiveP_emission_list[index - 116]
         this_dict[insert_str] = random_dict
+
+    #initial junk insert state
+    this_dict["ISr"] = random_dict
+
+
+    #finally, add dictionary to list
     cell_emission_list.append(this_dict)
 
 #Getters.
