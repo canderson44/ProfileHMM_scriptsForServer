@@ -54,8 +54,8 @@ for i in np.arange(3):
     #format transitions: store in list
     transition_strings = []
     for key,value in transition_probs_list[i].items():
-        print("key is: " + key)
-        print("value is: " + value)
+        print("key is: ",key)
+        print("value is: " ,value)
 
     #write file
     with open(write_filename, 'w') as f:
