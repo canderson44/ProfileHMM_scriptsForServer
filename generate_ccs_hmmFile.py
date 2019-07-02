@@ -29,14 +29,22 @@ cells = ['2_B01', '3_D01', '4_D01']
 for i in np.arange(3):
     cell = cells[i]
     write_filename = path_stub + cell + '_hmm_initial.txt'
+
+    #state names list
     match_names = ["M"+str(n) for n in np.arange(141)]
-    print(match_names)
-    print()
-    match_rev_names = []
-    insert_names = []
-    delete_names = []
-    misc_names = []
+    match_rev_names = ["Mr"+str(n) for n in np.arange(141)]
+    insert_names = ["I"+str(n) for n in np.arange(141)]
+    insert_rev_names = ["I"+str(n) for n in np.arange(141)]
+    delete_names = ["D"+str(n) for n in np.arange(139)]
+    delete_rev_names = ["Dr"+str(n) for n in np.arange(139)]
+    #start, end, junk states, RNAinsert states
+    misc_names = ['START','END', 'IS', 'ISr', 'DS', 'DSr', 'R', 'Rr', 'IR',
+                  'IRr', 'DR', 'DRr']
+    #combine into one list
+    state_names_list = match_names + match_rev_names + insert_names + insert_rev_names +
+    delete_names + delete_rev_names + misc_names
 
     with open(write_filename, 'w') as f:
         f.write("#initial parameters for cell" + cell + '\n')
-        f.write("model_name = HiddenMarkovModel")
+        f.write("model_name = HiddenMarkovModel + \n")
+        f.write("state_names= " + state_names_list + '\n')
