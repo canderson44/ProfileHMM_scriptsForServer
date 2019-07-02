@@ -42,8 +42,14 @@ for i in np.arange(3):
                   'IRr', 'DR', 'DRr']
     #combine into one list
     state_names_list = match_names + match_rev_names + insert_names + insert_rev_names + delete_names + delete_rev_names + misc_names
-
+    states_string = ""
+    for entry in state_names_list:
+        if states_string != "":
+            states_string = states_string + ', ' + entry
+        else: #first entry
+            states_string = entry
+    print(states_string)
     with open(write_filename, 'w') as f:
         f.write("#initial parameters for cell" + cell + '\n')
         f.write("model_name = HiddenMarkovModel + \n")
-        f.write("state_names= " + state_names_list + '\n')
+        f.write("state_names= (" + states_string + ') \n')
