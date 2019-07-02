@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/generate_emission_probs.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_emission_probs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate_transition_probs.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_transition_probs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,23 +31,23 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="20" />
-          <entry key="py" value="4014" />
+          <entry key="py" value="4018" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="4034" />
+          <entry key="Python" value="4038" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generate_emission_probs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="122" column="31" selection-start-line="122" selection-start-column="31" selection-end-line="122" selection-end-column="31" />
+            <state relative-caret-position="2760">
+              <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
               <folding>
                 <marker date="1562084810494" expanded="true" signature="5788:5824" ph="..." />
               </folding>
@@ -55,13 +55,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="3510">
+              <caret line="234" column="31" lean-forward="true" selection-start-line="234" selection-start-column="31" selection-end-line="234" selection-end-column="31" />
               <folding>
-                <marker date="1562006254657" expanded="true" signature="837:838" ph="..." />
+                <marker date="1562084935628" expanded="true" signature="810:811" ph="..." />
+                <marker date="1562084935628" expanded="true" signature="8100:8105" ph="..." />
               </folding>
             </state>
           </provider>
@@ -82,8 +83,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/generate_transition_probs.py" />
         <option value="$PROJECT_DIR$/generate_emission_probs.py" />
+        <option value="$PROJECT_DIR$/generate_transition_probs.py" />
       </list>
     </option>
   </component>
@@ -221,22 +222,23 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
+    <entry file="file://$PROJECT_DIR$/generate_emission_probs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="2760">
+          <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
           <folding>
-            <marker date="1562006254657" expanded="true" signature="837:838" ph="..." />
+            <marker date="1562084810494" expanded="true" signature="5788:5824" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate_emission_probs.py">
+    <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="122" column="31" selection-start-line="122" selection-start-column="31" selection-end-line="122" selection-end-column="31" />
+        <state relative-caret-position="3510">
+          <caret line="234" column="31" lean-forward="true" selection-start-line="234" selection-start-column="31" selection-end-line="234" selection-end-column="31" />
           <folding>
-            <marker date="1562084810494" expanded="true" signature="5788:5824" ph="..." />
+            <marker date="1562084935628" expanded="true" signature="810:811" ph="..." />
+            <marker date="1562084935628" expanded="true" signature="8100:8105" ph="..." />
           </folding>
         </state>
       </provider>
