@@ -81,10 +81,10 @@ for i in np.arange(3):
         this_bar_emission_list[j][bp] = 0.95
     #adapter
     this_adapter_emission_list = [0]*len(adapter)
-    for i in np.arange(len(adapter)):
-        this_adapter_emission_list[i] = {'A':0.05, 'C':0.05, 'G':0.05, 'T':0.05}
-        bp = adapter[i]
-        this_adapter_emission_list[i][bp]=0.95
+    for adapter_index in np.arange(len(adapter)):
+        this_adapter_emission_list[adapter_index] = {'A':0.05, 'C':0.05, 'G':0.05, 'T':0.05}
+        bp = adapter[adapter_index]
+        this_adapter_emission_list[adapter_index][bp]=0.95
 
     #combine into this cell's list of emission dicts
 
@@ -133,10 +133,10 @@ for i in np.arange(3):
         this_bar_emission_list[j][bp] = 0.95
     # adapter
     this_adapter_emission_list = [0] * len(RCadapter)
-    for i in np.arange(len(RCadapter)):
-        this_adapter_emission_list[i] = {'A': 0.05, 'C': 0.05, 'G': 0.05, 'T': 0.05}
-        bp = RCadapter[i]
-        this_adapter_emission_list[i][bp] = 0.95
+    for rc_index in np.arange(len(RCadapter)):
+        this_adapter_emission_list[rc_index] = {'A': 0.05, 'C': 0.05, 'G': 0.05, 'T': 0.05}
+        bp = RCadapter[rc_index]
+        this_adapter_emission_list[rc_index][bp] = 0.95
 
     # combine into this cell's list of emission dicts
     # 3p barcode
