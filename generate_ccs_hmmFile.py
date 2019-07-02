@@ -55,9 +55,13 @@ for i in np.arange(3):
     #key is tuple:
         #P(first|second)
     transition_strings = []
+    num_items = len(transition_probs_list[i].values())
     for key,value in transition_probs_list[i].items():
-        prob_string = "\"" + key[0] + "\"    | \"" + key[1] +"\": " + str(value) + ";"
+        prob_string = "\"" + key[0] + "\"    | \"" + key[1] +"\": " + str(value)
+        if len(transition_strings) < num_items - 1 : #not adding last element
+            prob_string = prob_string + ";"
         transition_strings.append(prob_string)
+
     print(transition_strings)
     print()
 
