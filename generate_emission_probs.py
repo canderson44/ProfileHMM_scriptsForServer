@@ -37,7 +37,7 @@ bar3emission_dict = {}
 bar4emission_dict = {}
 threeP_emission_lists = []
 adapter_emission_lists = []
-cell_emission_list = [{},{},{}] #entry 0 for 2B01, 1 for 3C01, 2 for 4D01
+cell_emission_list = [] #entry 0 for 2B01, 1 for 3C01, 2 for 4D01
 ###########################
 ###########################
 ###########################
@@ -85,7 +85,7 @@ for i in np.arange(3):
 
     #combine into this cell's list of emission dicts
 
-    this_dict = cell_emission_list[i]
+    this_dict = {}
     # 5p barcode
     for index in np.arange(25): # 0 to 24; 5p barcode
         match_str = "M" + str(index)
@@ -110,6 +110,7 @@ for i in np.arange(3):
         insert_str = "I" + str(index)
         this_dict[match_str] = this_bar_emission_list[index]
         this_dict[insert_str] = random_dict
+    cell_emission_list.append(this_dict)
 
 print(cell_emission_list[2])
 #
