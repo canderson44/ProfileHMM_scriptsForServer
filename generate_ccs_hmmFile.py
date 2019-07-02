@@ -52,10 +52,14 @@ for i in np.arange(3):
     print(states_string)
 
     #format transitions: store in list
+    #key is tuple:
+        #P(first|second)
     transition_strings = []
     for key,value in transition_probs_list[i].items():
-        print("key is: ",key)
-        print("value is: " ,value)
+        prob_string = "(\"" + key[0] + "\"    | \"" + key[1] +"\": " + str(value) + ";"
+        transition_strings.append(prob_string)
+    print(transition_strings)
+    print()
 
     #write file
     with open(write_filename, 'w') as f:
