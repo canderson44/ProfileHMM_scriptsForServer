@@ -65,12 +65,22 @@ for i in np.arange(3):
 
 
     #format emissions: store in list
-    #key is tuple
+    #key is state, value is probability dictionary for emissions
+    #so format will be:
+        #   "A"    | "<key>" : <value['A']>;
+        # and so on for C, G, T
+    nucleotides = ["A", "C", "G", "T"]
     emission_strings = []
     num_items = len(emission_probs_list[i].values())
     for key,value in emission_probs_list[i].items():
-        print("key is ",key)
-        print("value is",value)
+        current_string = ""
+        for nuc in nucleotides:
+            first_part = "\"" + nuc + "\""
+            current_string = first_part.ljust(5) + "| \"" + key +"\": " + str(value[nuc])
+            if len(emission_strings) < num_items*4 - 1: #not adding last element:
+                current_string = current_string + ";"
+            emission_strings.append(current_string)
+
     print()
 
 
@@ -80,10 +90,17 @@ for i in np.arange(3):
         f.write("model_name = HiddenMarkovModel + \n")
         f.write("state_names= (" + states_string + ') \n')
         f.write("observation_symbols= (\"A\", \"C\", \"G\", \"T\" ) \n")
+
+        #transitions
         f.write("# transition probabilitites \n")
         f.write("transititions = (" + transition_strings[0] + "\n")
         for n in np.arange(1,len(transition_strings)-1): #all but first and last entry
             f.write("".rjust(17) + transition_strings[n] + '\n')
         f.write("".rjust(17) + transition_strings[-1] + " )\n")
+
+        #emissions
         f.write("# emission probabilities")
-        f.write("emission_probabilities = (\n")
+        f.write("emission_probabilities = (" + emission_strings[0] +"\n")
+        for n in np.arange(1, len(emission_strings) - 1):  # all but first and last
+            f.write("".rjust(26) + emission_strings[n] + '\n')
+        f.write("".rjust(26) + emission_strings[-1] + " )\n")
