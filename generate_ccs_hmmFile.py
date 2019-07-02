@@ -56,7 +56,7 @@ for i in np.arange(3):
         #P(first|second)
     transition_strings = []
     for key,value in transition_probs_list[i].items():
-        prob_string = "(\"" + key[0] + "\"    | \"" + key[1] +"\": " + str(value) + ";"
+        prob_string = "\"" + key[0] + "\"    | \"" + key[1] +"\": " + str(value) + ";"
         transition_strings.append(prob_string)
     print(transition_strings)
     print()
