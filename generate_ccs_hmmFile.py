@@ -92,7 +92,7 @@ for i in np.arange(3):
         f.write("observation_symbols= (\"A\", \"C\", \"G\", \"T\" ) \n")
 
         #transitions
-        f.write("# transition probabilitites \n")
+        f.write("# transition probabilities \n")
         f.write("transititions = (" + transition_strings[0] + "\n")
         for n in np.arange(1,len(transition_strings)-1): #all but first and last entry
             f.write("".rjust(17) + transition_strings[n] + '\n')
@@ -103,4 +103,7 @@ for i in np.arange(3):
         f.write("emission_probabilities = (" + emission_strings[0] +"\n")
         for n in np.arange(1, len(emission_strings) - 1):  # all but first and last
             f.write("".rjust(26) + emission_strings[n] + '\n')
-        f.write("".rjust(26) + emission_strings[-1] + " )\n")
+        f.write("".rjust(26) + emission_strings[-1] + ")\n")
+
+        #initial probs
+        f.write("initial_probabilities= (\"START\": 1.0)")
