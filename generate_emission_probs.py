@@ -108,7 +108,7 @@ for i in np.arange(3):
     for index in np.arange(70,141): #70-140
         match_str = "M" + str(index)
         insert_str = "I" + str(index)
-        this_dict[match_str] = this_bar_emission_list[index]
+        this_dict[match_str] = this_bar_emission_list[index-70]
         this_dict[insert_str] = random_dict
     cell_emission_list.append(this_dict)
 
