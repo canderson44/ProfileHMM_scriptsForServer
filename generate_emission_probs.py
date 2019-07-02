@@ -101,7 +101,7 @@ for i in np.arange(3):
     for index in np.arange(25,70): # 25-69
         match_str = "M" + str(index)
         insert_str = "I" + str(index)
-        this_dict[match_str] = this_adapter_emission_list[index]
+        this_dict[match_str] = this_adapter_emission_list[index - 25]
         this_dict[insert_str] = random_dict
 
     #3p barcode
