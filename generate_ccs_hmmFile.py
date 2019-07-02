@@ -49,7 +49,7 @@ for i in np.arange(3):
             states_string = states_string + ', ' + "\"" + entry + "\""
         else: #first entry
             states_string = "\"" + entry + "\""
-    print(states_string)
+ #   print(states_string)
 
     #format transitions: store in list
     #key is tuple:
@@ -57,7 +57,8 @@ for i in np.arange(3):
     transition_strings = []
     num_items = len(transition_probs_list[i].values())
     for key,value in transition_probs_list[i].items():
-        prob_string = "\"" + key[0] + "\"    | \"" + key[1] +"\": " + str(value)
+        first_part = "\"" + key[0] + "\""
+        prob_string = first_part.ljust(10) + "| \"" + key[1] +"\": " + str(value)
         if len(transition_strings) < num_items - 1 : #not adding last element
             prob_string = prob_string + ";"
         transition_strings.append(prob_string)
