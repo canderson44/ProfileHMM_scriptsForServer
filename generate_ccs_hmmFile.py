@@ -87,13 +87,13 @@ for i in np.arange(3):
     #write file
     with open(write_filename, 'w') as f:
         f.write("# initial parameters for cell: " + cell + '\n')
-        f.write("model_name = \"HiddenMarkovModel\" \n")
+        f.write("model_name=\"HiddenMarkovModel\" \n")
         f.write("state_names= (" + states_string + ') \n')
         f.write("observation_symbols= (\"A\", \"C\", \"G\", \"T\" ) \n")
 
         #transitions
         f.write("# transition probabilities \n")
-        f.write("transititions = (" + transition_strings[0] + "\n")
+        f.write("transitions = (" + transition_strings[0] + "\n")
         for n in np.arange(1,len(transition_strings)-1): #all but first and last entry
             f.write("".rjust(17) + transition_strings[n] + '\n')
         f.write("".rjust(17) + transition_strings[-1] + " )\n")
