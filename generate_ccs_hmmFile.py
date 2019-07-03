@@ -24,7 +24,7 @@ emission_probs_list = ep.get_all_cells_emissions()
 
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS_files/'
 
-cells = ['2_B01', '3_D01', '4_D01']
+cells = ['2_B01', '3_C01', '4_D01']
 
 for i in np.arange(3):
     cell = cells[i]
