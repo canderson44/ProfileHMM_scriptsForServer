@@ -87,7 +87,7 @@ for i in np.arange(3):
     #write file
     with open(write_filename, 'w') as f:
         f.write("# initial parameters for cell: " + cell + '\n')
-        f.write("model_name = HiddenMarkovModel + \n")
+        f.write("model_name = \"HiddenMarkovModel\" \n")
         f.write("state_names= (" + states_string + ') \n')
         f.write("observation_symbols= (\"A\", \"C\", \"G\", \"T\" ) \n")
 
