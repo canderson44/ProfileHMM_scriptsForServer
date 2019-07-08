@@ -300,11 +300,18 @@ ref_list_3 = [[barcode3,'3'], [three_adapter,'A'], [fivePBarcode,'5']]
 ref_list_4 = [[barcode4,'4'], [four_adapter,'A'], [fivePBarcode,'5']]
 def test_annotateseq(ref_list, seq_list):
     for seq in seq_list:
-        print(annotate_seq(seq, ref_list))
+        print(annotate_seq(seq, ref_list, justCoords=True))
+        print(annotate_seq(seq,ref_list,justCoords=False))
         print()
 
 
 
 
 
-
+# test annotateseq:
+test_strings_2 = gen_test_strings(barcode2, barcode2RC, two_adapter, two_adapter_RC)
+test_strings_3 = gen_test_strings(barcode3, barcode3RC, three_adapter, three_adapter_RC)
+test_strings_4 = gen_test_strings(barcode4, barcode4RC, four_adapter, four_adapter_RC)
+test_annotateseq(ref_list_2,test_strings_2)
+# test_annotateseq(ref_list_3,test_strings_3)
+# test_annotateseq(ref_list_4, test_strings_4)
