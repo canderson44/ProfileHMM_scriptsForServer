@@ -223,6 +223,8 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                               reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
+        print("len of gloc is: ", len(gloc))
+        print("elements of gloc: ", gloc)
         ref_list = [gloc[0],gloc[2]]
         current_coords = gloc[1]
         ref_scores = []
