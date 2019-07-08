@@ -112,22 +112,16 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         x_align.reverse()
         y_align.reverse()
         #help with troubleshooting coords
-        x_str = "".join(x_align)
-        alt_start = x_align.index(reference_char)
-        alt_end_0 = len(x_align) - 1 - x_align[::-1].index(reference_char)
-        alt_end_1 = len(x_align) - 1 - x_align_copy.index(reference_char)
-        for space in np.arange(len(x_align)):
-            if x_align[space] == '-':
-                x_align[space] = str(space)
-        print("x_str is", x_str)
-        print("x list is: ", x_align)
-        print("alt start coord is", alt_start)
-        print("alt end coord 0 is:",alt_end_0)
-        print("alt end coord 1 is:", alt_end_1)
-        start_coord = x_str.find(reference_char) #first index of occurence
-        stop_coord = x_str.rfind(reference_char)#last index of occurence (searches backwards)
-        print("appending coords", (start_coord, stop_coord))
-        print()
+        # x_str = "".join(x_align)
+        # alt_start = x_str.find(reference_char) #first index of occurence
+        # alt_end_0 = len(x_align) - 1 - x_align[::-1].index(reference_char)
+        # for space in np.arange(len(x_align)):
+        #     if x_align[space] == '-':
+        #         x_align[space] = str(space)
+        start_coord = x_align.index(reference_char)
+        stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
+        # print("appending coords", (start_coord, stop_coord))
+        # print()
         coords_list.append((start_coord,stop_coord))
         x_alignments.append(x_align)
         y_alignments.append(y_align)
@@ -143,9 +137,7 @@ barcode2 = cf.barcode_2
 barcode3 = cf.barcode_3
 barcode4 = cf.barcode_4
 barcode2RC = cf.barcode_2_rc
-print("len barcode2RC", len(barcode2RC))
 barcode3RC = cf.gen_rev_complement(barcode3)
-print("len barcode3RC", len(barcode2RC))
 barcode4RC = cf.gen_rev_complement(barcode4)
 #adapter
 two_adapter = ''
@@ -172,7 +164,6 @@ with open(filename4) as f:
         if line[0]!='>':
             four_adapter = line
 two_adapter_RC = cf.gen_rev_complement(two_adapter)
-print("len two_adapter_RC", len(two_adapter_RC))
 three_adapter_RC = cf.gen_rev_complement(three_adapter)
 four_adapter_RC = cf.gen_rev_complement(four_adapter)
 
