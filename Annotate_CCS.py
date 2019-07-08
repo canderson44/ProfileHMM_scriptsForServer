@@ -108,18 +108,22 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
                 j -= 1
                 x_align.append('-')
                 y_align.append(y[j])
-
+        x_align_copy = x_align.copy() #copy of alignment in reverse order
         x_align.reverse()
         y_align.reverse()
         #help with troubleshooting coords
         x_str = "".join(x_align)
         alt_start = x_align.index(reference_char)
+        alt_end_0 = len(x_align) - 1 - x_align[::-1].index(reference_char)
+        alt_end_1 = len(x_align) - 1 - x_align_copy.index(reference_char)
         for space in np.arange(len(x_align)):
             if x_align[space] == '-':
                 x_align[space] = str(space)
         print("x_str is", x_str)
         print("x list is: ", x_align)
         print("alt start coord is", alt_start)
+        print("alt end coord 0 is:",alt_end_0)
+        print("alt end coord 1 is:", alt_end_1)
         start_coord = x_str.find(reference_char) #first index of occurence
         stop_coord = x_str.rfind(reference_char)#last index of occurence (searches backwards)
         print("appending coords", (start_coord, stop_coord))
