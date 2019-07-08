@@ -226,7 +226,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
 #        print("len of gloc is: ", len(gloc))
 #        print("elements of gloc: ", gloc)
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
-        current_coords = gloc[1]
+        current_coords = [gloc[n][1] for n in np.arange(len(gloc))]
         ref_scores = []
         ref_alignments = []
         for pair in this_ref_list:
