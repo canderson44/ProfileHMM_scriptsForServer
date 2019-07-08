@@ -118,7 +118,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         x_alignments.append(x_align)
         y_alignments.append(y_align)
         
-    return_list = list(zip(score_list,coords_list,x_alignments))
+    return_list = list(zip(score_list,x_alignments))#coords_list,x_alignments))
     return return_list
 
 #important strings
