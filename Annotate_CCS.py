@@ -227,6 +227,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
 #        print("elements of gloc: ", gloc)
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
         current_coords = [gloc[n][1] for n in np.arange(len(gloc))]
+                                    #each element is len 2 tuple
         ref_scores = []
         ref_alignments = []
         for pair in this_ref_list:
@@ -257,11 +258,11 @@ def annotate_seq(sequence, ref_list, justCoords=False):
             if useRef == True:
                 for i in np.arange(len(ref_scoreSig_list)):
                     if ref_scoreSig_list[i]>0.999999999:
-                        final_coord_list.append((current_coords[0],current_coords[1],ref_char))
+                        final_coord_list.append((current_coords[i][0],current_coords[i][1],ref_char))
             else: #useRef == False
                 for i in np.arange(len(rc_scoreSig_list)):
                     if rc_scoreSig_list[i]>0.999999999:
-                        final_coord_list.append((rc_current_coords[0], rc_current_coords[1], refRC_char))
+                        final_coord_list.append((rc_current_coords[i][0], rc_current_coords[i][1], refRC_char))
 
             return final_coord_list
 
@@ -304,7 +305,9 @@ ref_list_3 = [[barcode3,'3'], [three_adapter,'A'], [fivePBarcode,'5']]
 ref_list_4 = [[barcode4,'4'], [four_adapter,'A'], [fivePBarcode,'5']]
 def test_annotateseq(ref_list, seq_list):
     for seq in seq_list:
+        print("format: final_coord_list: [(start,stop,char),(start,stop,char),etc]")
         print(annotate_seq(seq, ref_list, justCoords=True))
+        print("format: fused string")
         print(annotate_seq(seq,ref_list,justCoords=False))
         print()
 
