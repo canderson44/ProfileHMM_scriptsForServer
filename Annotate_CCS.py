@@ -182,7 +182,7 @@ def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):
     test_strings.append(test_a53a)
     #5rA3Ar
     test_5ra3ar = fivePBarcodeRC + adapter + "".join(rd.choices(nucleotides, k=10)) +\
-                  adapter+"".join(rd.choices(nucleotides, k=100)) +adapterRC
+                  barcode +"".join(rd.choices(nucleotides, k=100)) +adapterRC
     test_strings.append(test_5ra3ar)
     #start5
     test_start5= fivePBarcode + "".join(rd.choices(nucleotides, k=(1000)))
@@ -356,6 +356,6 @@ def test_annotateseq(ref_list, seq_list):
 test_strings_2 = gen_test_strings(barcode2, barcode2RC, two_adapter, two_adapter_RC)
 test_strings_3 = gen_test_strings(barcode3, barcode3RC, three_adapter, three_adapter_RC)
 test_strings_4 = gen_test_strings(barcode4, barcode4RC, four_adapter, four_adapter_RC)
-test_annotateseq(ref_list_2,test_strings_2)
-# test_annotateseq(ref_list_3,test_strings_3)
+# test_annotateseq(ref_list_2,test_strings_2)
+test_annotateseq(ref_list_3,test_strings_3)
 # test_annotateseq(ref_list_4, test_strings_4)
