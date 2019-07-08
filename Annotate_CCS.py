@@ -118,7 +118,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         x_alignments.append(x_align)
         y_alignments.append(y_align)
         
-    return_list = list(zip(score_list,x_alignments))#coords_list,x_alignments))
+    return_list = list(zip(score_list,coords_list,x_alignments))
     return return_list
 
 #important strings
@@ -223,19 +223,20 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                               reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
-        print("len of gloc is: ", len(gloc))
-        print("elements of gloc: ", gloc)
-        ref_list = [gloc[0],gloc[2]]
+#        print("len of gloc is: ", len(gloc))
+#        print("elements of gloc: ", gloc)
+        this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
         current_coords = gloc[1]
         ref_scores = []
         ref_alignments = []
-        for pair in ref_list:
+        for pair in this_ref_list:
             ref_scores.append(pair[0])
             ref_alignments.append(pair[1])
+        #now reverse complement
         rc_gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                               reference=refRC, score_dict = cf.score_dict, reference_char = refRC_char)
-        rc_list = [rc_gloc[0],rc_gloc[2]]
-        rc_current_coords = rc_gloc[1]
+        rc_list = [(rc_gloc[n][0],rc_gloc[n][2]) for n in np.arange(len(rc_gloc))] #score, alignment
+        rc_current_coords = [rc_gloc[n][1] for n in np.arange(len(rc_gloc))]
         rc_scores = []
         rc_alignments = []
         for pair in rc_list:
