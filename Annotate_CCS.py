@@ -112,8 +112,10 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         x_align.reverse()
         y_align.reverse()
         x_str = "".join(x_align)
+        print("x_str is", x_str)
         start_coord = x_str.find(reference_char) #first index of occurence
         stop_coord = x_str.rfind(reference_char)#last index of occurence (searches backwards)
+        print("appending coords", (start_coord, stop_coord))
         coords_list.append((start_coord,stop_coord))
         x_alignments.append(x_align)
         y_alignments.append(y_align)
@@ -169,27 +171,28 @@ def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):
     #Ar3r5r
     test_ar3r5r = adapterRC + barcodeRC + fivePBarcodeRC
     test_strings.append(test_ar3r5r)
-    #A53A
-    test_a53a = adapter + "".join(rd.choices(nucleotides, k=50))+ fivePBarcode+\
-                "".join(rd.choices(nucleotides, k=100)) + barcode + \
-                "".join(rd.choices(nucleotides, k=10)) + adapter
-    test_strings.append(test_a53a)
-    #5rA3Ar
-    test_5ra3ar = fivePBarcodeRC + adapter + "".join(rd.choices(nucleotides, k=10)) +\
-                  adapter+"".join(rd.choices(nucleotides, k=100)) +adapterRC
-    test_strings.append(test_5ra3ar)
-    #start5
-    test_start5= fivePBarcode + "".join(rd.choices(nucleotides, k=(1000)))
-    test_strings.append(test_start5)
-    #A_rand_A
-    test_a_rand_a = adapter + "".join(rd.choices(nucleotides, k=900)) + adapter
-    test_strings.append(test_a_rand_a)
-    #rand
-    test_random="".join(rd.choices(nucleotides, k=(1000)))
-    test_strings.append(test_random)
-    #end in 3
-    test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
-    test_strings.append(test_endIn3pBarcode)
+
+    # #A53A
+    # test_a53a = adapter + "".join(rd.choices(nucleotides, k=50))+ fivePBarcode+\
+    #             "".join(rd.choices(nucleotides, k=100)) + barcode + \
+    #             "".join(rd.choices(nucleotides, k=10)) + adapter
+    # test_strings.append(test_a53a)
+    # #5rA3Ar
+    # test_5ra3ar = fivePBarcodeRC + adapter + "".join(rd.choices(nucleotides, k=10)) +\
+    #               adapter+"".join(rd.choices(nucleotides, k=100)) +adapterRC
+    # test_strings.append(test_5ra3ar)
+    # #start5
+    # test_start5= fivePBarcode + "".join(rd.choices(nucleotides, k=(1000)))
+    # test_strings.append(test_start5)
+    # #A_rand_A
+    # test_a_rand_a = adapter + "".join(rd.choices(nucleotides, k=900)) + adapter
+    # test_strings.append(test_a_rand_a)
+    # #rand
+    # test_random="".join(rd.choices(nucleotides, k=(1000)))
+    # test_strings.append(test_random)
+    # #end in 3
+    # test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
+    # test_strings.append(test_endIn3pBarcode)
     return test_strings
 
 #given a sequence, and a list of lists of [reference, reference character], 
