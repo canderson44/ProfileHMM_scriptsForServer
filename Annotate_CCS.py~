@@ -1,12 +1,13 @@
 #!/usr/bin/env python
-# Purpose: pipeline so that given a list of CCSs, for each label find where the 5p barcode, 3p barcode, and adapter lie 
+# -*- coding: utf-8 -*-
+# Purpose: pipeline so that given a list of CCSs, for each label where the 5p barcode, 3p barcode, and adapter lie 
 
 import CCS_Filter as cf
 import numpy as np
 import random as rd
 
-#adaptation of CCS_Filter's score alignment, except this time: 
-#RETURNS list of score, tuple of start and end coordinates, and string traceback alignment (just reference portion)
+#adaptation of CCS_Filter's score alignment, except this time 
+#RETURNS list of score, traceback alignment (just reference portion)
 #FOR NOW: linear gap penalty d
 #parameters: gap penalty d, barcode/reference(vertical), seq y(horizontal),
     #score matrix, reference character
@@ -54,7 +55,6 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     score_list = [F[num_rows-1][i] for i in max_indices_list]
     x_alignments = []
     y_alignments = []
-    coords_list = [] #list of start indices in sequence string
     for trace_start_col in max_indices_list:
         #start traceback
         x_align = [] #reference
@@ -111,13 +111,10 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
 
         x_align.reverse()
         y_align.reverse()
-        start_coord = x_alignments.find(reference_char) #first index of occurence
-        stop_coord = x_alignments.rfind(reference_char)#last index of occurence (searches backwards)
-        coords_list.append((start_coord,stop_coord))
         x_alignments.append(x_align)
         y_alignments.append(y_align)
         
-    return_list = list(zip(score_list,coords_list,x_alignments))
+    return_list = list(zip(score_list,x_alignments))
     return return_list
 
 #important strings
@@ -193,52 +190,38 @@ def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):
 #does references and their reverse complements, with the RCs having "r" 
     #appended to the reference character
 #only includes reference(s) with a score significance of >0.99999999
-
-#RETURN: of references that pass score significance filter, returns:
-
-      #case 1: justCoords == True
-            #list of tuples: each tuple is (start_coord, stop_coord, reference_char)
-            #where start and stop coords are start and stop indices within sequence string where region of interest aligns
-
-       #case 2: justCoords == False
- 
-            #returns fusion of the alignment strings returned by glocal alignment function 
-
-#NOTE: of a region and its reverse complement, will include a max of one of them, whichever is higher (but only if they pass the score significance fitler) 
-
-#PARAMETERS
+#RETURN: of the references that pass the score significance filter, 
+    #returns fusion of the alignment strings returned by glocal alignment function
+    #of a region and its reverse complement, will include a max of one of them, whichever is higher (but only if they pass the score significance fitler)
+#parameters
     #sequence: string
     #ref_list: list of lists
         #each entry is [reference(string), reference character]
-def annotate_seq(sequence, ref_list, justCoords=False):
-    final_coord_list = [] #for case 1
-    fused_list = ['-'] * len(sequence) #for case 2
+def annotate_seq(sequence, ref_list):
+    fused_list = ['-']*len(sequence) 
     for refPair in ref_list:
 #        print("ref_pair is" ,refPair)
         ref = refPair[0]
         ref_char = refPair[1]
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
-        gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
+        ref_list = glocal_alignment(gap_penalty=1, sequence=sequence,
                                               reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
-        ref_list = [gloc[0],gloc[2]]
-        current_coords = gloc[1]
         ref_scores = []
         ref_alignments = []
         for pair in ref_list:
             ref_scores.append(pair[0])
-            ref_alignments.append(pair[1])
-        rc_gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
-                                              reference=refRC, score_dict = cf.score_dict, reference_char = refRC_char)
-        rc_list = [rc_gloc[0],rc_gloc[2]]
-        rc_current_coords = rc_gloc[1]
+            ref_alignments.append(pair[1])          
+        rc_list = glocal_alignment(gap_penalty=1, sequence=sequence,
+                                              reference=refRC, score_dict = cf.score_dict,
+                                              reference_char = refRC_char)
         rc_scores = []
         rc_alignments = []
         for pair in rc_list:
             rc_scores.append(pair[0])
             rc_alignments.append(pair[1])
-
+            
         ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
         rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]
         useRef = False
@@ -248,30 +231,16 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                     useRef = True
                 else:
                     useRef = False
-        # here we split into case 1 and case 2
-        if justCoords:
-            if useRef == True:
-                for i in np.arange(len(ref_scoreSig_list)):
-                    if ref_scoreSig_list[i]>0.999999999:
-                        final_coord_list.append((current_coords[0],current_coords[1],ref_char))
-            else: #useRef == False
-                for i in np.arange(len(rc_scoreSig_list)):
-                    if rc_scoreSig_list[i]>0.999999999:
-                        final_coord_list.append((rc_current_coords[0], rc_current_coords[1], refRC_char))
-
-            return final_coord_list
-
-        else: #justCoords == False; casae 2
-            if useRef == True:
-                for i in np.arange(len(ref_scoreSig_list)):
-                    if ref_scoreSig_list[i]>0.999999999:
-                        fuse(fused_list,ref_alignments[i])
-            else: #useRef == False
-                for i in np.arange(len(rc_scoreSig_list)):
-                    if rc_scoreSig_list[i]>0.999999999:
-                        fuse(fused_list,rc_alignments[i])
-            return_str = "".join(fused_list)
-            return return_str
+        if useRef == True:
+            for i in np.arange(len(ref_scoreSig_list)):
+                if ref_scoreSig_list[i]>0.999999999:
+                    fuse(fused_list,ref_alignments[i])
+        else: #useRef == False
+            for i in np.arange(len(rc_scoreSig_list)):
+                if rc_scoreSig_list[i]>0.999999999:
+                    fuse(fused_list,rc_alignments[i])
+    return_str = "".join(fused_list)
+    return return_str
     
 #given current fused list and list of what to fuse, fuses the "to_fuse" contents to the fused list
 def fuse(fused, to_fuse):
