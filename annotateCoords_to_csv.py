@@ -71,7 +71,7 @@ for i in np.arange(3):
                     y = 50
                 # ZMW#, region character, start, stop, yval
                 to_write_str = ",".join([str(zmw_num), region_char, str(start),
-                                         str(stop), y])
+                                         str(stop), str(y)])
                 output.write(to_write_str + '\n')
 
 
