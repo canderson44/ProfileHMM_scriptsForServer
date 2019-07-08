@@ -218,7 +218,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
 #        print("ref_pair is" ,refPair)
         ref = refPair[0]
         ref_char = refPair[1]
-        print("this ref is: ", ref_char)
+#        print("this ref is: ", ref_char)
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
