@@ -218,6 +218,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
 #        print("ref_pair is" ,refPair)
         ref = refPair[0]
         ref_char = refPair[1]
+        print("this ref is: ", ref_char)
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
@@ -263,8 +264,8 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                 for i in np.arange(len(rc_scoreSig_list)):
                     if rc_scoreSig_list[i]>0.999999999:
                         final_coord_list.append((rc_current_coords[i][0], rc_current_coords[i][1], refRC_char))
+            print("annotateseq: returning final coord list: ", final_coord_list)
 
-            return final_coord_list
 
         else: #justCoords == False; casae 2
             if useRef == True:
@@ -276,7 +277,10 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                     if rc_scoreSig_list[i]>0.999999999:
                         fuse(fused_list,rc_alignments[i])
             return_str = "".join(fused_list)
-            return return_str
+    if justCoords:
+        return final_coord_list
+    else:
+        return return_str
     
 #given current fused list and list of what to fuse, fuses the "to_fuse" contents to the fused list
 def fuse(fused, to_fuse):
