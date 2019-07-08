@@ -111,6 +111,10 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
 
         x_align.reverse()
         y_align.reverse()
+        #help with troubleshooting coords
+        for space in np.arange(len(x_align)):
+            if x_align[space] == '-':
+                x_align[space] = space
         x_str = "".join(x_align)
         print("x_str is", x_str)
         print("x list is: ", x_align)
