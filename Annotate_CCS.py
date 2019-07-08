@@ -111,8 +111,9 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
 
         x_align.reverse()
         y_align.reverse()
-        start_coord = x_alignments.find(reference_char) #first index of occurence
-        stop_coord = x_alignments.rfind(reference_char)#last index of occurence (searches backwards)
+        x_str = "".join(x_align)
+        start_coord = x_str.find(reference_char) #first index of occurence
+        stop_coord = x_str.rfind(reference_char)#last index of occurence (searches backwards)
         coords_list.append((start_coord,stop_coord))
         x_alignments.append(x_align)
         y_alignments.append(y_align)
