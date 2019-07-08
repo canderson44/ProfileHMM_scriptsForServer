@@ -173,7 +173,7 @@ def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):
     test_strings.append(test_a53a)
     #5rA3Ar
     test_5ra3ar = fivePBarcodeRC + adapter + "".join(rd.choices(nucleotides, k=10)) +\
-                  barcode+"".join(rd.choices(nucleotides, k=100)) +adapterRC
+                  adapter+"".join(rd.choices(nucleotides, k=100)) +adapterRC
     test_strings.append(test_5ra3ar)
     #start5
     test_start5= fivePBarcode + "".join(rd.choices(nucleotides, k=(1000)))
@@ -229,21 +229,45 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
         current_coords = [gloc[n][1] for n in np.arange(len(gloc))]
                                     #each element is len 2 tuple
-        ref_scores = []
+        ref_scores = [-1]
         ref_alignments = []
+
+        #don't keep all in this_ref_list; only keep those with highest score
         for pair in this_ref_list:
-            ref_scores.append(pair[0])
-            ref_alignments.append(pair[1])
+            add_score = False
+            for score in ref_scores:
+                if pair[0] > score:
+                    ref_scores.remove(score)
+                    add_score = True
+                elif pair[0] == score:
+                    add_score = True
+                else:
+                    add_score = False
+            if add_score:
+                ref_scores.append(pair[0])
+                ref_alignments.append(pair[1])
         #now reverse complement
         rc_gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                               reference=refRC, score_dict = cf.score_dict, reference_char = refRC_char)
         rc_list = [(rc_gloc[n][0],rc_gloc[n][2]) for n in np.arange(len(rc_gloc))] #score, alignment
         rc_current_coords = [rc_gloc[n][1] for n in np.arange(len(rc_gloc))]
-        rc_scores = []
+        rc_scores = [-1]
         rc_alignments = []
+
+        #don't keep all in rc_list; only keep those with highest score
         for pair in rc_list:
-            rc_scores.append(pair[0])
-            rc_alignments.append(pair[1])
+            add_score = False
+            for score in rc_scores:
+                if pair[0] > score:
+                    rc_scores.remove(score)
+                    add_score = True
+                elif pair[0] == score:
+                    add_score = True
+                else:
+                    add_score = False
+            if add_score:
+                rc_scores.append(pair[0])
+                rc_alignments.append(pair[1])
 
         ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
         rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]

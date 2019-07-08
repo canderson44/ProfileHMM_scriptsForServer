@@ -36,3 +36,6 @@ for i in np.arange(3):
             if 'A' in annotated_ccs:
                 output.write(annotated_ccs + '\n')
                 output.write('\n')
+            if 'Ar' in annotated_ccs:
+                output.write(annotated_ccs + '\n')
+                output.write('\n')
