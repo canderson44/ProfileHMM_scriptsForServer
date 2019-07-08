@@ -264,7 +264,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                 for i in np.arange(len(rc_scoreSig_list)):
                     if rc_scoreSig_list[i]>0.999999999:
                         final_coord_list.append((rc_current_coords[i][0], rc_current_coords[i][1], refRC_char))
-            print("annotateseq: returning final coord list: ", final_coord_list)
+ #           print("annotateseq: returning final coord list: ", final_coord_list)
 
 
         else: #justCoords == False; casae 2
