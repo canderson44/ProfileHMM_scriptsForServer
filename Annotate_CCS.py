@@ -129,7 +129,9 @@ barcode2 = cf.barcode_2
 barcode3 = cf.barcode_3
 barcode4 = cf.barcode_4
 barcode2RC = cf.barcode_2_rc
+print("len barcode2RC", len(barcode2RC))
 barcode3RC = cf.gen_rev_complement(barcode3)
+print("len barcode3RC", len(barcode2RC))
 barcode4RC = cf.gen_rev_complement(barcode4)
 #adapter
 two_adapter = ''
@@ -156,6 +158,7 @@ with open(filename4) as f:
         if line[0]!='>':
             four_adapter = line
 two_adapter_RC = cf.gen_rev_complement(two_adapter)
+print("len two_adapter_RC", len(two_adapter_RC))
 three_adapter_RC = cf.gen_rev_complement(three_adapter)
 four_adapter_RC = cf.gen_rev_complement(four_adapter)
 
