@@ -54,7 +54,10 @@ for i in np.arange(3):
             #first: write whole CCS
             to_write_str = ",".join([str(zmw_num), 'C', str(0),
                                     str(len(ccs)), str(100)])
-            output.write(to_write_str + '\n')
+            to_write_str = to_write_str + '\n'
+            print("string to write is: ", to_write_str)
+            print('\n\n')
+            output.write(to_write_str)
 
             #now do regions for this ccs
             annotated_ccs = ac.annotate_seq(ccs, ref_list, justCoords=True)
