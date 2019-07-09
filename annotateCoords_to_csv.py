@@ -68,13 +68,26 @@ for i in np.arange(3):
                 region_char = grouping[2]
                 if region_char == 'A' or region_char == 'Ar':
                     y = 25
+                    if region_char == 'A':
+                        region_char = 'Adapter'
+                    else:
+                        region_char = 'Adapter_Reverse'
                 elif region_char == '5' or region_char == '5r':
                     y = 75
+                    if region_char == '5':
+                        region_char = 'Five_Barcode'
+                    else:
+                        region_char = 'Five_Barcode_Reverse'
                 else: #3' barcode or its rev complement
                     y = 50
+                    if len(region_char) == 1:
+                        region_char = 'Three_Barcode'
+                    else:
+                        region_char = 'Three_Barcode_Reverse'
                 # ZMW#, region character, start, stop, yval
                 to_write_str = ",".join([str(zmw_num), region_char, str(start),
                                          str(stop), str(y)])
-                output.write(to_write_str + '\n')
+                to_write_str = to_write_str + '\n'
+                output.write(to_write_str)
 
 
