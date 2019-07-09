@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/annotateCoords_to_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotateCoords_to_csv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/annotateCoords_visualization.R" beforeDir="false" afterPath="$PROJECT_DIR$/annotateCoords_visualization.R" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

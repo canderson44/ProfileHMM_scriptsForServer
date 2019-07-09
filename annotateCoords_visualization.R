@@ -18,10 +18,37 @@ coords_4D01 <- read.csv("../data/toy_coords_C.csv")
 #FOR NOW: toy plots
 #2_B01
 ggplot(coords_2B01, aes(x=start, y=y)) + 
-  facet_wrap(~ZMW#)
-
-
-
+  facet_wrap(~ZMW) + 
+  geom_segment(aes(xend=stop, yend=y, color=region, size=10)) +
+  labs(title="2_B01 Annotations by CCS", 
+       x = "Index within CCS", y = "") +
+  scale_color_brewer(breaks = c("CCS", "Adapter", "Adapter_Reverse","Five_Barcode", 
+                                "Five_Barcode_Reverse", "Three_Barcode", "Three_Barcode_Reverse"),
+                     palette = "Paired") +
+  theme_bw() +
+  theme(axis.text.y = element_blank(), axis.ticks=element_blank())
+#3_C01
+ggplot(coords_3C01, aes(x=start, y=y)) + 
+  facet_wrap(~ZMW) + 
+  geom_segment(aes(xend=stop, yend=y, color=region, size=10)) +
+  labs(title="3_C01 Annotations by CCS", 
+       x = "Index within CCS", y = "") +
+  scale_color_brewer(breaks = c("CCS", "Adapter", "Adapter_Reverse","Five_Barcode", 
+                                "Five_Barcode_Reverse", "Three_Barcode", "Three_Barcode_Reverse"),
+                     palette = "Paired") +
+  theme_bw() +
+  theme(axis.text.y = element_blank(), axis.ticks=element_blank())
+#4_D01
+ggplot(coords_4D01, aes(x=start, y=y)) + 
+  facet_wrap(~ZMW) +
+  geom_segment(aes(xend=stop, yend=y, color=region, size=10)) +
+  labs(title="4_D01 Annotations by CCS", 
+       x = "Index within CCS", y = "") +
+  scale_color_brewer(breaks = c("CCS", "Adapter", "Adapter_Reverse","Five_Barcode", 
+                                "Five_Barcode_Reverse", "Three_Barcode", "Three_Barcode_Reverse"),
+                    palette = "Paired") +
+  theme_bw() +
+  theme(axis.text.y = element_blank(), axis.ticks=element_blank())
 
 
 
