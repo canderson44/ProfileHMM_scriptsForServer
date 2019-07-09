@@ -46,13 +46,13 @@ for i in np.arange(3):
     with open(output_filename, 'w') as output:
         #first write headers line. order:
         # ZMW#, region character, start, stop, yval
-        output.write('ZMW#, region, start, stop, y \n')
+        output.write('ZMW, region, start, stop, y \n')
         for pair in ccs_list: #iterate through cell line's CCSes
             zmw_num = pair[0]
             ccs = pair[1]
 
             #first: write whole CCS
-            to_write_str = ",".join([str(zmw_num), 'C', str(0),
+            to_write_str = ",".join([str(zmw_num), 'CCS', str(0),
                                     str(len(ccs)), str(100)])
             to_write_str = to_write_str + '\n'
             print("string to write is: ", to_write_str)
