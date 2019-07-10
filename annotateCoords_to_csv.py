@@ -57,8 +57,8 @@ for i in np.arange(3):
             to_write_str = ",".join([str(zmw_num), 'CCS', str(0),
                                     str(len(ccs)), str(100)])
             to_write_str = to_write_str + '\n'
-            print("string to write is: ", to_write_str)
-            print('\n\n')
+#            print("string to write is: ", to_write_str)
+#            print('\n\n')
             output.write(to_write_str)
 
             #now do regions for this ccs
