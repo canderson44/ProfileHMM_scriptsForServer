@@ -50,7 +50,7 @@ for i in np.arange(3):
     with open(output_filename, 'w') as output:
         #first write headers line. order:
         # ZMW#, region character, start, stop, yval
-        output.write('ZMW, region, start, stop, y \n')
+        output.write('ZMW,region,start,stop,y\n')
         for pair in ccs_list: #iterate through cell line's CCSes
             zmw_num = pair[0]
             ccs = pair[1]
@@ -94,4 +94,4 @@ for i in np.arange(3):
                 to_write_str = to_write_str + '\n'
                 output.write(to_write_str)
 
-
+Abaratm0nkeyp0pc0rninfringement007
