@@ -25,17 +25,15 @@ barcode_chars = ['2','3','4']
 barcodes3p = [ac.barcode2, ac.barcode3, ac.barcode4]
 adapters = [ac.two_adapter, ac.three_adapter, ac.four_adapter]
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/'
-#input_path_stub = path_stub + 'demultiplexed_full_bams/no_passes/'
-# TODO CHANGE INPUT PATH BACK
-input_path_stub = path_stub + 'profile_hmm/'
+input_path_stub = path_stub + 'demultiplexed_full_bams/no_passes/'
+#input_path_stub = path_stub + 'profile_hmm/'
 output_path_stub = path_stub + 'profile_hmm/annotated_ccs/'
 
 for i in np.arange(3):
     cell = cells[i]
     ref_list = [[ac.fivePBarcode, '5'], [barcodes3p[i], barcode_chars[i]], [adapters[i], 'A']]
-    #input_filename = input_path_stub + cell + '/extracted_ccs.csv'
-    # TODO RESTORE CORRECT INPUT FILENAME
-    input_filename = input_path_stub + cell + '_first10lines.csv'
+    input_filename = input_path_stub + cell + '/extracted_ccs.csv'
+    # input_filename = input_path_stub + cell + '_first10lines.csv'
     output_filename = output_path_stub + cell + '_annotation_coords.csv'
     #input file format: zmw#, ccs
     ccs_list = [] #store tuples of (zmw number, ccs strings)
