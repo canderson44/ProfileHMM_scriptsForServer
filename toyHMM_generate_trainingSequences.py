@@ -32,7 +32,7 @@ import numpy as np
 import random as rd
 
 num_sequences = 1000
-sequence_names = [n for n in np.arange(num_sequences)]
+sequence_names = [str(n) for n in np.arange(num_sequences)]
 #put into sample space 95 of .95 prob emission. rest, put in five.
 ninetyfive_As = ['A'] * 95
 ninetyfive_Cs = ['C'] * 95
