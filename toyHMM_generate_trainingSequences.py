@@ -73,15 +73,15 @@ for i in np.arange(num_sequences):
             transition = 'end'
         transition_list.append(transition)
 #    print("".join(char_list))
-    print(transition_list)
+#    print(transition_list)
 
-    all_sequences.append("".join(char_list))
+    all_sequences.append(" ".join(char_list))
     all_transitions.append("".join(transition))
 
 output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS_files/toyHMM_simple.sequences'
 with open(output_name, 'w') as output:
     for index in np.arange(len(all_sequences)):
-        to_write_str = sequence_names[index] + ':' + all_sequences[index] + '\n'
+        to_write_str = sequence_names[index] + ': ' + all_sequences[index] + '\n'
         output.write(to_write_str)
 
 
