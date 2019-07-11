@@ -54,7 +54,7 @@ sample_space_transition_from_m0 += ['M2'] * 5 #represents going to D0, then M2
 #now let's try make a list of sequences
 all_sequences = []
 all_transitions = []
-for i in np.arange(50):
+for i in np.arange(num_sequences):
     #always start with M0
     char_list = []
     transition_list = ['M0']
