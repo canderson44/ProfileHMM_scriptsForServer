@@ -81,7 +81,7 @@ for i in np.arange(50):
 output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS_files/toyHMM_simple.sequences'
 with open(output_name, 'w') as output:
     for index in np.arange(len(all_sequences)):
-        to_write_str = sequence_names[i] + ':' + all_sequences[index]
+        to_write_str = sequence_names[i] + ':' + all_sequences[index] + '\n'
         output.write(to_write_str)
 
 
