@@ -20,7 +20,9 @@ NOTE: csv is intended for R, so increase all entries by one to make 1-based
 import Annotate_CCS as ac
 import numpy as np
 
-cells = ['2_B01', '3_C01', '4_D01']
+#cells = ['2_B01', '3_C01', '4_D01']
+# TODO RESTORE ORIGINAL CELLS VALUES
+cells = ['3_C01', '4_D01']
 barcode_chars = ['2','3','4']
 barcodes3p = [ac.barcode2, ac.barcode3, ac.barcode4]
 adapters = [ac.two_adapter, ac.three_adapter, ac.four_adapter]

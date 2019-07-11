@@ -16,7 +16,7 @@ TRANSITIONS
 start -> M0: 1
 M0 -> M1: 0.95
 M0 -> D0: 0.05
-D0 -> M1: 1
+D0 -> M2: 1
 M1 -> M2: 1
 M2 -> end: 1
 
