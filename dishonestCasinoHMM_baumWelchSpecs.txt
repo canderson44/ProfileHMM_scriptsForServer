@@ -1,0 +1,4 @@
+training_algorithm = "BaumWelchHMM"
+training_set = "trainDishonestCasinoHMM_bw.sequences"
+initial_specification = "dishonestCasinoHMM_initial.txt"
+maxiter=300

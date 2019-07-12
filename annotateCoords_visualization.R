@@ -9,8 +9,10 @@ library(tidyverse)
 install.packages("gridExtra")
 library(gridExtra)
 #### Load data ####
-coords_2B01 <- read.csv("/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/annotated_ccs/2_B01_annotation_coords.csv")
-
+#FOR SERVER 
+#coords_2B01 <- read.csv("/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/annotated_ccs/2_B01_annotation_coords.csv")
+#FOR MY MAC
+coords_2B01 <- read.csv("../data/2_B01_annotation_coords.csv")
 # coords_3C01 <- read.csv("../data/toy_coords_B.csv")
 # coords_4D01 <- read.csv("../data/toy_coords_C.csv")
 
