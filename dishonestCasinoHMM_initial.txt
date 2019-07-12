@@ -1,12 +1,16 @@
 # Dishonest Casino Problem
 model_name="HiddenMarkovModel"
-state_names= ("Fair", "Loaded" )
+state_names= ("Fair", "Loaded","END" )
 observation_symbols= ("1", "2", "3", "4", "5", "6" )
 # transition probabilities
 transitions = ("Loaded"	  | "Fair": 0.1;
-	       "Fair"	  | "Fair": 0.9;
+	       "Fair"	  | "Fair": 0.8;
+	       "END"	  | "Fair": 0.1;
+	       "Fair"	  | "END": 0.0;
+	       "Loaded"   | "END": 0.0;
 	       "Fair"	  | "Loaded": 0.1;
-	       "Loaded"   | "Loaded": 0.9 )
+	       "Loaded"   | "Loaded": 0.8;
+	       "END"	  | "Loaded": 0.1)
 # emission probabilities
 emission_probabilities = ("1" | "Fair" : 0.166666666666;
 		          "2" |	"Fair" : 0.166666666666;
@@ -19,5 +23,11 @@ emission_probabilities = ("1" | "Fair" : 0.166666666666;
 			  "3" | "Loaded" : 0.1;
 			  "4" | "Loaded" : 0.1;
 			  "5" | "Loaded" : 0.1;
-			  "6" | "Loaded" : 0.1)
-initial_probabilities= ("Fair": 0.5; "Loaded": 0.5)
+			  "6" | "Loaded" : 0.1;
+			  "1" | "END" : 0;
+			  "2" | "END" : 0;
+			  "3" | "END" : 0;
+			  "4" | "END" : 0;
+			  "5" | "END" : 0;
+			  "6" | "END" : 0)
+initial_probabilities= ("Fair": 0.5; "Loaded": 0.5; "END": 0)
