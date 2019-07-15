@@ -6,8 +6,8 @@ observation_symbols= ("1", "2", "3", "4", "5", "6" )
 transitions = ("Loaded"	  | "Fair": 0.1;
 	       "Fair"	  | "Fair": 0.8;
 	       "END"	  | "Fair": 0.1;
-	       "Fair"	  | "END": 0.0;
-	       "Loaded"   | "END": 0.0;
+	       "Fair"     | "END": 0.0;
+               "Loaded"   | "END": 0.0;
 	       "Fair"	  | "Loaded": 0.1;
 	       "Loaded"   | "Loaded": 0.8;
 	       "END"	  | "Loaded": 0.1)
@@ -24,10 +24,10 @@ emission_probabilities = ("1" | "Fair" : 0.166666666666;
 			  "4" | "Loaded" : 0.1;
 			  "5" | "Loaded" : 0.1;
 			  "6" | "Loaded" : 0.1;
-			  "1" | "END" : 0;
-			  "2" | "END" : 0;
-			  "3" | "END" : 0;
-			  "4" | "END" : 0;
-			  "5" | "END" : 0;
-			  "6" | "END" : 0)
-initial_probabilities= ("Fair": 0.5; "Loaded": 0.5; "END": 0)
+			  "1" | "END" : 0;	  
+                          "2" | "END" : 0;
+                          "3" | "END" : 0;
+                          "4" | "END" : 0;
+                          "5" | "END" : 0;
+                          "6" | "END" : 0)
+initial_probabilities= ("Fair": 0.5; "Loaded": 0.5; "END": 0.0)
