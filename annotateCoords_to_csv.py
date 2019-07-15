@@ -32,7 +32,7 @@ input_path_stub = path_stub + 'profile_hmm/'
 # TODO RESTORE INPUT_PATH_STUB TO THAT OF ALL EXTRACTED CCS
 output_path_stub = path_stub + 'profile_hmm/annotated_ccs/'
 
-for i in np.arange(3):
+for i in np.arange(len(cells)):
     cell = cells[i]
     ref_list = [[ac.fivePBarcode, '5'], [barcodes3p[i], barcode_chars[i]], [adapters[i], 'A']]
     # input_filename = input_path_stub + cell + '/extracted_ccs.csv'
