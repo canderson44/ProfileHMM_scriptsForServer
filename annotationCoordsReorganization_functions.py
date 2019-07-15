@@ -14,6 +14,11 @@ fiveBarRC = ac.fivePBarcodeRC
 threeBar_list = [ac.barcode2, ac.barcode3, ac.barcode4]
 threeBarRC_list = [ac.barcode2RC, ac.barcode3RC, ac.barcode4RC]
 
+five_name = 'Five_Barcode'
+fiveR_name = 'Five_Barcode_Reverse'
+three_name = 'Three_Barcode'
+threeR_name = 'Three_Barcode_Reverse'
+
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/annotated_ccs/'
 
 '''
@@ -64,10 +69,10 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename, writeCSV):
         new_five_regions = [] #holds kept fiveBar coords
         new_fiveRC_regions = [] # holds kept fiveBarRC coords
         # list of sets of coords for fiveBar and fiveRC regions
-        five_regions = zmw_region_dict['Five_Barcode_Reverse']
-        fiveRC_regions = zmw_region_dict['Five_Barcode']
+        five_regions = zmw_region_dict[five_name]
+        fiveRC_regions = zmw_region_dict[fiveR_name]
         # list of sets of coords for threeBar and threeBarRC regions
-        three_regions = zmw_region_dict['Three_Barcode_Reverse'] + zmw_region_dict['Three_Barcode']
+        three_regions = zmw_region_dict[threeR_name] + zmw_region_dict[three_name]
 
         #filter out undesireable five coords
 
@@ -91,13 +96,13 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename, writeCSV):
         #now update dict
         #forward
         if len(five_regions) != len(new_five_regions): #need to update
-            del zmw_region_dict['Five_Barcode']
-            zmw_region_dict['Five_Barcode'] = new_five_regions
+            del zmw_region_dict[five_name]
+            zmw_region_dict[five_name] = new_five_regions
 
         #reverse
         if len(fiveRC_regions) != len(new_fiveRC_regions): #need to update
-            del zmw_region_dict['Five_Barcode_Reverse']
-            zmw_region_dict['Five_Barcode_Reverse'] = new_fiveRC_regions
+            del zmw_region_dict[fiveR_name]
+            zmw_region_dict[fiveR_name] = new_fiveRC_regions
 
     #############
     #############
@@ -138,9 +143,9 @@ def select_fiveThreePairs(zmw_dict):
         isFive = False #mark true if 5' barcode or rev complement present
         isThree = False #mark true if 3' barcode or rev complement present
         for region in zmw_regions_dict.keys():
-            if region == 'Five_Barcode' or region== 'Five_Barcode_Reverse':
+            if region == five_name or region== fiveR_name:
                 isFive = True
-            elif region == 'Three_Barcode' or region == 'Three_Barcode_Reverse':
+            elif region == three_name or region == threeR_name:
                 isThree = True
         if isFive == False or isThree == False: #don't keep this zmw
             reject_zmws_list.append(zmw)
@@ -151,6 +156,54 @@ def select_fiveThreePairs(zmw_dict):
         del return_zmw_dict[zmw]
 
     return return_zmw_dict
+
+'''
+function to iterate through a zmw dict and tally instances of each possible pairing 
+of 5 or 5r with 3 or 3r
+PARAMETERS: zmw dictionary with all overlapping 5(r) coords removed adn only containing
+            zmws with 5(r) - 3(r) pairs
+                (see this file's functions:
+                    remove_overlapping_fiveCoords and select_fiveTreePairs, respectively
+                    
+RETURNS:new dict cataloguing counts of each pair combo
+        key: combo name
+        value: count
+'''
+def count_combos(zmw_dict):
+    combo_counts = {'five_three':0, 'fiveR_three':0, 'fiveR_threeR':0, 'five_threeR':0,
+                    'three_five':0, 'threeR_five':0, 'threeR_fiveR':0, 'three_fiveR':0}
+    for zmw, zmw_region_dict in zmw_dict:
+        five_type = '' #will be Five_Barcode or Five_Barcode_Reverse
+        three_type = ''# will be Three_Barcode or Three_Barcode_Reverse
+
+        #what regions present?
+        for region in zmw_region_dict.keys():
+            if region == five_name or fiveR_name:
+                five_type = region
+            elif region == three_name or threeR_name:
+                three_type = region
+
+        #now update combo_counts
+        five_coords_list = zmw_region_dict[five_type]
+        three_coords_list = zmw_region_dict[three_type]
+        for five_coords in five_coords_list:
+            for three_coords in three_coords_list:
+                #five type before three type: five end < three start
+                if five_coords[1] < three_coords[0]:
+                    if five_type == five_name: #5
+                        if three_type == three_name:#53
+                            combo_counts['five_three'] += 1
+                        else: #53r
+                            combo_counts['five_threeR'] += 1
+                    else: #5r
+                        if three_type == three_name:  # 5r3
+                            combo_counts['fiveR_three'] += 1
+                        else:  # 5r3r
+                            combo_counts['fiveR_threeR'] += 1
+
+    return combo_counts
+
+
 
 
 
