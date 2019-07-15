@@ -204,6 +204,28 @@ def count_combos(zmw_dict):
     return combo_counts
 
 
+'''
+function to export 5(R) barcode - 3(R) barcode combo counts to csv
+format of csv: first line is column headers
+                following lines: one per combo type
+                    comboName, count
+PARAMETERS combo_counts: dictionary of counts of each possible 5(r) 3(r) combo
+                            keys are combos, vals are counts
+            output_filename
+RETURNS: null
+'''
+def combo_counts_to_csv(combo_counts, output_filename):
+    with open(output_filename, 'w') as output:
+        header_line = 'Combination,Count\n'
+        output.write(header_line)
+        for combo, count in combo_counts.items():
+            write_string = ",".join([combo,str(count)])
+            write_string += '\n'
+            output.write(write_string)
+
+
+
+
 
 
 
