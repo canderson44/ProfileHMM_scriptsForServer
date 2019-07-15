@@ -53,18 +53,19 @@ random_dict = {'A':0.25, 'C':0.25, 'G':0.25, 'T':0.25}
 
 #5p barcode
 fiveP_emission_list = [0] *len(fiveBarcode)
-minor_percentage = 0.05/3
+minor_percentage = 0.02
+major_percentage = 0.94
 for i in np.arange(len(fiveBarcode)):
     fiveP_emission_list[i] = {'A':minor_percentage, 'C':minor_percentage, 'G':minor_percentage, 'T':minor_percentage}
     bp = fiveBarcode[i]
-    fiveP_emission_list[i][bp] = 0.95
+    fiveP_emission_list[i][bp] = major_percentage
 
 #5p barcode rc
 RCfiveP_emission_list = [0] *len(fiveBarcode)
 for i in np.arange(len(fiveBarcode)):
     RCfiveP_emission_list[i] = {'A':minor_percentage, 'C':minor_percentage, 'G':minor_percentage, 'T':minor_percentage}
     bp = fiveBarcodeRC[i]
-    RCfiveP_emission_list[i][bp] = 0.95
+    RCfiveP_emission_list[i][bp] = major_percentage
 
 
 cells = ['2_B01', '3_C01', '4_D01']
@@ -79,13 +80,13 @@ for i in np.arange(3):
     for j in np.arange(len(barcode3p)):
         this_bar_emission_list[j] = {'A':minor_percentage, 'C':minor_percentage, 'G':minor_percentage, 'T':minor_percentage}
         bp = barcode3p[j]
-        this_bar_emission_list[j][bp] = 0.95
+        this_bar_emission_list[j][bp] = major_percentage
     #adapter
     this_adapter_emission_list = [0]*len(adapter)
     for adapter_index in np.arange(len(adapter)):
         this_adapter_emission_list[adapter_index] = {'A':minor_percentage, 'C':minor_percentage, 'G':minor_percentage, 'T':minor_percentage}
         bp = adapter[adapter_index]
-        this_adapter_emission_list[adapter_index][bp]=0.95
+        this_adapter_emission_list[adapter_index][bp]=major_percentage
 
     #combine into this cell's list of emission dicts
 
@@ -132,13 +133,13 @@ for i in np.arange(3):
     for j in np.arange(len(RCbarcode3p)):
         this_bar_emission_list[j] = {'A':minor_percentage, 'C':minor_percentage, 'G':minor_percentage, 'T':minor_percentage}
         bp = RCbarcode3p[j]
-        this_bar_emission_list[j][bp] = 0.95
+        this_bar_emission_list[j][bp] = major_percentage
     # adapter
     this_adapter_emission_list = [0] * len(RCadapter)
     for rc_index in np.arange(len(RCadapter)):
         this_adapter_emission_list[rc_index] = {'A':minor_percentage, 'C':minor_percentage, 'G':minor_percentage, 'T':minor_percentage}
         bp = RCadapter[rc_index]
-        this_adapter_emission_list[rc_index][bp] = 0.95
+        this_adapter_emission_list[rc_index][bp] = major_percentage
 
     # combine into this cell's list of emission dicts
     # 3p barcode
