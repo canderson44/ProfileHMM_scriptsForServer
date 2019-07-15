@@ -118,6 +118,43 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename, writeCSV):
 
 
 
+'''
+Function to select only zmws with both 5' barcode (or rev complement) and 
+3' barcode (or its rev complement).
+Given zmw dictionary, will shallow copy entries of zmws that make the cut. 
+ZMW dictionary format:
+    Dictionary where key is ZMW
+    value is another dictionary: 
+        {region: [(start, stop), ...], diffRegion: [(start,stop)],...}
+        key are region
+        value: list of (start,stop) pairs of coords.
+
+PARAMETERS: zmw_dict
+RETURN: new dict containing only zmws that make cut
+'''
+def select_fiveThreePairs(zmw_dict):
+    reject_zmws_list = []
+    for zmw, zmw_regions_dict in zmw_dict.items():
+        isFive = False #mark true if 5' barcode or rev complement present
+        isThree = False #mark true if 3' barcode or rev complement present
+        for region in zmw_regions_dict.keys():
+            if region == 'Five_Barcode' or region== 'Five_Barcode_Reverse':
+                isFive = True
+            elif region == 'Three_Barcode' or region == 'Three_Barcode_Reverse':
+                isThree = True
+        if isFive == False or isThree == False: #don't keep this zmw
+            reject_zmws_list.append(zmw)
+
+    #now make new zmw dict
+    return_zmw_dict = zmw_dict.copy()
+    for zmw in reject_zmws_list:
+        del return_zmw_dict[zmw]
+
+    return return_zmw_dict
+
+
+
+
 
 
 
