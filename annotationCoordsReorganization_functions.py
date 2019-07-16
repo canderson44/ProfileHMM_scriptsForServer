@@ -216,7 +216,8 @@ def count_combos(zmw_dict):
                 five_type = region
             elif region == three_name or threeR_name:
                 three_type = region
-
+        print("five type is", five_type)
+        print("three type is:", three_type)
         #now update combo_counts
         three_coords_list = []
         five_coords_list = []
@@ -229,7 +230,11 @@ def count_combos(zmw_dict):
         for five_coords in five_coords_list:
             for three_coords in three_coords_list:
                 #five type before three type: five end < three start
-                if five_coords[1] < three_coords[0]:
+                five_start = five_coords[0]
+                five_end = five_coords[1]
+                three_start = three_coords[0]
+                three_end = three_coords[1]
+                if five_end < three_start:
                     if five_type == five_name: #5
                         if three_type == three_name:#53
                             combo_counts['five_three'] += 1
@@ -240,6 +245,17 @@ def count_combos(zmw_dict):
                             combo_counts['fiveR_three'] += 1
                         else:  # 5r3r
                             combo_counts['fiveR_threeR'] += 1
+                elif three_end < five_start: #3(r) 5(r)
+                    if five_type == five_name: #5
+                        if three_type == three_name:#35
+                            combo_counts['three_five'] += 1
+                        else: #3r5
+                            combo_counts['threeR_five'] += 1
+                    else: #5r
+                        if three_type == three_name:  # 35r
+                            combo_counts['three_fiveR'] += 1
+                        else:  # 3r5r
+                            combo_counts['threeR_fiveR'] += 1
 
     return combo_counts
 
