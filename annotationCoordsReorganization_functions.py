@@ -206,7 +206,7 @@ def count_combos(zmw_dict):
     print("dict keys", zmw_dict.keys())
     print("dict values", zmw_dict.values())
     print("dict items()", zmw_dict.items())
-    for zmw, zmw_region_dict in zmw_dict:
+    for zmw, zmw_region_dict in zmw_dict.items():
         five_type = '' #will be Five_Barcode or Five_Barcode_Reverse
         three_type = ''# will be Three_Barcode or Three_Barcode_Reverse
 
