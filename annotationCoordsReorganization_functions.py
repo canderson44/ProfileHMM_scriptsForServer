@@ -66,10 +66,10 @@ PARAMETERS: zmw dictionary, output filename, writeCSV
 RETURNS: null
 '''
 def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False):
-    print("in remove_overlapping_fiveCoords")
+#    print("in remove_overlapping_fiveCoords")
     print(type(zmw_dict))
     for zmw, zmw_region_dict in zmw_dict.items():
-        print("made it past first zmw_dict.items")
+#        print("made it past first zmw_dict.items")
         new_five_regions = [] #holds kept fiveBar coords
         new_fiveRC_regions = [] # holds kept fiveBarRC coords
         # list of sets of coords for fiveBar and fiveRC regions
@@ -89,11 +89,11 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
         #filter out undesireable five coords
 
         for five_coords in five_regions:
-            print("five_coords is:", five_coords)
+#            print("five_coords is:", five_coords)
             five_start = int(five_coords[0])
             five_end = int(five_coords[1])
             for three_coords in three_regions:
-                print("three_coords is", three_coords)
+#                print("three_coords is", three_coords)
                 three_start = int(three_coords[0])
                 three_end = int(three_coords[1])
 
@@ -104,11 +104,11 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
                     #then we do want to keep the five_coords
                     new_five_regions.append(five_coords)
         for five_coords in fiveRC_regions:
-            print("fiveR_coords is:", five_coords)
+#            print("fiveR_coords is:", five_coords)
             five_start = int(five_coords[0])
             five_end = int(five_coords[1])
             for three_coords in three_regions:
-                print("threeR_coords is", three_coords)
+#                print("threeR_coords is", three_coords)
                 three_start = int(three_coords[0])
                 three_end = int(three_coords[1])
                 three_range = [n for n in np.arange(three_start, three_end + 1)]
@@ -117,8 +117,8 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
                         (three_start in five_range) or (three_end in five_range)):
                     #then we do want to keep the five_coords
                     new_fiveRC_regions.append(five_coords) #appends a tuple
-        print("new five regions:", new_five_regions)
-        print("new fiveRC regions:", new_fiveRC_regions)
+#        print("new five regions:", new_five_regions)
+#        print("new fiveRC regions:", new_fiveRC_regions)
         #now update dict
         #forward
         if len(five_regions) != len(new_five_regions): #need to update
@@ -131,8 +131,8 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
             del zmw_region_dict[fiveR_name]
             if len(new_fiveRC_regions):
                 zmw_region_dict[fiveR_name] = new_fiveRC_regions
-        print("after deletions and insertions, zmw_region_dict:", zmw_region_dict)
-    print("after all edits, final zmw_dict", zmw_dict)
+#        print("after deletions and insertions, zmw_region_dict:", zmw_region_dict)
+#    print("after all edits, final zmw_dict", zmw_dict)
     #############
     #############
     #now write new csv, if desired
@@ -237,8 +237,8 @@ def count_combos(zmw_dict):
                 three_end = three_coords[1]
                 print("five end:" + five_end + " ; three_start:" + three_start)
                 print("three_end:" + three_end + " ; five_start:" + five_start)
-                print("five first?", five_end < three_start)
-                print("three first?", three_end < five_start)
+                print("five first?", five_end-three_start<0)
+                print("three first?", three_end-five_start<0)
                 if five_end < three_start:
                     print("five is first")
                     if five_type == five_name: #5
