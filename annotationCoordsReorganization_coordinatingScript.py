@@ -24,7 +24,7 @@ for i in np.arange(len(cells)):
 
     #1: remove 5(r) coords that overlap with 3(r) regions (and make csv for future use)
     output_filename = path_stub + cell + '_annotation_coords_noOverlap.csv'
-    af.remove_overlapping_fiveCoords((initial_zmw_dict,output_filename, True ))
+    af.remove_overlapping_fiveCoords(initial_zmw_dict,output_filename, True )
     print("in coordinating script")
     print("after remove overlap function, zmw_dict is", initial_zmw_dict)
     #2: select only ZMWs with {5 or 5r} AND {3 or 3r}

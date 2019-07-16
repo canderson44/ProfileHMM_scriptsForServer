@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/annotationCoordsReorganization_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotationCoordsReorganization_functions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,8 +82,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+            <state relative-caret-position="269">
+              <caret line="26" column="76" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
               <folding>
                 <element signature="e#306#359#0" expanded="true" />
               </folding>
@@ -148,8 +147,8 @@
         <option value="$PROJECT_DIR$/annotateCoords_to_csv.py" />
         <option value="$PROJECT_DIR$/generate_emission_probs.py" />
         <option value="$PROJECT_DIR$/annotateCoords_removeOverlaps_to_csv.py" />
-        <option value="$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py" />
         <option value="$PROJECT_DIR$/annotationCoordsReorganization_functions.py" />
+        <option value="$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py" />
       </list>
     </option>
   </component>
@@ -401,8 +400,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
+        <state relative-caret-position="269">
+          <caret line="26" column="76" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
           <folding>
             <element signature="e#306#359#0" expanded="true" />
           </folding>
