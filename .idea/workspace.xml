@@ -34,13 +34,13 @@
         <counts>
           <entry key="Python Console" value="65" />
           <entry key="dummy" value="41" />
-          <entry key="py" value="26815" />
+          <entry key="py" value="27036" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="41" />
-          <entry key="Python" value="26880" />
+          <entry key="Python" value="27101" />
         </counts>
       </usages-collector>
     </session>
@@ -68,12 +68,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/annotationCoordsReorganization_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="131" column="39" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
+            <state relative-caret-position="314">
+              <caret line="207" column="43" lean-forward="true" selection-start-line="207" selection-start-column="43" selection-end-line="207" selection-end-column="43" />
               <folding>
                 <element signature="e#151#169#0" expanded="true" />
-                <marker date="1563296040752" expanded="true" signature="1124:1129" ph="..." />
-                <marker date="1563296040752" expanded="true" signature="10610:10926" ph="..." />
+                <marker date="1563296688289" expanded="true" signature="1124:1129" ph="..." />
+                <marker date="1563296688289" expanded="true" signature="10825:11141" ph="..." />
               </folding>
             </state>
           </provider>
@@ -82,7 +82,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="131">
               <caret line="27" column="35" lean-forward="true" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
               <folding>
                 <element signature="e#306#359#0" expanded="true" />
@@ -388,7 +388,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="131">
           <caret line="27" column="35" lean-forward="true" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
           <folding>
             <element signature="e#306#359#0" expanded="true" />
@@ -398,12 +398,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/annotationCoordsReorganization_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="131" column="39" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
+        <state relative-caret-position="314">
+          <caret line="207" column="43" lean-forward="true" selection-start-line="207" selection-start-column="43" selection-end-line="207" selection-end-column="43" />
           <folding>
             <element signature="e#151#169#0" expanded="true" />
-            <marker date="1563296040752" expanded="true" signature="1124:1129" ph="..." />
-            <marker date="1563296040752" expanded="true" signature="10610:10926" ph="..." />
+            <marker date="1563296688289" expanded="true" signature="1124:1129" ph="..." />
+            <marker date="1563296688289" expanded="true" signature="10825:11141" ph="..." />
           </folding>
         </state>
       </provider>

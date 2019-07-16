@@ -201,6 +201,11 @@ RETURNS:new dict cataloguing counts of each pair combo
 def count_combos(zmw_dict):
     combo_counts = {'five_three':0, 'fiveR_three':0, 'fiveR_threeR':0, 'five_threeR':0,
                     'three_five':0, 'threeR_five':0, 'threeR_fiveR':0, 'three_fiveR':0}
+    print("in count_combo function")
+    print("passed zmw_dict type", type(zmw_dict))
+    print("dict keys", zmw_dict.keys())
+    print("dict values", zmw_dict.values())
+    print("dict items()", zmw_dict.items())
     for zmw, zmw_region_dict in zmw_dict:
         five_type = '' #will be Five_Barcode or Five_Barcode_Reverse
         three_type = ''# will be Three_Barcode or Three_Barcode_Reverse
