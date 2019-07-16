@@ -237,8 +237,8 @@ def count_combos(zmw_dict):
                 three_end = three_coords[1]
                 print("five end:" + five_end + " ; three_start:" + three_start)
                 print("three_end:" + three_end + " ; five_start:" + five_start)
-                print("five first?", five_end-three_start<0)
-                print("three first?", three_end-five_start<0)
+                print("five first?", str((five_end-three_start)<0))
+                print("three first?", str((three_end-five_start)<0))
                 if five_end < three_start:
                     print("five is first")
                     if five_type == five_name: #5
