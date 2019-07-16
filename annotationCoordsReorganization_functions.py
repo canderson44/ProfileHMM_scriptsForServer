@@ -37,7 +37,7 @@ def gen_ZMW_dict(cell):
     return_dict = dict()
     with open(input_filename) as input:
         for line in input:
-            if ',' in line:
+            if ',' in line and 'ZMW' not in line:
                 strip_line = line.strip()
                 split_list = strip_line.split(',')
                 zmw = split_list[0]
