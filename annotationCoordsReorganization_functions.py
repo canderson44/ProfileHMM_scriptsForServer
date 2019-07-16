@@ -66,6 +66,7 @@ RETURNS: null
 '''
 def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False):
     print("in remove_overlapping_fiveCoords")
+    print(type(zmw_dict))
     for zmw, zmw_region_dict in zmw_dict.items():
         print("made it past first zmw_dict.items")
         new_five_regions = [] #holds kept fiveBar coords
