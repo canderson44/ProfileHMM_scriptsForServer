@@ -7,10 +7,7 @@ NOTE: stop coord is inclusive
 
 import numpy as np
 import Annotate_CCS as ac
-# cells = ['2_B01', '3_C01', '4_D01']
-# TODO RESTORE CELLS TO ALL CELL LINES
-# FOR NOW, JUST 2_B01 BECAUSE THAT'S THE ONLY ONE WITH COMPLETE COORD ANNOTATION
-cells = ['2_B01']
+cells = ['2_B01', '3_C01', '4_D01']
 barcode_chars = ['2','3','4']
 fiveBar = ac.fivePBarcode
 fiveBarRC = ac.fivePBarcodeRC
@@ -68,7 +65,9 @@ PARAMETERS: zmw dictionary, output filename, writeCSV
 RETURNS: null
 '''
 def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False):
+    print("in remove_overlapping_fiveCoords")
     for zmw, zmw_region_dict in zmw_dict.items():
+        print("made it past first zmw_dict.items")
         new_five_regions = [] #holds kept fiveBar coords
         new_fiveRC_regions = [] # holds kept fiveBarRC coords
         # list of sets of coords for fiveBar and fiveRC regions
@@ -95,7 +94,8 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
                         (three_coords[0] in five_range) or (three_coords[1] in five_range)):
                     #then we do want to keep the five_coords
                     new_fiveRC_regions.append(five_coords) #appends a tuple
-
+        print("new five regions:", new_five_regions)
+        print("new fiveRC regions:", new_fiveRC_regions)
         #now update dict
         #forward
         if len(five_regions) != len(new_five_regions): #need to update
@@ -106,7 +106,8 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
         if len(fiveRC_regions) != len(new_fiveRC_regions): #need to update
             del zmw_region_dict[fiveR_name]
             zmw_region_dict[fiveR_name] = new_fiveRC_regions
-
+        print("after deletions and insertions, zmw_region_dict:", zmw_region_dict)
+    print("after all edits, final zmw_dict", zmw_dict)
     #############
     #############
     #now write new csv, if desired

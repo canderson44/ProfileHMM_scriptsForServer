@@ -10,20 +10,26 @@ For each cell line:
 import annotationCoordsReorganization_functions as af
 import numpy as np
 
-cells = ['2_B01', '3_C01', '4_D01']
+#cells = ['2_B01', '3_C01', '4_D01']
+# TODO RESTORE CELLS TO ALL CELL LINES
+# FOR NOW, JUST 2_B01 BECAUSE THAT'S THE ONLY ONE WITH COMPLETE COORD ANNOTATION
+cells = ['4_D01']
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/annotated_ccs/'
 for i in np.arange(len(cells)):
     cell = cells[i]
     #0: create zmw dict
     initial_zmw_dict = af.gen_ZMW_dict(cell)
+    print("initial zmw dict is: ", initial_zmw_dict )
 
     #1: remove 5(r) coords that overlap with 3(r) regions (and make csv for future use)
     output_filename = path_stub + cell + '_annotation_coords_noOverlap.csv'
     af.remove_overlapping_fiveCoords((initial_zmw_dict,output_filename, True ))
-
+    print("in coordinating script")
+    print("after remove overlap function, zmw_dict is", initial_zmw_dict)
     #2: select only ZMWs with {5 or 5r} AND {3 or 3r}
     pair_zmw_dict = af.select_fiveThreePairs(initial_zmw_dict)
-
+    print("in coordinating script")
+    print("pair_zmw_dict is", pair_zmw_dict)
     #3: get combo counts
     combo_counts = af.count_combos(pair_zmw_dict)
 
