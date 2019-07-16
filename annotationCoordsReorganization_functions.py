@@ -224,6 +224,8 @@ def count_combos(zmw_dict):
             five_coords_list = zmw_region_dict[five_type]
         if three_type in zmw_region_dict:
             three_coords_list = zmw_region_dict[three_type]
+        print("five_coord_list",five_coords_list)
+        print("three_coord_list",three_coords_list)
         for five_coords in five_coords_list:
             for three_coords in three_coords_list:
                 #five type before three type: five end < three start
