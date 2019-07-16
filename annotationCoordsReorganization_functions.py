@@ -251,20 +251,25 @@ def count_combos(zmw_dict):
                     print("three is first")
                     if five_type == five_name: #5
                         if three_type == three_name:#35
-                            print("adding to three_five")
+                            print("ADDING to three_five")
+                            print()
                             combo_counts['three_five'] += 1
                         else: #3r5
                             print("adding to threeR_five")
+                            print()
                             combo_counts['threeR_five'] += 1
                     else: #5r
                         if three_type == three_name:  # 35r
                             print("adding to three_fiveR")
+                            print()
                             combo_counts['three_fiveR'] += 1
                         else:  # 3r5r
                             print("adding to threer_fiveR")
+                            print()
                             combo_counts['threeR_fiveR'] += 1
                 else:
                     print("ERROR: DIDN'T ADD TO ANY COMBO COUNTS!!!")
+                    print()
 
     return combo_counts
 
