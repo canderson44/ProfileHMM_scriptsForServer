@@ -100,7 +100,9 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
                     #then we do want to keep the five_coords
                     new_five_regions.append(five_coords)
         for five_coords in fiveRC_regions:
+            print("fiveR_coords is:", five_coords)
             for three_coords in three_regions:
+                print("threeR_coords is", three_coords)
                 three_range = [n for n in np.arange(three_coords[0], three_coords[1] + 1)]
                 five_range  = [n for n in np.arange( five_coords[0],  five_coords[1] + 1)]
                 if not((five_coords[0] in three_range) or (five_coords[1] in three_range) or\
