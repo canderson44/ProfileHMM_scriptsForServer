@@ -218,8 +218,12 @@ def count_combos(zmw_dict):
                 three_type = region
 
         #now update combo_counts
-        five_coords_list = zmw_region_dict[five_type]
-        three_coords_list = zmw_region_dict[three_type]
+        three_coords_list = []
+        five_coords_list = []
+        if five_type in zmw_region_dict:
+            five_coords_list = zmw_region_dict[five_type]
+        if three_type in zmw_region_dict:
+            three_coords_list = zmw_region_dict[three_type]
         for five_coords in five_coords_list:
             for three_coords in three_coords_list:
                 #five type before three type: five end < three start
