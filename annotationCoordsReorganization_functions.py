@@ -7,7 +7,10 @@ NOTE: stop coord is inclusive
 
 import numpy as np
 import Annotate_CCS as ac
-cells = ['2_B01', '3_C01', '4_D01']
+# cells = ['2_B01', '3_C01', '4_D01']
+# TODO RESTORE CELLS TO ALL CELL LINES
+# FOR NOW, JUST 2_B01 BECAUSE THAT'S THE ONLY ONE WITH COMPLETE COORD ANNOTATION
+cells = ['2_B01']
 barcode_chars = ['2','3','4']
 fiveBar = ac.fivePBarcode
 fiveBarRC = ac.fivePBarcodeRC
