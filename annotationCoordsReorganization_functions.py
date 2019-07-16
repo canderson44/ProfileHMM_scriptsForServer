@@ -123,12 +123,14 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
         #forward
         if len(five_regions) != len(new_five_regions): #need to update
             del zmw_region_dict[five_name]
-            zmw_region_dict[five_name] = new_five_regions
+            if len(new_five_regions) > 0:
+                zmw_region_dict[five_name] = new_five_regions
 
         #reverse
         if len(fiveRC_regions) != len(new_fiveRC_regions): #need to update
             del zmw_region_dict[fiveR_name]
-            zmw_region_dict[fiveR_name] = new_fiveRC_regions
+            if len(new_fiveRC_regions):
+                zmw_region_dict[fiveR_name] = new_fiveRC_regions
         print("after deletions and insertions, zmw_region_dict:", zmw_region_dict)
     print("after all edits, final zmw_dict", zmw_dict)
     #############
