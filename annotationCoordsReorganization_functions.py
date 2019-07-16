@@ -64,7 +64,7 @@ PARAMETERS: zmw dictionary, output filename, writeCSV
     writeCSV is true if you want it to make a CSV
 RETURNS: null
 '''
-def remove_overlapping_fiveCoords(zmw_dict, output_filename, writeCSV):
+def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False):
     for zmw, zmw_region_dict in zmw_dict.items():
         new_five_regions = [] #holds kept fiveBar coords
         new_fiveRC_regions = [] # holds kept fiveBarRC coords
@@ -112,14 +112,14 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename, writeCSV):
             #header line
             header_line = 'ZMW,region,start,stop\n'
             output.write(header_line)
-    #have zmw, need to iterate through region dict to write lines of format:
-    # zmw, region, start, stop
-    for zmw, zmw_region_dict in zmw_dict.items():
-        for region, coords_list in zmw_region_dict.items():
-            for coord_pair in coords_list:
-                write_line = ",".join([str(zmw), region, str(coord_pair[0]), str(coord_pair[1])])
-                write_line += '\n'
-                output.write(write_line)
+        #have zmw, need to iterate through region dict to write lines of format:
+        # zmw, region, start, stop
+        for zmw, zmw_region_dict in zmw_dict.items():
+            for region, coords_list in zmw_region_dict.items():
+                for coord_pair in coords_list:
+                    write_line = ",".join([str(zmw), region, str(coord_pair[0]), str(coord_pair[1])])
+                    write_line += '\n'
+                    output.write(write_line)
 
 
 
