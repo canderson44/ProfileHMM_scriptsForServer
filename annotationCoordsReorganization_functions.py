@@ -90,23 +90,31 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
 
         for five_coords in five_regions:
             print("five_coords is:", five_coords)
+            five_start = int(five_coords[0])
+            five_end = int(five_coords[1])
             for three_coords in three_regions:
                 print("three_coords is", three_coords)
-                print("type of three_coords[0]", type(three_coords[0]))
-                three_range = [n for n in np.arange(three_coords[0], three_coords[1] + 1)]
-                five_range  = [n for n in np.arange( five_coords[0],  five_coords[1] + 1)]
-                if not((five_coords[0] in three_range) or (five_coords[1] in three_range) or\
-                        (three_coords[0] in five_range) or (three_coords[1] in five_range)):
+                three_start = int(three_coords[0])
+                three_end = int(three_coords[1])
+
+                three_range = [n for n in np.arange(three_start, three_end + 1)]
+                five_range  = [n for n in np.arange( five_start,  five_end + 1)]
+                if not((five_start in three_range) or (five_end in three_range) or\
+                        (three_start in five_range) or (three_end in five_range)):
                     #then we do want to keep the five_coords
                     new_five_regions.append(five_coords)
         for five_coords in fiveRC_regions:
             print("fiveR_coords is:", five_coords)
+            five_start = int(five_coords[0])
+            five_end = int(five_coords[1])
             for three_coords in three_regions:
                 print("threeR_coords is", three_coords)
-                three_range = [n for n in np.arange(three_coords[0], three_coords[1] + 1)]
-                five_range  = [n for n in np.arange( five_coords[0],  five_coords[1] + 1)]
-                if not((five_coords[0] in three_range) or (five_coords[1] in three_range) or\
-                        (three_coords[0] in five_range) or (three_coords[1] in five_range)):
+                three_start = int(three_coords[0])
+                three_end = int(three_coords[1])
+                three_range = [n for n in np.arange(three_start, three_end + 1)]
+                five_range  = [n for n in np.arange( five_start,  five_end + 1)]
+                if not((five_start in three_range) or (five_end in three_range) or\
+                        (three_start in five_range) or (three_end in five_range)):
                     #then we do want to keep the five_coords
                     new_fiveRC_regions.append(five_coords) #appends a tuple
         print("new five regions:", new_five_regions)
