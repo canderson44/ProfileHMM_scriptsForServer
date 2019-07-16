@@ -203,6 +203,8 @@ def count_combos(zmw_dict):
                     'three_five':0, 'threeR_five':0, 'threeR_fiveR':0, 'three_fiveR':0}
     print()
     print("in count_combos function")
+    print("three_name is", three_name)
+    print("threeR_name is", threeR_name)
     for zmw, zmw_region_dict in zmw_dict.items():
         five_type = '' #will be Five_Barcode or Five_Barcode_Reverse
         three_type = ''# will be Three_Barcode or Three_Barcode_Reverse
@@ -210,9 +212,10 @@ def count_combos(zmw_dict):
         #what regions present?
         print("regions are", zmw_region_dict.keys())
         for region in zmw_region_dict.keys():
-            if region == five_name or fiveR_name:
+            print("region is", region)
+            if region == five_name or region == fiveR_name:
                 five_type = region
-            elif region == three_name or threeR_name:
+            elif region == three_name or region == threeR_name:
                 three_type = region
         print("five type is", five_type)
         print("three type is:", three_type)
