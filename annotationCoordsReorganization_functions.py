@@ -34,7 +34,7 @@ RETURNS: dictionary for that cell's ZMWs
 '''
 def gen_ZMW_dict(cell):
     input_filename = path_stub + cell + '_annotation_coords.csv'
-    return_dict = {}
+    return_dict = dict()
     with open(input_filename) as input:
         for line in input:
             if ',' in line:
@@ -53,7 +53,8 @@ def gen_ZMW_dict(cell):
                             return_dict[zmw][region] = [(start,stop)]
                     else: #first occurence of this zmw's listings
                         #so also first occurence of this region for this zmw
-                        return_dict[zmw] = {region:[(start,stop)]}
+                        region_dict = {region:[(start,stop)]}
+                        return_dict[zmw] = region_dict
     return return_dict
 
 '''

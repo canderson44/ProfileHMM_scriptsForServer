@@ -19,6 +19,7 @@ for i in np.arange(len(cells)):
     cell = cells[i]
     #0: create zmw dict
     initial_zmw_dict = af.gen_ZMW_dict(cell)
+    print("class of initial zmw dict is:", type(initial_zmw_dict))
     print("initial zmw dict is: ", initial_zmw_dict )
 
     #1: remove 5(r) coords that overlap with 3(r) regions (and make csv for future use)
