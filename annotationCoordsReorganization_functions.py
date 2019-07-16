@@ -73,10 +73,18 @@ def remove_overlapping_fiveCoords(zmw_dict, output_filename = '', writeCSV=False
         new_five_regions = [] #holds kept fiveBar coords
         new_fiveRC_regions = [] # holds kept fiveBarRC coords
         # list of sets of coords for fiveBar and fiveRC regions
-        five_regions = zmw_region_dict[five_name]
-        fiveRC_regions = zmw_region_dict[fiveR_name]
+        five_regions = []
+        if five_name in zmw_region_dict:
+            five_regions = zmw_region_dict[five_name]
+        fiveRC_regions = []
+        if fiveR_name in zmw_region_dict:
+            fiveRC_regions = zmw_region_dict[fiveR_name]
         # list of sets of coords for threeBar and threeBarRC regions
-        three_regions = zmw_region_dict[threeR_name] + zmw_region_dict[three_name]
+        three_regions = []
+        if three_name in zmw_region_dict:
+            three_regions += zmw_region_dict[three_name]
+        if threeR_name in zmw_region_dict:
+            three_regions += zmw_region_dict[threeR_name]
 
         #filter out undesireable five coords
 
