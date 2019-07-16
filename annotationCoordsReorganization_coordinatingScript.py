@@ -13,7 +13,7 @@ import numpy as np
 #cells = ['2_B01', '3_C01', '4_D01']
 # TODO RESTORE CELLS TO ALL CELL LINES
 # FOR NOW, JUST 2_B01 BECAUSE THAT'S THE ONLY ONE WITH COMPLETE COORD ANNOTATION
-cells = ['2_B01','test']
+cells = ['test']
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/annotated_ccs/'
 for i in np.arange(len(cells)):
     cell = cells[i]
