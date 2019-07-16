@@ -283,7 +283,7 @@ def count_combos(zmw_dict):
                             print()
                             combo_counts['three_fiveR'] += 1
                         else:  # 3r5r
-                            print("adding to threer_fiveR")
+                            print("adding to threeR_fiveR")
                             print()
                             combo_counts['threeR_fiveR'] += 1
                 else:
