@@ -14,15 +14,14 @@ C gets height 100
 3' barcode or rev complement: 50
 adapter or rev complement: 25
 
-NOTE: csv is intended for R, so increase all entries by one to make 1-based
 
 '''
 import Annotate_CCS as ac
 import numpy as np
 
-#cells = ['2_B01', '3_C01', '4_D01']
-cells = ['3_C01', '4_D01']
-# TODO RESTORE CELLS TO ALL 3 TYPES
+cells = ['2_B01', '3_C01', '4_D01']
+#cells = ['3_C01', '4_D01']
+# RESOLVED RESTORE CELLS TO ALL 3 TYPES
 barcode_chars = ['2','3','4']
 barcodes3p = [ac.barcode2, ac.barcode3, ac.barcode4]
 adapters = [ac.two_adapter, ac.three_adapter, ac.four_adapter]
@@ -69,8 +68,8 @@ for i in np.arange(len(cells)):
             annotated_ccs = ac.annotate_seq(ccs, ref_list, justCoords=True)
             #returns final_coord_list: [(start,stop,char), ...]
             for grouping in annotated_ccs:
-                start = grouping[0] + 1 #convert zero-based to one-based
-                stop = grouping[1] + 1 #convert zero-based to one-based
+                start = grouping[0]
+                stop = grouping[1]
                 region_char = grouping[2]
                 if region_char == 'A' or region_char == 'Ar':
                     y = 25
