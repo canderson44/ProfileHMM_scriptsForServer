@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/annotateCoords_to_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotateCoords_to_csv.py" afterDir="false" />
-    </list>
+    <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/annotateCoords_to_csv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+            <state relative-caret-position="82">
+              <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -163,8 +161,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="166" />
-    <option name="y" value="417" />
+    <option name="x" value="190" />
+    <option name="y" value="194" />
     <option name="width" value="937" />
     <option name="height" value="765" />
   </component>
@@ -316,7 +314,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="166" y="417" width="937" height="765" extended-state="0" />
+    <frame x="190" y="194" width="937" height="765" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26746726" />
@@ -433,8 +431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/annotateCoords_to_csv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+        <state relative-caret-position="82">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
         </state>
       </provider>
     </entry>
