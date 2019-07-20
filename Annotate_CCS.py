@@ -122,7 +122,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
         # print("appending coords", (start_coord, stop_coord))
         # print()
-        coords_list.append((start_coord,stop_coord))
+        coords_list.append((start_coord,stop_coord, reference_char))
         x_alignments.append(x_align)
         y_alignments.append(y_align)
         
@@ -236,7 +236,15 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
 
+
+        ########
+        ########
+        ########
         #first: forward
+        ########
+        ########
+        ########
+
         #gloc is tuple of lists: (score_list,coords_list,x_alignments)
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                     reference=ref, score_dict = cf.score_dict,
@@ -245,17 +253,22 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         #this_ref_list: list of tuples: [(score,alignment string), ...]
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
 
-        #current_coords: list of tuples: [(start,stop)
+        #current_coords: list of tuples: [(start,stop,char),...]
         current_coords = [gloc[n][1] for n in np.arange(len(gloc))]
-                                    #each element is len 2 tuple
         ref_scores = []
         ref_alignments = []
-        #keep all, but let's isolate highest score to compare with RC
+        #for now, keep all
         for pair in this_ref_list:
             ref_scores.append(pair[0])
             ref_alignments.append(pair[1])
 
-        #now reverse complement
+        ########
+        ########
+        ########
+        # now: reverse complement
+        ########
+        ########
+        ########
         rc_gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                               reference=refRC, score_dict = cf.score_dict, reference_char = refRC_char)
         rc_list = [(rc_gloc[n][0],rc_gloc[n][2]) for n in np.arange(len(rc_gloc))] #score, alignment
@@ -263,22 +276,36 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         rc_scores = []
         rc_alignments = []
 
-        #keep all in rc_list; but also isolate max score to compare to ref max score
+        #for now, keep all in rc_list
         for pair in rc_list:
             rc_scores.append(pair[0])
             rc_alignments.append(pair[1])
 
-
+        ########
+        ########
+        ########
+        # calc score sigs, determine which to use: ref or rc
+        ########
+        ########
+        ########
         ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
         max_ref_scoresig = max(ref_scoreSig_list)
         rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]
         max_rc_scoresig = max(rc_scoreSig_list)
+
         useRef = False
         if max_ref_scoresig > max_rc_scoresig:
             useRef = True
 
-        # now, let's assemble all our annotated regions into a sorted ilst
-        # conditions: 1. only add to list if score_sig above threshold
+        ########
+        ########
+        ########
+        # Add annotated regions to list
+        ########
+        ########
+        ########
+        # conditions: 1. only add to list if score_sig above threshold and its
+        #                   appropriate direction (forward or rc)
         #             2. format: (scoreSig, coord tuple, alignment string)
         #             3. sort based on scoreSig
         if useRef == True:
@@ -292,42 +319,92 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                     sorted_annotations_list.append((rc_scoreSig_list[rc_index],
                             rc_current_coords[rc_index], rc_alignments[rc_index]))
 
-
-    #now, let's sort our sorted_annotations_list
+    ########
+    ########
+    ########
+    # Sort the list
+    ########
+    ########
+    ########
     # now we'll actually sort the sorted_annotations_list
     # conditions: sort based on 0th element of each list element. Sort in descending order
     #           i.e. sorted by scoreSig, highest scoreSig is first in list
     sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
-    
+
+    ########
+    ########
+    ########
+    # Greedily select from now-sorted sorted_annotations_list
+    ########
+    ########
+    ########
+    #######
+    selected_annotations_list = [] #holds annotations we greedily choose to keep
+    # conditions for selection:
+    #     1. select and remove from top of list (highest scoreSig)
+    #     2. add to list of selected if new annotation's coords don't overlap with
+    #               any of the coords already in teh list of selected
 
 
- #    # here we split into case 1 and case 2
- #        if justCoords:
- #            if useRef == True:
- #                for i in np.arange(len(ref_scoreSig_list)):
- #                    if ref_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
- #                        final_coord_list.append((current_coords[i][0],current_coords[i][1],ref_char))
- #            else: #useRef == False
- #                for i in np.arange(len(rc_scoreSig_list)):
- #                    if rc_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
- #                        final_coord_list.append((rc_current_coords[i][0], rc_current_coords[i][1], refRC_char))
- # #           print("annotateseq: returning final coord list: ", final_coord_list)
- #
- #
- #        else: #justCoords == False; casae 2
- #            if useRef == True:
- #                for i in np.arange(len(ref_scoreSig_list)):
- #                    if ref_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
- #                        fuse(fused_list,ref_alignments[i])
- #            else: #useRef == False
- #                for i in np.arange(len(rc_scoreSig_list)):
- #                    if rc_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
- #                        fuse(fused_list,rc_alignments[i])
- #            return_str = "".join(fused_list)
- #    if justCoords:
- #        return final_coord_list
- #    else:
- #        return return_str
+    # recall: elements of sorted_annotations_list are of form
+    #                           (scoreSig, coord tuple, alignment string)
+    # selected_annotations_list has same format
+
+    #first: pop first element into the selected list, so we have something to compare to
+    selected_annotations_list.append(sorted_annotations_list.pop(0))
+
+    # stop once we've considered all viable annotations
+    while(len(sorted_annotations_list) > 0):
+        maybe_annotation_tuple = sorted_annotations_list.pop(0)
+        maybe_coords = maybe_annotation_tuple[1]
+        maybe_start = maybe_coords[0]
+        maybe_stop = maybe_coords[1]
+        for selected_tuple in selected_annotations_list:
+            selected_coords = selected_tuple[1]
+            selected_start = int(selected_coords[0])
+            selected_stop = int(selected_coords[1])
+            #let's check for overlap
+            #note: +1 in the np.arange stop because stop coords are inclusive
+            maybe_range = [n for n in np.arange(maybe_start, maybe_stop + 1)]
+            selected_range = [n for n in np.arange(selected_start, selected_stop + 1)]
+            #only want to keep maybe if no overlap between selected and maybe coords
+            if not ((selected_start in maybe_range) or (selected_stop in maybe_range) or \
+                    (maybe_start in selected_range) or (maybe_stop in selected_range)):
+                # then we do want to keep the maybe_annotation
+                selected_annotations_list.append(maybe_annotation_tuple)
+
+
+    ########
+    ########
+    ########
+    # wrap up coords or annotation strings to return
+    ########
+    ########
+    ########
+    #######
+    # here we split into case 1 and case 2
+
+    #case 1
+    if justCoords:
+       #want to return list of tuples: [(start,stop,ref_char),....]
+       # selected tuple format: (scoreSig, coord tuple, alignment string)
+       # cord tuple format: (start,stop,char)
+        for selected_tuple in selected_annotations_list:
+           this_coord_pair = selected_tuple[1]
+           final_coord_list.append(this_coord_pair)
+
+        print("type of start coord:", type(final_coord_list[0][0]))
+        print("type of stop coord:", type(final_coord_list[0][1]))
+        return final_coord_list
+
+    #case 2
+    else: #justCoords == False
+        #want to return a string: fuse(fused_list,alignments[i])
+        # selected tuple format: (scoreSig, coord tuple, alignment string)
+        for selected_tuple in selected_annotations_list:
+            fuse(fused_list, selected_annotations_list[2])
+        return "".join(fused_list)
+
     
 #given current fused list and list of what to fuse, fuses the "to_fuse" contents to the fused list
 def fuse(fused, to_fuse):
