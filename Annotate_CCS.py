@@ -221,99 +221,113 @@ def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):
     #ref_list: list of lists
         #each entry is [reference(string), reference character]
 def annotate_seq(sequence, ref_list, justCoords=False):
+    SCORE_SIG_THRESHOLD = 0.999999999 #score sig must be > this to be kept
     final_coord_list = [] #for case 1
     fused_list = ['-'] * len(sequence) #for case 2
+    sorted_annotations_list = [] #list of annotated regions sorted by scoreSig
+        #used for our greedy selection of regions to keep
+
+
     for refPair in ref_list:
 #        print("ref_pair is" ,refPair)
-        ref = refPair[0]
+        ref = refPair[0] #region of interest
         ref_char = refPair[1]
 #        print("this ref is: ", ref_char)
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
+
+        #first: forward
+        #gloc is tuple of lists: (score_list,coords_list,x_alignments)
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
-                                              reference=ref, score_dict = cf.score_dict,
+                                    reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
-#        print("len of gloc is: ", len(gloc))
-#        print("elements of gloc: ", gloc)
+
+        #this_ref_list: list of tuples: [(score,alignment string), ...]
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
+
+        #current_coords: list of tuples: [(start,stop)
         current_coords = [gloc[n][1] for n in np.arange(len(gloc))]
                                     #each element is len 2 tuple
-        ref_scores = [-1]
+        ref_scores = []
         ref_alignments = []
-
-        #don't keep all in this_ref_list; only keep those with highest score
+        #keep all, but let's isolate highest score to compare with RC
         for pair in this_ref_list:
-            add_score = False
-            for score in ref_scores:
-                if pair[0] > score:
-                    ref_scores.remove(score)
-                    add_score = True
-                elif pair[0] == score:
-                    add_score = True
-                else:
-                    add_score = False
-            if add_score:
-                ref_scores.append(pair[0])
-                ref_alignments.append(pair[1])
+            ref_scores.append(pair[0])
+            ref_alignments.append(pair[1])
+
         #now reverse complement
         rc_gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                               reference=refRC, score_dict = cf.score_dict, reference_char = refRC_char)
         rc_list = [(rc_gloc[n][0],rc_gloc[n][2]) for n in np.arange(len(rc_gloc))] #score, alignment
         rc_current_coords = [rc_gloc[n][1] for n in np.arange(len(rc_gloc))]
-        rc_scores = [-1]
+        rc_scores = []
         rc_alignments = []
 
-        #don't keep all in rc_list; only keep those with highest score
+        #keep all in rc_list; but also isolate max score to compare to ref max score
         for pair in rc_list:
-            add_score = False
-            for score in rc_scores:
-                if pair[0] > score:
-                    rc_scores.remove(score)
-                    add_score = True
-                elif pair[0] == score:
-                    add_score = True
-                else:
-                    add_score = False
-            if add_score:
-                rc_scores.append(pair[0])
-                rc_alignments.append(pair[1])
+            rc_scores.append(pair[0])
+            rc_alignments.append(pair[1])
+
 
         ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
+        max_ref_scoresig = max(ref_scoreSig_list)
         rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]
+        max_rc_scoresig = max(rc_scoreSig_list)
         useRef = False
-        for i in np.arange(len(ref_scoreSig_list)):
-            for j in np.arange(len(rc_scoreSig_list)):
-                if ref_scoreSig_list[i] > rc_scoreSig_list[j]:
-                    useRef = True
-                else:
-                    useRef = False
-        # here we split into case 1 and case 2
-        if justCoords:
-            if useRef == True:
-                for i in np.arange(len(ref_scoreSig_list)):
-                    if ref_scoreSig_list[i]>0.999999999:
-                        final_coord_list.append((current_coords[i][0],current_coords[i][1],ref_char))
-            else: #useRef == False
-                for i in np.arange(len(rc_scoreSig_list)):
-                    if rc_scoreSig_list[i]>0.999999999:
-                        final_coord_list.append((rc_current_coords[i][0], rc_current_coords[i][1], refRC_char))
- #           print("annotateseq: returning final coord list: ", final_coord_list)
+        if max_ref_scoresig > max_rc_scoresig:
+            useRef = True
+
+        # now, let's assemble all our annotated regions into a sorted ilst
+        # conditions: 1. only add to list if score_sig above threshold
+        #             2. format: (scoreSig, coord tuple, alignment string)
+        #             3. sort based on scoreSig
+        if useRef == True:
+            for index in np.arange(len(ref_scoreSig_list)):
+                if ref_scoreSig_list[index]  > SCORE_SIG_THRESHOLD:
+                    sorted_annotations_list.append((ref_scoreSig_list[index],
+                                    current_coords[index], ref_alignments[index]))
+        else: #use rc
+            for rc_index in np.arange(len(rc_scoreSig_list)):
+                if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
+                    sorted_annotations_list.append((rc_scoreSig_list[rc_index],
+                            rc_current_coords[rc_index], rc_alignments[rc_index]))
 
 
-        else: #justCoords == False; casae 2
-            if useRef == True:
-                for i in np.arange(len(ref_scoreSig_list)):
-                    if ref_scoreSig_list[i]>0.999999999:
-                        fuse(fused_list,ref_alignments[i])
-            else: #useRef == False
-                for i in np.arange(len(rc_scoreSig_list)):
-                    if rc_scoreSig_list[i]>0.999999999:
-                        fuse(fused_list,rc_alignments[i])
-            return_str = "".join(fused_list)
-    if justCoords:
-        return final_coord_list
-    else:
-        return return_str
+    #now, let's sort our sorted_annotations_list
+    # now we'll actually sort the sorted_annotations_list
+    # conditions: sort based on 0th element of each list element. Sort in descending order
+    #           i.e. sorted by scoreSig, highest scoreSig is first in list
+    sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
+    
+
+
+ #    # here we split into case 1 and case 2
+ #        if justCoords:
+ #            if useRef == True:
+ #                for i in np.arange(len(ref_scoreSig_list)):
+ #                    if ref_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
+ #                        final_coord_list.append((current_coords[i][0],current_coords[i][1],ref_char))
+ #            else: #useRef == False
+ #                for i in np.arange(len(rc_scoreSig_list)):
+ #                    if rc_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
+ #                        final_coord_list.append((rc_current_coords[i][0], rc_current_coords[i][1], refRC_char))
+ # #           print("annotateseq: returning final coord list: ", final_coord_list)
+ #
+ #
+ #        else: #justCoords == False; casae 2
+ #            if useRef == True:
+ #                for i in np.arange(len(ref_scoreSig_list)):
+ #                    if ref_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
+ #                        fuse(fused_list,ref_alignments[i])
+ #            else: #useRef == False
+ #                for i in np.arange(len(rc_scoreSig_list)):
+ #                    if rc_scoreSig_list[i]>SCORE_SIG_THRESHOLD:
+ #                        fuse(fused_list,rc_alignments[i])
+ #            return_str = "".join(fused_list)
+ #    if justCoords:
+ #        return final_coord_list
+ #    else:
+ #        return return_str
     
 #given current fused list and list of what to fuse, fuses the "to_fuse" contents to the fused list
 def fuse(fused, to_fuse):
