@@ -359,7 +359,10 @@ def annotate_seq(sequence, ref_list, justCoords=False):
     # conditions: sort based on 0th element of each list element. Sort in descending order
     #           i.e. sorted by scoreSig, highest scoreSig is first in list
     sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
-
+    print("SORTED-ANNOTATIONS-LIST")
+    for elem in sorted_annotations_list:
+        print(elem)
+    print()
     ########
     ########
     ########
@@ -403,7 +406,10 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                 # then we do want to keep the maybe_annotation
                 selected_annotations_list.append(maybe_annotation_tuple)
 
-
+    print("SELECTED_ANNOTATIONS_LIST")
+    for elem in selected_annotations_list:
+        print(elem)
+    print()
     ########
     ########
     ########

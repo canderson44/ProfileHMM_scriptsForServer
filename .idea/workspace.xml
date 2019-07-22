@@ -34,13 +34,13 @@
         <counts>
           <entry key="Python Console" value="65" />
           <entry key="dummy" value="50" />
-          <entry key="py" value="34450" />
+          <entry key="py" value="34618" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="34515" />
+          <entry key="Python" value="34683" />
         </counts>
       </usages-collector>
     </session>
@@ -59,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="227" column="4" selection-start-line="227" selection-start-column="4" selection-end-line="227" selection-end-column="4" />
+            <state relative-caret-position="-176">
+              <caret line="411" column="11" selection-start-line="411" selection-start-column="11" selection-end-line="411" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -442,8 +442,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="227" column="4" selection-start-line="227" selection-start-column="4" selection-end-line="227" selection-end-column="4" />
+        <state relative-caret-position="-176">
+          <caret line="411" column="11" selection-start-line="411" selection-start-column="11" selection-end-line="411" selection-end-column="11" />
         </state>
       </provider>
     </entry>
