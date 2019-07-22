@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<HMMConverter>
+
+<model>
+        <Model_Type name="GpGIsland"/>
+
+        <Annotation_Labels>
+                <Annotation_Label name="annotation">
+		       <label id="annotation.0" name="+"/>
+		       <label id="annotation.1" name="-" />
+                </Annotation_Label>
+        </Annotation_Labels>
+
+        <Alphabets set="ACGT"/>
+
+        <Emission_Probs id="EP" size="8" file="emission_CG_hmm.txt"/>
+
+	<States>
+	        <State id="S.0" name="Start" xdim="0"/>
+		<State id="S.1" name="A+" xdim="1" >
+                        <annotation id="S.1.SL.0" dim="1">
+                              <label idref="annotation.0"/>
+                        </annotation>
+		</State>
+		<State id="S.2" name="C+" xdim="1" >
+                        <annotation>
+                              <label idref="annotation.0"/>
+                        </annotation>
+		</State>
+		<State id="S.3" name="G+" xdim="1" >
+                        <annotation>
+                              <label idref="annotation.0"/>
+                        </annotation>
+		</State>
+		<State id="S.4" name="T+" xdim="1" >
+                        <annotation>
+                              <label idref="annotation.0"/>
+                        </annotation>
+		</State>
+		<State id="S.5" name="A-" xdim="1" >
+                        <annotation>
+                              <label idref="annotation.1"/>
+                        </annotation>
+	        </State>
+		<State id="S.6" name="C-" xdim="1" >
+                        <annotation>
+                              <label idref="annotation.1"/>
+                        </annotation>
+	        </State>
+		<State id="S.7" name="G-" xdim="1" >
+                        <annotation>
+                              <label idref="annotation.1"/>
+                        </annotation>
+	        </State>
+		<State id="S.8" name="T-" xdim="1" >
+                        <annotation>
+                              <label idref="annotation.1"/>
+                        </annotation>
+	        </State>
+		<State id="S.9" name="End" xdim="0"/>
+	</States>
+
+	<Transitions>
+		<from idref="S.0">
+			<to idref="All" exp="1/8"/>
+		</from>
+		<from idref="S.1">
+			<to idref="S.1" exp="0.177975"/>
+			<to idref="S.2" exp="0.271975"/>
+                        <to idref="S.3" exp="0.423975"/>
+			<to idref="S.4" exp="0.117975"/>
+			<to idref="S.5" exp="0.002"/>
+                        <to idref="S.6" exp="0.002"/>
+			<to idref="S.7" exp="0.002"/>
+			<to idref="S.8" exp="0.002"/>
+                        <to idref="S.9" exp="0.0001"/>
+		</from>
+		<from idref="S.2">
+			<to idref="S.1" exp="0.167975"/>
+			<to idref="S.2" exp="0.365975"/>
+                        <to idref="S.3" exp="0.271975"/>
+			<to idref="S.4" exp="0.185975"/>
+			<to idref="S.5" exp="0.002"/>
+                        <to idref="S.6" exp="0.002"/>
+			<to idref="S.7" exp="0.002"/>
+			<to idref="S.8" exp="0.002"/>
+                        <to idref="S.9" exp="0.0001"/>
+		</from>
+                <from idref="S.3">
+			<to idref="S.1" exp="0.158975"/>
+			<to idref="S.2" exp="0.336975"/>
+                        <to idref="S.3" exp="0.372975"/>
+			<to idref="S.4" exp="0.122975"/>
+			<to idref="S.5" exp="0.002"/>
+                        <to idref="S.6" exp="0.002"/>
+			<to idref="S.7" exp="0.002"/>
+			<to idref="S.8" exp="0.002"/>
+                        <to idref="S.9" exp="0.0001"/>
+                </from>
+                <from idref="S.4">
+			<to idref="S.1" exp="0.074975"/>
+			<to idref="S.2" exp="0.350975"/>
+                        <to idref="S.3" exp="0.379975"/>
+			<to idref="S.4" exp="0.185975"/>
+			<to idref="S.5" exp="0.002"/>
+                        <to idref="S.6" exp="0.002"/>
+			<to idref="S.7" exp="0.002"/>
+			<to idref="S.8" exp="0.002"/>
+                        <to idref="S.9" exp="0.0001"/>
+                </from>
+                <from idref="S.5">
+			<to idref="S.1" exp="0.001"/>
+			<to idref="S.2" exp="0.001"/>
+                        <to idref="S.3" exp="0.001"/>
+			<to idref="S.4" exp="0.001"/>
+			<to idref="S.5" exp="0.298975"/>
+                        <to idref="S.6" exp="0.203975"/>
+			<to idref="S.7" exp="0.283975"/>
+			<to idref="S.8" exp="0.208975"/>
+                        <to idref="S.9" exp="0.0001"/>
+                </from>
+                <from idref="S.6">
+			<to idref="S.1" exp="0.001"/>
+			<to idref="S.2" exp="0.001"/>
+                        <to idref="S.3" exp="0.001"/>
+			<to idref="S.4" exp="0.001"/>
+			<to idref="S.5" exp="0.320975"/>
+                        <to idref="S.6" exp="0.296975"/>
+			<to idref="S.7" exp="0.076975"/>
+			<to idref="S.8" exp="0.300975"/>
+                        <to idref="S.9" exp="0.0001"/>
+                </from>
+                <from idref="S.7">
+			<to idref="S.1" exp="0.001"/>
+			<to idref="S.2" exp="0.001"/>
+                        <to idref="S.3" exp="0.001"/>
+			<to idref="S.4" exp="0.001"/>
+			<to idref="S.5" exp="0.246975"/>
+                        <to idref="S.6" exp="0.244975"/>
+			<to idref="S.7" exp="0.296975"/>
+			<to idref="S.8" exp="0.206975"/>
+                        <to idref="S.9" exp="0.0001"/>
+                </from>
+                <from idref="S.8">
+			<to idref="S.1" exp="0.001"/>
+			<to idref="S.2" exp="0.001"/>
+                        <to idref="S.3" exp="0.001"/>
+			<to idref="S.4" exp="0.001"/>
+			<to idref="S.5" exp="0.175975"/>
+                        <to idref="S.6" exp="0.237975"/>
+			<to idref="S.7" exp="0.290975"/>
+			<to idref="S.8" exp="0.290975"/>
+                        <to idref="S.9" exp="0.0001"/>
+                </from>
+	</Transitions>
+</model>	
+
+<sequence_analysis>
+         <sequence_decoding>
+                <input_files SeqFile="CG_sequence.txt"/>
+                <algorithm alg="0" MaxVolume="10000" />
+                <output_files OutFile="CGIsland_result.txt"/>
+         </sequence_decoding>
+</sequence_analysis>
+
+</HMMConverter>

@@ -1,0 +1,8 @@
+rolls1	dishonest casino with prior information	1	40	State_Type=F	
+rolls1	dishonest casino with prior information	41	60	State_Type=L	
+rolls2	dishonest casino with prior information	1	44	State_Type=F	
+rolls2	dishonest casino with prior information	45	52	State_Type=L	
+rolls2	dishonest casino with prior information	53	60	State_Type=F	
+rolls3	dishonest casino with prior information	1	9	State_Type=F	
+rolls3	dishonest casino with prior information	10	40	State_Type=L	
+rolls3	dishonest casino with prior information	41	60	State_Type=F	

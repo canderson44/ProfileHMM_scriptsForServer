@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<HMMConverter>
+
+<model>
+        <Model_Type name="dishonest casino with prior information" SpecialEmission="1"/>
+
+        <Annotation_Labels>
+                <Annotation_Label name="State_Type" score="1">
+		       <label id="State_Type.0" name="F"/>
+		       <label id="State_Type.1" name="L" />
+                </Annotation_Label>               
+        </Annotation_Labels>
+
+        <Alphabets cases="1" set="123456"/>
+            
+        <Emission_Probs id="EP" size="2" file="emission_dishonest_hmm.txt"/>
+
+	<States id="S" size="4">
+	        <State id="S.0" name="Start" xdim="0" />
+		<State id="S.1" name="Fair" xdim="1" special="1">
+                        <State_Type>
+                              <label idref="State_Type.0"/>
+                        </State_Type>
+                        <State_Emission_Probs GetFrom="EP.0"/>
+		</State>
+		<State id="S.2" name="Loaded" xdim="1" special="1">
+                        <State_Type>
+                              <label idref="State_Type.1"/>
+                        </State_Type>
+                        <State_Emission_Probs GetFrom="EP.1"/>
+	        </State>
+		<State id="S.3" name="End" xdim="0" />
+	</States>
+
+	<Transitions train="All">
+		<from idref="S.0">
+			<to idref="All" exp="0.5"/>
+		</from>
+		<from idref="S.1">
+			<to idref="S.1" exp="0.85"/>
+			<to idref="S.2" exp="0.05"/>
+                        <to idref="S.3" exp="0.1"/>
+		</from>
+		<from idref="S.2">
+			<to idref="S.1" exp="0.1"/>
+			<to idref="S.2" exp="0.8"/>
+                        <to idref="S.3" exp="0.1"/>
+		</from>
+                <from idref="S.3">
+                </from>
+	</Transitions>
+</model>	
+
+<sequence_analysis>
+         <sequence_decoding>
+                <input_files SeqFile="dishonest_sequence.txt"
+                             AnnFile="dishonest_annotation.gtf"/>
+                <algorithm alg="0" MaxVolume="700000" />
+                <output_files OutFile="dishonest_special_result.txt"/>
+         </sequence_decoding>
+</sequence_analysis>
+
+</HMMConverter>

@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<HMMConverter>
+
+<model>
+        <Model_Type name="p53 transcription site regconition"/>
+
+        <Alphabets set="ACGT" />
+
+        <Emission_Probs id="EP" size="22" file="emission_p53initial.txt"/>
+
+	<States>
+	        <State id="S.0" name="Begin" xdim="0"/>
+		<State id="S.1" name="BG" xdim="1"/>
+		<State id="S.2" name="B1" xdim="1"/>
+	        <State id="S.3" name="B2" xdim="1"/>
+                <State id="S.4" name="B3" xdim="1"/>
+		<State id="S.5" name="B4" xdim="1"/>
+	        <State id="S.6" name="B5" xdim="1"/>	
+                <State id="S.7" name="B6" xdim="1"/>
+		<State id="S.8" name="B7" xdim="1"/>
+	        <State id="S.9" name="B8" xdim="1"/>
+                <State id="S.10" name="B9" xdim="1"/>
+		<State id="S.11" name="B10" xdim="1"/>
+                <State id="S.12" name="SP" xdim="1"/>
+	        <State id="S.13" name="B11" xdim="1"/>
+                <State id="S.14" name="B12" xdim="1"/>
+	        <State id="S.15" name="B13" xdim="1"/>
+                <State id="S.16" name="B4" xdim="1"/>
+		<State id="S.17" name="B15" xdim="1"/>
+	        <State id="S.18" name="B16" xdim="1"/>
+                <State id="S.19" name="B17" xdim="1"/>
+	        <State id="S.20" name="B18" xdim="1"/>
+                <State id="S.21" name="B19" xdim="1"/>
+                <State id="S.22" name="B20" xdim="1"/>
+		<State id="S.23" name="End"  xdim="0"/>
+	</States>
+	
+	<Transitions>
+		<from idref="S.0">
+			<to idref="S.1" exp="0.9995"/>
+                        <to idref="S.2" exp="0.0004"/>
+                        <to idref="S.23" exp="0.0001"/>
+		</from>
+		<from idref="S.1">
+			<to idref="S.1" exp="0.9995"/>
+			<to idref="S.2" exp="0.0004"/>
+                        <to idref="S.23" exp="0.0001"/>
+		</from>
+                <from idref="S.2">
+			<to idref="S.3" exp="1"/>
+		</from>		
+                <from idref="S.3">
+			<to idref="S.4" exp="1"/>
+		</from>
+                <from idref="S.4">
+			<to idref="S.5" exp="1"/>
+		</from>
+                <from idref="S.5">
+			<to idref="S.6" exp="1"/>
+		</from>		
+                <from idref="S.6">
+			<to idref="S.7" exp="1"/>
+		</from>
+                <from idref="S.7">
+			<to idref="S.8" exp="1"/>
+		</from>		
+                <from idref="S.8">
+			<to idref="S.9" exp="1"/>
+		</from>		
+                <from idref="S.9">
+			<to idref="S.10" exp="1"/>
+		</from>
+                <from idref="S.10">
+			<to idref="S.11" exp="1"/>
+		</from>		
+                <from idref="S.11">
+			<to idref="S.12" exp="0.2"/>
+                        <to idref="S.13" exp="0.8"/>
+		</from>                
+		<from idref="S.12">
+			<to idref="S.12" exp="0.1"/>
+                        <to idref="S.13" exp="0.9"/>
+		</from>
+                <from idref="S.13">
+			<to idref="S.14" exp="1"/>
+		</from>
+                <from idref="S.14">
+			<to idref="S.15" exp="1"/>
+		</from>		
+                <from idref="S.15">
+			<to idref="S.16" exp="1"/>
+		</from>
+                <from idref="S.16">
+			<to idref="S.17" exp="1"/>
+		</from>		
+                <from idref="S.17">
+			<to idref="S.18" exp="1"/>
+		</from>		
+                <from idref="S.18">
+			<to idref="S.19" exp="1"/>
+		</from>
+                <from idref="S.19">
+			<to idref="S.20" exp="1"/>
+		</from>
+                <from idref="S.20">
+			<to idref="S.21" exp="1"/>
+		</from>   	
+                <from idref="S.21">
+			<to idref="S.22" exp="1"/>
+		</from>
+                <from idref="S.22">
+			<to idref="S.1" exp="0.9998"/>
+                        <to idref="S.2" exp="0.0001"/>
+			<to idref="S.23" exp="0.0001"/>
+		</from>
+                <from idref="S.23"/>
+	</Transitions>               
+</model>	
+
+<sequence_analysis>
+        <sequence_decoding>
+               <input_files SeqFile="seqsPET2available(m).txt"/>
+               <algorithm alg="0" MaxVolume="50000" />
+               <output_files OutFile="p53BindingSite_result.txt"/>
+        </sequence_decoding>
+
+        <parameter_training>
+               <input_files SeqFile="seqsPETabove8(m).txt"/>
+               <algorithm alg="0" MaxVolume="140000" Maxiter="10" threshold="0.001"/>
+               <output_files XMLFile="trained_p53transcript.xml" 
+                             EProbFile="trained_emission.txt"/>                
+        </parameter_training>
+</sequence_analysis>
+
+</HMMConverter>

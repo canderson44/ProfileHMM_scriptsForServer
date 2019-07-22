@@ -1,0 +1,28 @@
+HMMConverter - a toolbox for hidden Markov models
+
+Copyright (C) 2009, Tin Yin Lam and Irmtraud M. Meyer, University of British
+Columbia, Vancouver, Canada.
+
+Portions Copyright (C) 1999-2009      Irmtraud M. Meyer
+Portions Copyright (C) 2007-2009      Tin Yin Lam
+Portions Copyright (C) 2006-2009      University of British Columbia, Vancouver, Canada
+Portions Copyright (C) 2004-2005      European Bioinformatics Institute, EMBL, Cambridge, UK
+Portions Copyright (C) 2002-2004      University of Oxford, Oxford, UK
+Portions Copyright (C) 1999-2002      Genome Research Limited, London, UK
+Portions Copyright (C) 1999-2002      University of Cambridge, Cambridge, UK
+
+HMMConverter is distributed under the terms of the GNU General Public License
+version 3 (GPLv3). See the file LICENSE for details.
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+A copy of the GNU General Public License is in the file LICENSE.  You may also
+obtain a copy from <http://www.gnu.org/licenses/>.

@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<model>
+        <Model_Type name="p53 transcription site regconition"/>
+
+        <Alphabets set="ACGT" />
+
+        <Emission_Probs id="EP" size="22" file="emission_p53initial.txt"/>
+
+	<States>
+	        <State id="S.0" name="Begin" xdim="0"/>
+		<State id="S.1" name="BG" xdim="1"/>
+		<State id="S.2" name="B1" xdim="1"/>
+	        <State id="S.3" name="B2" xdim="1"/>
+                <State id="S.4" name="B3" xdim="1"/>
+		<State id="S.5" name="B4" xdim="1"/>
+	        <State id="S.6" name="B5" xdim="1"/>	
+                <State id="S.7" name="B6" xdim="1"/>
+		<State id="S.8" name="B7" xdim="1"/>
+	        <State id="S.9" name="B8" xdim="1"/>
+                <State id="S.10" name="B9" xdim="1"/>
+		<State id="S.11" name="B10" xdim="1"/>
+                <State id="S.12" name="SP" xdim="1"/>
+	        <State id="S.13" name="B11" xdim="1"/>
+                <State id="S.14" name="B12" xdim="1"/>
+	        <State id="S.15" name="B13" xdim="1"/>
+                <State id="S.16" name="B4" xdim="1"/>
+		<State id="S.17" name="B15" xdim="1"/>
+	        <State id="S.18" name="B16" xdim="1"/>
+                <State id="S.19" name="B17" xdim="1"/>
+	        <State id="S.20" name="B18" xdim="1"/>
+                <State id="S.21" name="B19" xdim="1"/>
+                <State id="S.22" name="B20" xdim="1"/>
+		<State id="S.23" name="End"  xdim="0"/>
+	</States>
+	
+	<Transitions>
+		<from idref="S.0">
+		</from>
+		<from idref="S.1">
+		</from>
+                <from idref="S.2">
+		</from>		
+                <from idref="S.3">
+		</from>
+                <from idref="S.4">
+		</from>
+                <from idref="S.5">
+		</from>		
+                <from idref="S.6">
+		</from>
+                <from idref="S.7">
+		</from>		
+                <from idref="S.8">
+		</from>		
+                <from idref="S.9">
+		</from>
+                <from idref="S.10">
+		</from>		
+                <from idref="S.11">
+		</from>                
+		<from idref="S.12">
+		</from>
+                <from idref="S.13">
+		</from>
+                <from idref="S.14">
+		</from>		
+                <from idref="S.15">
+		</from>
+                <from idref="S.16">
+		</from>		
+                <from idref="S.17">
+		</from>		
+                <from idref="S.18">
+		</from>
+                <from idref="S.19">
+		</from>
+                <from idref="S.20">
+		</from>   	
+                <from idref="S.21">
+		</from>
+                <from idref="S.22">
+		</from>
+                <from idref="S.23"/>
+	</Transitions>               
+</model>	
+

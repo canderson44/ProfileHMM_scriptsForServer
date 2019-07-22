@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<HMMConverter>
+
+<model>
+        <Model_Type name="dishonest casino"/>
+
+	<Annotation_Labels>
+                <Annotation_Label name="Label" score="1">
+		       <label id="Label.0" name="F"/>
+		       <label id="Label.1" name="L" />
+                </Annotation_Label>               
+        </Annotation_Labels>
+
+        <Alphabets cases="1" set="123456"/>
+
+        <Emission_Probs id="EP" size="2" file="emission_dishonest_hmm2.txt"/>
+
+	<States>
+	        <State id="S.0" name="Start" xdim="0" />
+		<State id="S.1" name="Fair" xdim="1" >
+		        <Label>
+				<label idref="Label.0" />
+			</Label>
+		</State>
+		<State id="S.2" name="Loaded" xdim="1" >
+			<Label>
+				<label idref="Label.1" />
+			</Label>
+		</State>
+		<State id="S.3" name="End" xdim="0" />
+	</States>
+
+	<Transitions train="All">
+		<from idref="S.0">
+			<to idref="All" exp="0.5"/>
+		</from>
+		<from idref="S.1">
+			<to idref="S.1" exp="0.945316"/>
+			<to idref="S.2" exp="0.0546835"/>
+		</from>
+		<from idref="S.2">
+			<to idref="S.1" exp="0.104964"/>
+			<to idref="S.2" exp="0.895036"/>
+		</from>
+                <from idref="S.3"/>
+	</Transitions>
+</model>	
+

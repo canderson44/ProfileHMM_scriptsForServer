@@ -1,0 +1,131 @@
+EP.0	Not Defined	1
+A	0.25
+C	0.25
+G	0.25
+T	0.25
+
+EP.1	Not Defined	1
+A	0.38
+C	0.08
+G	0.43
+T	0.11
+
+EP.2	Not Defined	1
+A	0.3
+C	0.03
+G	0.64
+T	0.03
+
+EP.3	Not Defined	1
+A	0.7
+C	0.027
+G	0.27
+T	0.003
+
+EP.4	Not Defined	1
+A	1e-05
+C	0.97
+G	1e-06
+T	0.029998
+
+EP.5	Not Defined	1
+A	0.77
+C	0.03
+G	1e-06
+T	0.199999
+
+EP.6	Not Defined	1
+A	0.07
+C	0.019998
+G	1e-06
+T	0.91
+
+EP.7	Not Defined	1
+A	1e-06
+C	1e-06
+G	0.999997
+T	1e-06
+
+EP.8	Not Defined	1
+A	0.017
+C	0.66
+G	0.003
+T	0.32
+
+EP.9	Not Defined	1
+A	1e-06
+C	0.89
+G	0.003
+T	0.106999
+
+EP.10	Not Defined	1
+A	0.089999
+C	0.63
+G	1e-06
+T	0.28
+
+EP.11	Not Defined	1
+A	0.25
+C	0.25
+G	0.25
+T	0.25
+
+EP.12	Not Defined	1
+A	0.16
+C	0.06
+G	0.63
+T	0.15
+
+EP.13	Not Defined	1
+A	0.06
+C	0.003
+G	0.91
+T	0.027
+
+EP.14	Not Defined	1
+A	0.31
+C	0.019999
+G	0.67
+T	1e-06
+
+EP.15	Not Defined	1
+A	1e-06
+C	0.97
+G	1e-06
+T	0.029998
+
+EP.16	Not Defined	1
+A	0.74
+C	0.06
+G	0.06
+T	0.14
+
+EP.17	Not Defined	1
+A	0.11
+C	0.003
+G	0.027
+T	0.86
+
+EP.18	Not Defined	1
+A	1e-06
+C	1e-06
+G	0.999997
+T	1e-06
+
+EP.19	Not Defined	1
+A	0.017
+C	0.26
+G	0.003
+T	0.72
+
+EP.20	Not Defined	1
+A	0.027
+C	0.65
+G	0.003
+T	0.32
+
+EP.21	Not Defined	1
+A	0.06
+C	0.41
+G	0.09
+T	0.44

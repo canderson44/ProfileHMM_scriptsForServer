@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<model>
+        <Model_Type name="Simple pair-HMM" pair="1" />
+
+        <Annotation_Labels>
+                <Annotation_Label name="State_Type" score="1">
+		       <label id="State_Type.0" name="Noemit"/>
+		       <label id="State_Type.1" name="Match" />
+		       <label id="State_Type.2" name="EmitX" />
+		       <label id="Statrune_Type.3" name="EmitY" />
+	        </Annotation_Label>
+        </Annotation_Labels>
+
+        <Alphabets set="ACGT"/>
+
+        <Emission_Probs id="FEP" size="3" file="emission_simple_pairhmm2.txt"/> 
+
+	<States>
+	        <State id="S.0" name="Start" xdim="0" ydim="0">
+                        <State_Type>
+                              <label idref="State_Type.0"/>
+                        </State_Type>
+		</State>
+		<State id="S.1" name="Match" xdim="1" ydim="1">
+                        <State_Type>
+                              <label idref="State_Type.1"/>
+                        </State_Type>                  
+		</State>
+		<State id="S.2" name="Emit_X" xdim="1" ydim="0">
+                        <State_Type>
+                              <label idref="State_Type.2"/>
+                        </State_Type>                       
+	        </State>
+	        <State id="S.3" name="Emit_Y" xdim="0" ydim="1">
+                        <State_Type>
+                              <label idref="State_Type.3"/>
+                        </State_Type>
+		</State>
+		<State id="S.4" name="End" xdim="0" ydim="0">
+                        <State_Type>
+                              <label idref="State_Type.0"/>
+                        </State_Type>
+		</State>
+	</States>
+
+        <Transitions train="All">
+		<from idref="S.0">
+			<to idref="All" exp="1/4"/>
+		</from>
+		<from idref="S.1">
+			<to idref="S.1" exp="0.695856"/>
+			<to idref="S.2" exp="0.103345"/>
+                        <to idref="S.3" exp="0.186021"/>
+                        <to idref="S.4" exp="0.0147783" pseudoprob="0.001"/> 
+
+		</from>
+		<from idref="S.2">
+			<to idref="S.1" exp="0.881471"/>
+			<to idref="S.2" exp="0.11753"/>
+                        <to idref="S.4" exp="0.000999001" pseudoprob="0.001"/>
+
+		</from>
+		<from idref="S.3">
+                        <to idref="S.1" exp="0.87791"/>
+			<to idref="S.3" exp="0.121091"/>
+                        <to idref="S.4" exp="0.000999001" pseudoprob="0.001"/>
+
+		</from>
+                <from idref="S.4"/>
+	</Transitions>
+</model>	
+

@@ -1,0 +1,121 @@
+Readme file for HMMConverter - a toolbox for hidden Markov models
+
+Note:
+----------------------------------------------------------------------
+
+The HMMConverter package is copyrighted by Irmtraud M Meyer (1999-2009) and
+Tin Yin Lam (2007-2009), see also files LICENSE and COPYRIGHT for more
+details.
+
+Citations:
+----------------------------------------------------------------------
+
+If you use this package or parts of it to get results, please cite:
+
+* T.Y. Lam and I.M. Meyer, HMMConverter - a toolbox for hidden Markov
+  models, submitted
+
+* T.Y. Lam and I.M. Meyer, Efficient parameter training for hidden 
+  Markov models using posterior sampling training and Viterbi training,
+  submitted
+
+* Tin Yin Lam, HMMConverter - A tool-box for hidden Markov models with 
+  two novel, memory efficient parameter training algorithms, MSc thesis, 
+  University of British Columbia, 2008
+
+Binary executable
+----------------------------------------------------------------------
+
+The binary executable called HMMConverter can be found in sub-directory bin.
+This executable is all you need to employ HMMConvert to set up model and to
+run analyses. 
+
+In order to use HMMConverter for a particular model, make sure the
+HMMConverter executable and all input files to HMMConverter including other
+executables are in the same directory.  So, if you intend to run one of the
+examples included in this package, copy the HMMConverter executable (and any
+other executable files, see info below) to the respective directory.
+
+You only need to compile the source code if you need to recompile an
+executable for your operating system.
+
+Compilation of source code
+----------------------------------------------------------------------
+
+You can compile the source code in sub-directory src using gcc 4.2.1
+(http://gcc.gnu.org/) on a Unix machine by going to sub-directory src and
+typing "make". This should generate a stand-alone executable HMMConverter
+which can also be found in sub-directory bin.
+
+Information
+----------------------------------------------------------------------
+
+More information on HMMConverter can be found 
+
+- in the manual file HMMConverter_manual.pdf
+- on the web-page www.cs.ubc.ca/~irmtraud/hmmconverter
+
+Contact
+
+- irmtraud.meyer@cantab.net
+
+Examples
+----------------------------------------------------------------------
+
+The sub-directory example contains several examples of hidden Markov models
+and pair hidden Markov models that explain the functionality of
+HMMConverter, see the manual for more details.
+
+Additional executables
+----------------------------------------------------------------------
+
+Certain features of HMMConverter require additional files to be
+installed. These are not part of the HMMConverter package and need to be
+installed by you in order to be able to use all features of
+HMMConverter. Please install the following files on your machines and ensure
+that
+
+(1) the files have the required name
+(2) the files are in the same directory as the XML-file of your model, the HMMConverter executable 
+    and your other input files
+
+- name of executable: MSPcrunch 
+
+  description: MSPcrunch - A BLAST post-processing filter
+  Copyright Erik Sonnhammer
+  email contact: Erik.Sonnhammer@cgr.ki.se 
+  Version 2.5
+  download: http://sonnhammer.sbc.su.se/download/software/MSPcrunch+Blixem/
+  Reference:  Sonnhammer ELL & Durbin R (1994). A workbench for Large Scale
+  Sequence Homology Analysis. Comput. Applic. Biosci. 10:301-307.
+  Usage: MSPcrunch [options] <blast output file>
+
+- names of the executables: blastn and tblastx 
+
+  description: blast and auxiliary programs
+  Copyright (C) 1995,1996,1997 Warren R. Gish.  All Rights Reserved.
+  Reference:  Gish, Warren (1994-1997).  unpublished.
+  Altschul, Stephen F., Warren Gish, Webb Miller, Eugene W. Myers, and David J.
+  Lipman (1990).  Basic local alignment search tool.  J. Mol. Biol. 215:403-10.
+  Notice:  this program and its default parameter settings are optimized to find
+  nearly identical sequences rapidly.  To identify weak similarities encoded in
+  nucleic acid, use BLASTX, TBLASTN or TBLASTX.
+  Usage: blastn database queryfile [options]
+         tblastx database queryfile [options]
+  more information http://blast.wustl.edu/
+
+- name of executable: pressdb
+
+  description:  produce a nt. sequence database for BLAST from a file in FASTA format
+  Usage: pressdb [options] ntdbname
+  more info see http://rcc.uga.edu/applications/bioinformatics/wublast.html
+
+- name of file: BLOSUM62
+
+  part of the WashU blast package, matrix file
+
+
+History:
+----------------------------------------------------------------------
+
+May 2009 - release of HMMConverter 1.0

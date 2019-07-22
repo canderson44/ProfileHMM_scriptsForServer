@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<HMMConverter>
+
+<model>
+        <Model_Type name="dishonest casino"/>
+
+	<Annotation_Labels>
+                <Annotation_Label name="Label" score="1">
+		       <label id="Label.0" name="F"/>
+		       <label id="Label.1" name="L" />
+                </Annotation_Label>               
+        </Annotation_Labels>
+
+        <Alphabets cases="1" set="123456"/>
+
+        <Emission_Probs id="EP" size="2" file="emission_dishonest_hmm2.txt"/>
+
+	<States>
+	        <State id="S.0" name="Start" xdim="0" />
+		<State id="S.1" name="Fair" xdim="1" >
+		        <Label>
+				<label idref="Label.0" />
+			</Label>
+		</State>
+		<State id="S.2" name="Loaded" xdim="1" >
+			<Label>
+				<label idref="Label.1" />
+			</Label>
+		</State>
+		<State id="S.3" name="End" xdim="0" />
+	</States>
+
+	<Transitions train="All">
+		<from idref="S.0">
+			<to idref="All" exp="0.5"/>
+		</from>
+		<from idref="S.1">
+			<to idref="S.1" exp="0.79067"/>
+			<to idref="S.2" exp="0.20932"/>
+                        <to idref="S.3" exp="0.00001"/>
+		</from>
+		<from idref="S.2">
+			<to idref="S.1" exp="0.46968"/>
+			<to idref="S.2" exp="0.53031"/>
+                        <to idref="S.3" exp="0.00001"/>
+		</from>
+                <from idref="S.3"/>
+	</Transitions>
+</model>	
+
+<sequence_analysis>
+         <sequence_decoding>
+                <input_files SeqFile="dishonest_sequence.txt"/>
+                <algorithm alg="0" MaxVolume="700000" />
+                <output_files OutFile="dishonest_sequence_result.xml"/>
+         </sequence_decoding>
+         <parameter_training>
+                <input_files SeqFile="dishonest_training_set.txt"/>
+                <algorithm alg="1" MaxVolume="700000" Maxiter="100" threshold="0.0000001" SamplePaths="1"/>
+                <output_files XMLFile="trained_dishonest_HMM.xml" 
+                              EProbFile="trained_emission_dishonest_HMM2.txt"/>                
+         </parameter_training>
+</sequence_analysis>
+
+</HMMConverter>

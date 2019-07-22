@@ -1,0 +1,20 @@
+FEP.0	Match	2	train
+AA	0.2
+AC	0.05
+CA	0.1
+CC	0.15
+GG	0.2	
+TG	0.05
+TT	0.25	
+
+FEP.1	EmitX	1	train
+A	0.2
+C	0.3
+G	0.2
+T	0.3
+
+FEP.2	EmitY	1	train
+A	0.2
+C	0.2
+G	0.3
+T	0.3

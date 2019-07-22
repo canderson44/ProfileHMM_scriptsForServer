@@ -1,0 +1,480 @@
+Seq1&Seq2:
+0	0	Start	xdim=0	ydim=0	
+1	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+2	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+3	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+4	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+5	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+6	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+7	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+8	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+9	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+10	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+11	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+12	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+13	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+14	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+15	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+16	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+17	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+18	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+19	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+20	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+21	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+22	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+23	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+24	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+25	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+26	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+27	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+28	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+29	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+30	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+31	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+32	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+33	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+34	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+35	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+36	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+37	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+38	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+39	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+40	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+41	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+42	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+43	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+44	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+45	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+46	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+47	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+48	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+49	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+50	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+51	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+52	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+53	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+54	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+55	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+56	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+57	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+58	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+59	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+60	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+61	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+62	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+63	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+64	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+65	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+66	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+67	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+68	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+69	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+70	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+71	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+72	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+73	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+74	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+75	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+76	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+77	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+78	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+79	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+80	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+81	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+82	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+83	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+84	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+85	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+86	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+87	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+88	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+89	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+90	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+91	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+92	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+93	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+94	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+95	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+96	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+97	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+98	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+99	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+100	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+101	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+102	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+103	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+104	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+105	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+106	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+107	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+108	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+109	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+110	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+111	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+112	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+113	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+114	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+115	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+116	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+117	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+118	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+119	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+120	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+121	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+122	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+123	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+124	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+125	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+126	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+127	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+128	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+129	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+130	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+131	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+132	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+133	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+134	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+135	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+136	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+137	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+138	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+139	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+140	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+141	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+142	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+143	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+144	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+145	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+146	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+147	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+148	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+149	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+150	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+151	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+152	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+153	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+154	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+155	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+156	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+157	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+158	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+159	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+160	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+161	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+162	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+163	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+164	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+165	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+166	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+167	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+168	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+169	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+170	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+171	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+172	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+173	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+174	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+175	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+176	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+177	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+178	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+179	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+180	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+181	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+182	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+183	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+184	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+185	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+186	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+187	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+188	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+189	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+190	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+191	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+192	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+193	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+194	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+195	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+196	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+197	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+198	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+199	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+200	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+201	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+202	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+203	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+204	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+205	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+206	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+207	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+208	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+209	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+210	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+211	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+212	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+213	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+214	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+215	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+216	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+217	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+218	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+219	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+220	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+221	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+222	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+223	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+224	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+225	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+226	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+227	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+228	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+229	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+230	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+231	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+232	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+233	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+234	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+235	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+236	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+237	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+238	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+239	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+240	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+241	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+242	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+243	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+244	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+245	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+246	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+247	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+248	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+249	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+250	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+251	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+252	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+253	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+254	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+255	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+256	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+257	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+258	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+259	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+260	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+261	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+262	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+263	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+264	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+265	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+266	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+267	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+268	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+269	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+270	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+271	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+272	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+273	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+274	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+275	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+276	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+277	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+278	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+279	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+280	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+281	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+282	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+283	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+284	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+285	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+286	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+287	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+288	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+289	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+290	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+291	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+292	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+293	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+294	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+295	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+296	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+297	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+298	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+299	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+300	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+301	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+302	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+303	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+304	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+305	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+306	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+307	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+308	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+309	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+310	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+311	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+312	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+313	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+314	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+315	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+316	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+317	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+318	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+319	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+320	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+321	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+322	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+323	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+324	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+325	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+326	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+327	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+328	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+329	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+330	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+331	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+332	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+333	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+334	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+335	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+336	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+337	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+338	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+339	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+340	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+341	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+342	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+343	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+344	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+345	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+346	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+347	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+348	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+349	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+350	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+351	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+352	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+353	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+354	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+355	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+356	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+357	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+358	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+359	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+360	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+361	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+362	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+363	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+364	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+365	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+366	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+367	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+368	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+369	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+370	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+371	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+372	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+373	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+374	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+375	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+376	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+377	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+378	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+379	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+380	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+381	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+382	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+383	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+384	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+385	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+386	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+387	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+388	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+389	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+390	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+391	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+392	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+393	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+394	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+395	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+396	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+397	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+398	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+399	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+400	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+401	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+402	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+403	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+404	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+405	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+406	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+407	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+408	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+409	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+410	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+411	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+412	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+413	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+414	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+415	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+416	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+417	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+418	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+419	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+420	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+421	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+422	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+423	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+424	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+425	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+426	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+427	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+428	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+429	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+430	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+431	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+432	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+433	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+434	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+435	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+436	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+437	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+438	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+439	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+440	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+441	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+442	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+443	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+444	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+445	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+446	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+447	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+448	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+449	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+450	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+451	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+452	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+453	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+454	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+455	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+456	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+457	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+458	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+459	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+460	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+461	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+462	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+463	3	Emit_Y	xdim=0	ydim=1	Alignment_y0=emitY	
+464	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+465	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+466	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+467	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+468	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+469	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+470	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+471	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+472	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+473	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+474	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+475	1	Match	xdim=1	ydim=1	Alignment_x0=match	Alignment_y0=match	
+476	2	Emit_X	xdim=1	ydim=0	Alignment_x0=emitX	
+477	4	End	xdim=0	ydim=0	
+--------------------------------------------------------------
