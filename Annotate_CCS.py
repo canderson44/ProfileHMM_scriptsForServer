@@ -304,13 +304,13 @@ def annotate_seq(sequence, ref_list, justCoords=False):
     fused_list = ['-'] * len(sequence) #for case 2
     sorted_annotations_list = [] #list of annotated regions sorted by scoreSig
         #used for our greedy selection of regions to keep
-
+    selected_annotations_list = []  # holds annotations we greedily choose to keep
 
     for refPair in ref_list:
-#        print("ref_pair is" ,refPair)
+        #print("ref_pair is" ,refPair)
         ref = refPair[0] #region of interest
         ref_char = refPair[1]
-#        print("this ref is: ", ref_char)
+        #print("this ref is: ", ref_char)
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
 
@@ -366,116 +366,135 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         ########
         ########
         ########
-        print("ref scores list is", ref_scores)
-        ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
-        print("ref scoreSig list is ", ref_scoreSig_list)
-        max_ref_scoresig = max(ref_scoreSig_list)
-        rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]
-        max_rc_scoresig = max(rc_scoreSig_list)
-
+        zeroRef = False
+        zeroRC = False
         useRef = False
-        if max_ref_scoresig > max_rc_scoresig:
+        allEmpty = False
+        if len(ref_scores) > 0:
+            print("ref scores list is", ref_scores)
+            ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
+            print("ref scoreSig list is ", ref_scoreSig_list)
+            max_ref_scoresig = max(ref_scoreSig_list)
+        else:
+            zeroRef = True
+
+        if len(rc_scores) >0:
+            rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]
+            max_rc_scoresig = max(rc_scoreSig_list)
+
+        else:
+            zeroRC = True
+        if zeroRC == False and zeroRef == False:
+            if max_ref_scoresig > max_rc_scoresig:
+                useRef = True
+        elif zeroRC == False and zeroRef == True:
+            useRef = False
+        elif zeroRC == True and zeroRef == False:
             useRef = True
+        else: #both are true
+            allEmpty = True
 
+
+        #now: case of all empty (no useable coords) vs not empty
+        if allEmpty == False:
+            ########
+            ########
+            ########
+            # Add annotated regions to list
+            ########
+            ########
+            ########
+            # conditions: 1. only add to list if score_sig above threshold and its
+            #                   appropriate direction (forward or rc)
+            #             2. format: (scoreSig, coord tuple, alignment string)
+            #             3. sort based on scoreSig
+            print("for this region type, before filtering by score sig, list of potential regions is", current_coords)
+            if useRef == True:
+                for index in np.arange(len(ref_scoreSig_list)):
+                    print("this potential annotation is: ", current_coords[index])
+                    print("this score sig is: ", ref_scoreSig_list[index])
+                    if ref_scoreSig_list[index]  > SCORE_SIG_THRESHOLD:
+                        print("adding this region")
+                        sorted_annotations_list.append((ref_scoreSig_list[index],
+                                        current_coords[index], ref_alignments[index]))
+            else: #use rc
+                for rc_index in np.arange(len(rc_scoreSig_list)):
+                    print("this potential annotation is: ", rc_current_coords[rc_index])
+                    print("this score sig is: ", ref_scoreSig_list[rc_index])
+                    if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
+                        sorted_annotations_list.append((rc_scoreSig_list[rc_index],
+                                rc_current_coords[rc_index], rc_alignments[rc_index]))
+    if allEmpty == False:
         ########
         ########
         ########
-        # Add annotated regions to list
+        # Sort the list
         ########
         ########
         ########
-        # conditions: 1. only add to list if score_sig above threshold and its
-        #                   appropriate direction (forward or rc)
-        #             2. format: (scoreSig, coord tuple, alignment string)
-        #             3. sort based on scoreSig
-        print("for this region type, before filtering by score sig, list of potential regions is", current_coords)
-        if useRef == True:
-            for index in np.arange(len(ref_scoreSig_list)):
-                print("this potential annotation is: ", current_coords[index])
-                print("this score sig is: ", ref_scoreSig_list[index])
-                if ref_scoreSig_list[index]  > SCORE_SIG_THRESHOLD:
-                    print("adding this region")
-                    sorted_annotations_list.append((ref_scoreSig_list[index],
-                                    current_coords[index], ref_alignments[index]))
-        else: #use rc
-            for rc_index in np.arange(len(rc_scoreSig_list)):
-                print("this potential annotation is: ", rc_current_coords[rc_index])
-                print("this score sig is: ", ref_scoreSig_list[rc_index])
-                if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
-                    sorted_annotations_list.append((rc_scoreSig_list[rc_index],
-                            rc_current_coords[rc_index], rc_alignments[rc_index]))
-
-    ########
-    ########
-    ########
-    # Sort the list
-    ########
-    ########
-    ########
-    # now we'll actually sort the sorted_annotations_list
-    # conditions: sort based on 0th element of each list element. Sort in descending order
-    #           i.e. sorted by scoreSig, highest scoreSig is first in list
-    sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
-    print("SORTED-ANNOTATIONS-LIST")
-    for elem in sorted_annotations_list:
-        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
-        print(print_str)
-    print()
-    ########
-    ########
-    ########
-    # Greedily select from now-sorted sorted_annotations_list
-    ########
-    ########
-    ########
-    #######
-    selected_annotations_list = [] #holds annotations we greedily choose to keep
-    # conditions for selection:
-    #     1. select and remove from top of list (highest scoreSig)
-    #     2. add to list of selected if new annotation's coords don't overlap with
-    #               any of the coords already in teh list of selected
+        # now we'll actually sort the sorted_annotations_list
+        # conditions: sort based on 0th element of each list element. Sort in descending order
+        #           i.e. sorted by scoreSig, highest scoreSig is first in list
+        sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
+        print("SORTED-ANNOTATIONS-LIST")
+        for elem in sorted_annotations_list:
+            print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+            print(print_str)
+        print()
+        ########
+        ########
+        ########
+        # Greedily select from now-sorted sorted_annotations_list
+        ########
+        ########
+        ########
+        #######
+        # conditions for selection:
+        #     1. select and remove from top of list (highest scoreSig)
+        #     2. add to list of selected if new annotation's coords don't overlap with
+        #               any of the coords already in teh list of selected
 
 
-    # recall: elements of sorted_annotations_list are of form
-    #                           (scoreSig, coord tuple, alignment string)
-    # selected_annotations_list has same format
+        # recall: elements of sorted_annotations_list are of form
+        #                           (scoreSig, coord tuple, alignment string)
+        # selected_annotations_list has same format
 
-    #first: pop first element into the selected list, so we have something to compare to
-    if len(sorted_annotations_list) >0:
-        selected_annotations_list.append(sorted_annotations_list.pop(0))
-        print("first added to selected annotations: ", selected_annotations_list[0][1])
+        #first: pop first element into the selected list, so we have something to compare to
+        if len(sorted_annotations_list) >0:
+            selected_annotations_list.append(sorted_annotations_list.pop(0))
+            print("first added to selected annotations: ", selected_annotations_list[0][1])
 
-    # stop once we've considered all viable annotations
-    while(len(sorted_annotations_list) > 0):
-        maybe_annotation_tuple = sorted_annotations_list.pop(0)
-        print("maybe annotation: ", maybe_annotation_tuple[1])
-        maybe_coords = maybe_annotation_tuple[1]
-        maybe_start = maybe_coords[0]
-        maybe_stop = maybe_coords[1]
-        addMaybe = True #if still true by end of for loop below, we'll add the maybe tuple
-        for selected_tuple in selected_annotations_list:
-            selected_coords = selected_tuple[1]
-            selected_start = int(selected_coords[0])
-            selected_stop = int(selected_coords[1])
-            #let's check for overlap
-            #note: +1 in the np.arange stop because stop coords are inclusive
-            maybe_range = [n for n in np.arange(maybe_start, maybe_stop + 1)]
-            selected_range = [n for n in np.arange(selected_start, selected_stop + 1)]
-            #only want to keep maybe if no overlap between selected and maybe coords
-            if ((selected_start in maybe_range) or (selected_stop in maybe_range) or
-                    (maybe_start in selected_range) or (maybe_stop in selected_range)):
-                print("this maybe won't be added")
-                addMaybe = False
-        if(addMaybe):
-            print("this maybe is added")
-            # then we do want to keep the maybe_annotation
-            selected_annotations_list.append(maybe_annotation_tuple)
+        # stop once we've considered all viable annotations
+        while(len(sorted_annotations_list) > 0):
+            maybe_annotation_tuple = sorted_annotations_list.pop(0)
+            print("maybe annotation: ", maybe_annotation_tuple[1])
+            maybe_coords = maybe_annotation_tuple[1]
+            maybe_start = maybe_coords[0]
+            maybe_stop = maybe_coords[1]
+            addMaybe = True #if still true by end of for loop below, we'll add the maybe tuple
+            for selected_tuple in selected_annotations_list:
+                selected_coords = selected_tuple[1]
+                selected_start = int(selected_coords[0])
+                selected_stop = int(selected_coords[1])
+                #let's check for overlap
+                #note: +1 in the np.arange stop because stop coords are inclusive
+                maybe_range = [n for n in np.arange(maybe_start, maybe_stop + 1)]
+                selected_range = [n for n in np.arange(selected_start, selected_stop + 1)]
+                #only want to keep maybe if no overlap between selected and maybe coords
+                if ((selected_start in maybe_range) or (selected_stop in maybe_range) or
+                        (maybe_start in selected_range) or (maybe_stop in selected_range)):
+                    print("this maybe won't be added")
+                    addMaybe = False
+            if(addMaybe):
+                print("this maybe is added")
+                # then we do want to keep the maybe_annotation
+                selected_annotations_list.append(maybe_annotation_tuple)
 
-    print("SELECTED_ANNOTATIONS_LIST")
-    for elem in selected_annotations_list:
-        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
-        print(print_str)
-    print()
+        print("SELECTED_ANNOTATIONS_LIST")
+        for elem in selected_annotations_list:
+            print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+            print(print_str)
+        print()
     ########
     ########
     ########
