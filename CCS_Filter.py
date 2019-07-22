@@ -70,12 +70,12 @@ with open('/tier2/deweylab/data/thomson_lab/Pacbio/2_B01/m54178_180915_120213.ad
 
 #test "CCSs"
 nucleotides = ['A','C','G','T']
-# here, error in sequencing is 0.001%
+# here, error in sequencing is 0.01%
     # pacbio has error of about 0.001%
     # source: https://www.pacb.com/uncategorized/a-closer-look-at-accuracy-in-pacbio/
 def gen_mutated_barcodes(barcode):
     barcode_list = list(barcode)
-    rand_subs_list = rd.choices(np.arange(len(barcode)), k=int(0.00001*len(barcode_list)))
+    rand_subs_list = rd.choices(np.arange(len(barcode)), k=int(0.0001*len(barcode_list)))
 
     sub_list = barcode_list.copy()
     rand_nuc_list = rd.choices(nucleotides, k=len(rand_subs_list))

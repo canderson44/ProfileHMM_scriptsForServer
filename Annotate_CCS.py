@@ -190,19 +190,19 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
         threeBarRC_mutations = cf.bar4RC_mutations
         adapter_mutations = fourAdapter_mutations
     test_strings = []
-    #Ar3r5r
-    test_ar3r5r = adapterRC + barcodeRC + fivePBarcodeRC
-    test_strings.append(test_ar3r5r)
-
-    #A53A
-    test_a53a = adapter + "".join(rd.choices(nucleotides, k=50))+ fivePBarcode+\
-                "".join(rd.choices(nucleotides, k=100)) + barcode + \
-                "".join(rd.choices(nucleotides, k=10)) + adapter
-    test_strings.append(test_a53a)
-    #5rA3Ar
-    test_5ra3ar = fivePBarcodeRC + adapter + "".join(rd.choices(nucleotides, k=10)) +\
-                  barcode +"".join(rd.choices(nucleotides, k=100)) +adapterRC
-    test_strings.append(test_5ra3ar)
+    # #Ar3r5r
+    # test_ar3r5r = adapterRC + barcodeRC + fivePBarcodeRC
+    # test_strings.append(test_ar3r5r)
+    #
+    # #A53A
+    # test_a53a = adapter + "".join(rd.choices(nucleotides, k=50))+ fivePBarcode+\
+    #             "".join(rd.choices(nucleotides, k=100)) + barcode + \
+    #             "".join(rd.choices(nucleotides, k=10)) + adapter
+    # test_strings.append(test_a53a)
+    # #5rA3Ar
+    # test_5ra3ar = fivePBarcodeRC + adapter + "".join(rd.choices(nucleotides, k=10)) +\
+    #               barcode +"".join(rd.choices(nucleotides, k=100)) +adapterRC
+    # test_strings.append(test_5ra3ar)
     #start5
     test_start5= fivePBarcode + "".join(rd.choices(nucleotides, k=(1000)))
     test_strings.append(test_start5)
