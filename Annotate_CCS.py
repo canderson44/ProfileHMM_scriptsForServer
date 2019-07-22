@@ -234,29 +234,29 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     # test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
     # test_strings.append(test_endIn3pBarcode)
 
-    # #end 3 sub
-    # test_strings.append(threeBar_mutations[0])
-    # #test end 3 insert
-    # test_strings.append(threeBar_mutations[1])
-    # #test end 3 delete
-    # test_strings.append(threeBar_mutations[2])
+    #3sub 3
+    test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=100)) + barcode)
+    #test 3insert 3
+    test_strings.append(threeBar_mutations[1]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
+    #test 3del 3
+    test_strings.append(threeBar_mutations[2]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
     #following check that keep all above threshold, not just highest scoring for some region
     #also, since beginning of 3 is 5' barcode exactly, makes sure 5' eliminated, not intended 3'
-    #A_3_3
-    test_a33 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + barcode + "".join(rd.choices(nucleotides, k=1000)) + barcode
-    test_strings.append(test_a33)
-
-    #A_Sub3_3
-    test_aSub3_3 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
-    test_strings.append(test_aSub3_3)
-    #A_Insert3_3
-    test_aInsert3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[1] + "".join(
-        rd.choices(nucleotides, k=100))# + barcode
-    test_strings.append(test_aInsert3_3)
-    #A_Del3_3
-    test_aDel3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[2] + "".join(
-        rd.choices(nucleotides, k=100))# + barcode
-    test_strings.append(test_aDel3_3)
+    # #A_3_3
+    # test_a33 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + barcode + "".join(rd.choices(nucleotides, k=1000)) + barcode
+    # test_strings.append(test_a33)
+    #
+    # #A_Sub3_3
+    # test_aSub3_3 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
+    # test_strings.append(test_aSub3_3)
+    # #A_Insert3_3
+    # test_aInsert3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[1] + "".join(
+    #     rd.choices(nucleotides, k=100)) + barcode
+    # test_strings.append(test_aInsert3_3)
+    # #A_Del3_3
+    # test_aDel3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[2] + "".join(
+    #     rd.choices(nucleotides, k=100)) + barcode
+    # test_strings.append(test_aDel3_3)
     return test_strings
 
 #given a sequence, and a list of lists of [reference, reference character], 
