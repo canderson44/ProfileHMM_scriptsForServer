@@ -385,7 +385,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                                     current_coords[index], ref_alignments[index]))
         else: #use rc
             for rc_index in np.arange(len(rc_scoreSig_list)):
-                print("this potential annotation is: ", current_coords[rc_index])
+                print("this potential annotation is: ", rc_current_coords[rc_index])
                 print("this score sig is: ", ref_scoreSig_list[rc_index])
                 if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
                     sorted_annotations_list.append((rc_scoreSig_list[rc_index],
