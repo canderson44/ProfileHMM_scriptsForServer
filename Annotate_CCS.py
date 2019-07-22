@@ -380,7 +380,8 @@ def annotate_seq(sequence, ref_list, justCoords=False):
     # selected_annotations_list has same format
 
     #first: pop first element into the selected list, so we have something to compare to
-    selected_annotations_list.append(sorted_annotations_list.pop(0))
+    if len(sorted_annotations_list) >0:
+        selected_annotations_list.append(sorted_annotations_list.pop(0))
 
     # stop once we've considered all viable annotations
     while(len(sorted_annotations_list) > 0):
@@ -421,9 +422,10 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         for selected_tuple in selected_annotations_list:
            this_coord_pair = selected_tuple[1]
            final_coord_list.append(this_coord_pair)
-
-        print("type of start coord:", type(final_coord_list[0][0]))
-        print("type of stop coord:", type(final_coord_list[0][1]))
+        #check type of each coord is numerical
+        if len(selected_annotations_list) >0:
+            print("type of start coord:", type(final_coord_list[0][0]))
+            print("type of stop coord:", type(final_coord_list[0][1]))
         return final_coord_list
 
     #case 2
