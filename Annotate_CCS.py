@@ -431,7 +431,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         #want to return a string: fuse(fused_list,alignments[i])
         # selected tuple format: (scoreSig, coord tuple, alignment string)
         for selected_tuple in selected_annotations_list:
-            fuse(fused_list, selected_annotations_list[2])
+            fuse(fused_list, selected_tuple[2])
         return "".join(fused_list)
 
     
