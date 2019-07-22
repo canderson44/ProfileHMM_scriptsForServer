@@ -166,6 +166,9 @@ with open(filename4) as f:
 two_adapter_RC = cf.gen_rev_complement(two_adapter)
 three_adapter_RC = cf.gen_rev_complement(three_adapter)
 four_adapter_RC = cf.gen_rev_complement(four_adapter)
+twoAdapter_mutations = cf.gen_mutated_barcodes(two_adapter)
+threeAdapter_mutations = cf.gen_mutated_barcodes(three_adapter)
+fourAdapter_mutations = cf.gen_mutated_barcodes(four_adapter)
 
 #generates list of test strings given barcode, adapter, and respective rev compliments
 #PARAMETERS: barcode_index: index of 3' barcode:
@@ -175,14 +178,17 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
         # list of substituted, inserted, deleted mutations on barcode
         threeBar_mutations = cf.bar2_mutations
         threeBarRC_mutations = cf.bar2RC_mutations
+        adapter_mutations = twoAdapter_mutations
     elif barcode_index == 3:
         # list of substituted, inserted, deleted mutations on barcode
         threeBar_mutations = cf.bar3_mutations
         threeBarRC_mutations = cf.bar3RC_mutations
+        adapter_mutations = threeAdapter_mutations
     else: #barcode_index == 4
         # list of substituted, inserted, deleted mutations on barcode
         threeBar_mutations = cf.bar4_mutations
         threeBarRC_mutations = cf.bar4RC_mutations
+        adapter_mutations = fourAdapter_mutations
     test_strings = []
     #Ar3r5r
     test_ar3r5r = adapterRC + barcodeRC + fivePBarcodeRC
@@ -212,6 +218,15 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     #A_rand_A
     test_a_rand_a = adapter + "".join(rd.choices(nucleotides, k=900)) + adapter
     test_strings.append(test_a_rand_a)
+    #Astartsub
+    test_astartSub = adapter_mutations[0] + "".join(rd.choices(nucleotides, k=900))
+    test_strings.append(test_astartSub)
+    #Ainsert
+    test_astartInsert = adapter_mutations[1] + "".join(rd.choices(nucleotides, k=900))
+    test_strings.append(test_astartInsert)
+    #Adelete
+    test_astartDel = adapter_mutations[2] + "".join(rd.choices(nucleotides, k=900))
+    test_strings.append(test_astartDel)
     #rand
     test_random="".join(rd.choices(nucleotides, k=(1000)))
     test_strings.append(test_random)
