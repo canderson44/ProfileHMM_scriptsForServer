@@ -234,6 +234,9 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     # test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
     # test_strings.append(test_endIn3pBarcode)
 
+    #just 3 sub
+    test_strings.append(threeBar_mutations[0])
+
     #3sub 3
     test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=100)) + barcode)
     # #test 3insert 3
