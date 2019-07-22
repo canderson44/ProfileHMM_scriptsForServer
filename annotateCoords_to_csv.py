@@ -20,8 +20,6 @@ import Annotate_CCS as ac
 import numpy as np
 
 cells = ['2_B01', '3_C01', '4_D01']
-#cells = ['3_C01', '4_D01']
-# RESOLVED RESTORE CELLS TO ALL 3 TYPES
 barcode_chars = ['2','3','4']
 barcodes3p = [ac.barcode2, ac.barcode3, ac.barcode4]
 adapters = [ac.two_adapter, ac.three_adapter, ac.four_adapter]
