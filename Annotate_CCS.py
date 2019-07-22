@@ -140,7 +140,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         # for space in np.arange(len(x_align)):
         #     if x_align[space] == '-':
         #         x_align[space] = str(space)
-        print("region alignment is", x_align)
+        #print("region alignment is", x_align)
         start_coord = x_align.index(reference_char)
         stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
         if (start_coord, stop_coord, reference_char) not in coords_list:
@@ -342,7 +342,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                     reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
-        #print("glocal alignment tuple is", gloc)
+        print("glocal alignment tuple is", gloc)
         #this_ref_list: list of tuples: [(score,alignment string), ...]
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
 
@@ -400,13 +400,17 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         else:
             zeroRC = True
         if zeroRC == False and zeroRef == False:
+            print("zeroRC and zeroRef are both false")
             if max_ref_scoresig > max_rc_scoresig:
                 useRef = True
         elif zeroRC == False and zeroRef == True:
+            print("zeroRC si false, zeroRef is true")
             useRef = False
         elif zeroRC == True and zeroRef == False:
+            print("zeroRC is true, zeroRef is false")
             useRef = True
         else: #both are true
+            print("allEmpty is true")
             allEmpty = True
 
 
@@ -505,11 +509,11 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                 # then we do want to keep the maybe_annotation
                 selected_annotations_list.append(maybe_annotation_tuple)
 
-        print("SELECTED_ANNOTATIONS_LIST")
-        for elem in selected_annotations_list:
-            print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
-            print(print_str)
-        print()
+    print("SELECTED_ANNOTATIONS_LIST")
+    for elem in selected_annotations_list:
+        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+        print(print_str)
+    print()
     ########
     ########
     ########
@@ -528,6 +532,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         for selected_tuple in selected_annotations_list:
            this_coord_pair = selected_tuple[1]
            final_coord_list.append(this_coord_pair)
+        print("returning final coords list:", final_coord_list)
         return final_coord_list
 
     #case 2
@@ -568,12 +573,12 @@ def test_annotateseq(ref_list, seq_list):
     for seq in seq_list:
         print("CALC FINAL COORDS")
         final_coords = annotate_seq(seq, ref_list, justCoords=True)
-        print("CALC FINAL FUSED STRING")
-        final_fused_list = annotate_seq(seq,ref_list,justCoords=False)
+        #print("CALC FINAL FUSED STRING")
+        #final_fused_list = annotate_seq(seq,ref_list,justCoords=False)
         print("format: final_coord_list: [(start,stop,char),(start,stop,char),etc]")
         print(final_coords)
-        print("format: fused string")
-        print(final_fused_list)
+        #print("format: fused string")
+        #print(final_fused_list)
         print("################\n##############\n##############\n#############\n\n")
 
 
