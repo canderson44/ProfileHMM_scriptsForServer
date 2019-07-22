@@ -146,9 +146,12 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         print("region alignment is", x_align)
         start_coord = x_align.index(reference_char)
         stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
-        print("appending coords", (start_coord, stop_coord, reference_char))
-        # print()
-        coords_list.append((start_coord,stop_coord, reference_char))
+        if (start_coord, stop_coord, reference_char) not in coords_list:
+            print("appending coords", (start_coord, stop_coord, reference_char))
+            # print()
+            coords_list.append((start_coord,stop_coord, reference_char))
+        else:
+            print("coords " + str((start_coord, stop_coord, reference_char)) + "already in coords list. don't add.")
         x_alignments.append(x_align)
         y_alignments.append(y_align)
         
