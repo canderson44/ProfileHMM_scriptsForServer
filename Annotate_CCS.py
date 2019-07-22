@@ -409,7 +409,8 @@ def annotate_seq(sequence, ref_list, justCoords=False):
 
     print("SELECTED_ANNOTATIONS_LIST")
     for elem in selected_annotations_list:
-        print(elem)
+        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+        print(print_str)
     print()
     ########
     ########
