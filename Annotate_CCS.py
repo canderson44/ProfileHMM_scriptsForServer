@@ -263,33 +263,33 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     # test_strings.append(test_endIn3pBarcode)
 
     #just 3 sub
-    #test_strings.append(threeBar_mutations[0])
+    test_strings.append(threeBar_mutations[0])
 
     #3 sub 3 sub
-    #test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + threeBar_mutations[0])
+    test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + threeBar_mutations[0])
     #3sub 3
     test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=10)) + barcode)
     # #test 3insert 3
-    # test_strings.append(threeBar_mutations[1]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
+    test_strings.append(threeBar_mutations[1]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
     # #test 3del 3
-    # test_strings.append(threeBar_mutations[2]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
-    #following check that keep all above threshold, not just highest scoring for some region
-    #also, since beginning of 3 is 5' barcode exactly, makes sure 5' eliminated, not intended 3'
-    # #A_3_3
-    # test_a33 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + barcode + "".join(rd.choices(nucleotides, k=1000)) + barcode
-    # test_strings.append(test_a33)
-    #
-    # #A_Sub3_3
-    # test_aSub3_3 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
-    # test_strings.append(test_aSub3_3)
-    # #A_Insert3_3
-    # test_aInsert3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[1] + "".join(
-    #     rd.choices(nucleotides, k=100)) + barcode
-    # test_strings.append(test_aInsert3_3)
-    # #A_Del3_3
-    # test_aDel3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[2] + "".join(
-    #     rd.choices(nucleotides, k=100)) + barcode
-    # test_strings.append(test_aDel3_3)
+    test_strings.append(threeBar_mutations[2]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
+    following check that keep all above threshold, not just highest scoring for some region
+    also, since beginning of 3 is 5' barcode exactly, makes sure 5' eliminated, not intended 3'
+    #A_3_3
+    test_a33 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + barcode + "".join(rd.choices(nucleotides, k=1000)) + barcode
+    test_strings.append(test_a33)
+
+    #A_Sub3_3
+    test_aSub3_3 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
+    test_strings.append(test_aSub3_3)
+    #A_Insert3_3
+    test_aInsert3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[1] + "".join(
+        rd.choices(nucleotides, k=100)) + barcode
+    test_strings.append(test_aInsert3_3)
+    #A_Del3_3
+    test_aDel3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[2] + "".join(
+        rd.choices(nucleotides, k=100)) + barcode
+    test_strings.append(test_aDel3_3)
     return test_strings
 
 #given a sequence, and a list of lists of [reference, reference character], 
@@ -330,7 +330,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
 
-        print("in annotate_seq. ref_char is", ref_char)
+        #print("in annotate_seq. ref_char is", ref_char)
         ########
         ########
         ########
@@ -343,7 +343,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                     reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
-        print("glocal alignment tuple is", gloc)
+        #print("glocal alignment tuple is", gloc)
         #this_ref_list: list of tuples: [(score,alignment string), ...]
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
 
@@ -387,9 +387,9 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         useRef = False
         allEmpty = False
         if len(ref_scores) > 0:
-            print("ref scores list is", ref_scores)
+        #    print("ref scores list is", ref_scores)
             ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
-            print("ref scoreSig list is ", ref_scoreSig_list)
+        #    print("ref scoreSig list is ", ref_scoreSig_list)
             max_ref_scoresig = max(ref_scoreSig_list)
         else:
             zeroRef = True
@@ -401,23 +401,23 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         else:
             zeroRC = True
         if zeroRC == False and zeroRef == False:
-            print("zeroRC and zeroRef are both false")
+            #print("zeroRC and zeroRef are both false")
             if max_ref_scoresig > max_rc_scoresig:
                 useRef = True
         elif zeroRC == False and zeroRef == True:
-            print("zeroRC si false, zeroRef is true")
+            #print("zeroRC si false, zeroRef is true")
             useRef = False
         elif zeroRC == True and zeroRef == False:
-            print("zeroRC is true, zeroRef is false")
+            #print("zeroRC is true, zeroRef is false")
             useRef = True
         else: #both are true
-            print("allEmpty is true")
+            #print("allEmpty is true")
             allEmpty = True
 
 
         #now: case of all empty (no useable coords) vs not empty
         if allEmpty == False:
-            print("in allEmpty=False case")
+            #print("in allEmpty=False case")
             ########
             ########
             ########
@@ -429,28 +429,28 @@ def annotate_seq(sequence, ref_list, justCoords=False):
             #                   appropriate direction (forward or rc)
             #             2. format: (scoreSig, coord tuple, alignment string)
             #             3. sort based on scoreSig
-            print("for this region type, before filtering by score sig, list of potential regions is", current_coords)
+            #print("for this region type, before filtering by score sig, list of potential regions is", current_coords)
             if useRef == True:
                 for index in np.arange(len(ref_scoreSig_list)):
-                    print("this potential annotation is: ", current_coords[index])
-                    print("this score sig is: ", ref_scoreSig_list[index])
+                    #print("this potential annotation is: ", current_coords[index])
+                    #print("this score sig is: ", ref_scoreSig_list[index])
                     if ref_scoreSig_list[index]  > SCORE_SIG_THRESHOLD:
-                        print("adding this region")
+                        #print("adding this region")
                         sorted_annotations_list.append((ref_scoreSig_list[index],
                                         current_coords[index], ref_alignments[index]))
             else: #use rc
                 for rc_index in np.arange(len(rc_scoreSig_list)):
-                    print("this potential annotation is: ", rc_current_coords[rc_index])
-                    print("this score sig is: ", ref_scoreSig_list[rc_index])
+                    #print("this potential annotation is: ", rc_current_coords[rc_index])
+                    #print("this score sig is: ", ref_scoreSig_list[rc_index])
                     if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
                         sorted_annotations_list.append((rc_scoreSig_list[rc_index],
                                 rc_current_coords[rc_index], rc_alignments[rc_index]))
-    print("before sorting, sorted annotations list is")
-    for elem in sorted_annotations_list:
-        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
-        print(print_str)
+    #print("before sorting, sorted annotations list is")
+    # for elem in sorted_annotations_list:
+    #     print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+    #     print(print_str)
     if len(sorted_annotations_list) > 0:
-        print("pre-sorted sorted list is not empty")
+        #print("pre-sorted sorted list is not empty")
         ########
         ########
         ########
@@ -462,11 +462,11 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         # conditions: sort based on 0th element of each list element. Sort in descending order
         #           i.e. sorted by scoreSig, highest scoreSig is first in list
         sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
-        print("FINAL SORTED-ANNOTATIONS-LIST")
-        for elem in sorted_annotations_list:
-            print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
-            print(print_str)
-        print()
+        # print("FINAL SORTED-ANNOTATIONS-LIST")
+        # for elem in sorted_annotations_list:
+        #     print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+        #     print(print_str)
+        # print()
         ########
         ########
         ########
@@ -488,12 +488,12 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         #first: pop first element into the selected list, so we have something to compare to
         if len(sorted_annotations_list) >0:
             selected_annotations_list.append(sorted_annotations_list.pop(0))
-            print("first added to selected annotations: ", selected_annotations_list[0][1])
+            #print("first added to selected annotations: ", selected_annotations_list[0][1])
 
         # stop once we've considered all viable annotations
         while(len(sorted_annotations_list) > 0):
             maybe_annotation_tuple = sorted_annotations_list.pop(0)
-            print("maybe annotation: ", maybe_annotation_tuple[1])
+            #print("maybe annotation: ", maybe_annotation_tuple[1])
             maybe_coords = maybe_annotation_tuple[1]
             maybe_start = maybe_coords[0]
             maybe_stop = maybe_coords[1]
@@ -509,18 +509,18 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                 #only want to keep maybe if no overlap between selected and maybe coords
                 if ((selected_start in maybe_range) or (selected_stop in maybe_range) or
                         (maybe_start in selected_range) or (maybe_stop in selected_range)):
-                    print("this maybe won't be added")
+                    #print("this maybe won't be added")
                     addMaybe = False
             if(addMaybe):
-                print("this maybe is added")
+                #print("this maybe is added")
                 # then we do want to keep the maybe_annotation
                 selected_annotations_list.append(maybe_annotation_tuple)
 
-    print("SELECTED_ANNOTATIONS_LIST")
-    for elem in selected_annotations_list:
-        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
-        print(print_str)
-    print()
+    # print("SELECTED_ANNOTATIONS_LIST")
+    # for elem in selected_annotations_list:
+    #     print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+    #     print(print_str)
+    # print()
     ########
     ########
     ########
@@ -539,7 +539,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         for selected_tuple in selected_annotations_list:
            this_coord_pair = selected_tuple[1]
            final_coord_list.append(this_coord_pair)
-        print("returning final coords list:", final_coord_list)
+        #print("returning final coords list:", final_coord_list)
         return final_coord_list
 
     #case 2
@@ -580,12 +580,12 @@ def test_annotateseq(ref_list, seq_list):
     for seq in seq_list:
         print("CALC FINAL COORDS")
         final_coords = annotate_seq(seq, ref_list, justCoords=True)
-        #print("CALC FINAL FUSED STRING")
-        #final_fused_list = annotate_seq(seq,ref_list,justCoords=False)
+        print("CALC FINAL FUSED STRING")
+        final_fused_list = annotate_seq(seq,ref_list,justCoords=False)
         print("format: final_coord_list: [(start,stop,char),(start,stop,char),etc]")
         print(final_coords)
-        #print("format: fused string")
-        #print(final_fused_list)
+        print("format: fused string")
+        print(final_fused_list)
         print("################\n##############\n##############\n#############\n\n")
 
 
