@@ -179,9 +179,9 @@ def gen_test_strings(barcode, barcode_rc, threePbar_mutations, threePbarRC_mutat
     
     return test_strings
 
-test_2B01_strings = gen_test_strings(barcode_2, barcode_2_rc)
-test_3C01_strings = gen_test_strings(barcode_3, gen_rev_complement(barcode_3))
-test_4D01_strings = gen_test_strings(barcode_4, gen_rev_complement(barcode_4))
+test_2B01_strings = gen_test_strings(barcode_2, barcode_2_rc, bar2_mutations, bar2RC_mutations)
+test_3C01_strings = gen_test_strings(barcode_3, gen_rev_complement(barcode_3), bar3_mutations, bar3RC_mutations)
+test_4D01_strings = gen_test_strings(barcode_4, gen_rev_complement(barcode_4), bar4_mutations, bar4RC_mutations)
 
 expected_keep_results = [False, True, True, False, False, True, False, False, False, True, True, True, 
                              True, True, True, False, False, False, 
