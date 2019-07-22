@@ -144,13 +144,14 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         start_coord = x_align.index(reference_char)
         stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
         if (start_coord, stop_coord, reference_char) not in coords_list:
-            print("appending coords", (start_coord, stop_coord, reference_char))
+            #print("appending coords", (start_coord, stop_coord, reference_char))
             # print()
             coords_list.append((start_coord,stop_coord, reference_char))
             x_alignments.append(x_align)
             y_alignments.append(y_align)
         else:
-            print("coords " + str((start_coord, stop_coord, reference_char)) + "already in coords list. don't add this alignment.")
+            pass
+            #print("coords " + str((start_coord, stop_coord, reference_char)) + "already in coords list. don't add this alignment.")
 
         
     return_list = list(zip(score_list,coords_list,x_alignments))
@@ -416,6 +417,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
 
         #now: case of all empty (no useable coords) vs not empty
         if allEmpty == False:
+            print("in allEmpty=False case")
             ########
             ########
             ########
@@ -443,7 +445,12 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                     if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
                         sorted_annotations_list.append((rc_scoreSig_list[rc_index],
                                 rc_current_coords[rc_index], rc_alignments[rc_index]))
-    if allEmpty == False:
+    print("before sorting, sorted annotations list is")
+    for elem in sorted_annotations_list:
+        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+        print(print_str)
+    if len(sorted_annotations_list) > 0:
+        print("pre-sorted sorted list is not empty")
         ########
         ########
         ########
@@ -455,7 +462,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         # conditions: sort based on 0th element of each list element. Sort in descending order
         #           i.e. sorted by scoreSig, highest scoreSig is first in list
         sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
-        print("SORTED-ANNOTATIONS-LIST")
+        print("FINAL SORTED-ANNOTATIONS-LIST")
         for elem in sorted_annotations_list:
             print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
             print(print_str)
