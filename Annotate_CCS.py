@@ -234,6 +234,12 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
     test_strings.append(test_endIn3pBarcode)
 
+    #end 3 sub
+    test_strings.append(threeBar_mutations[0])
+    #test end 3 insert
+    test_strings.append(threeBar_mutations[1])
+    #test end 3 delete
+    test_strings.append(threeBar_mutations[2])
     #following check that keep all above threshold, not just highest scoring for some region
     #also, since beginning of 3 is 5' barcode exactly, makes sure 5' eliminated, not intended 3'
 
