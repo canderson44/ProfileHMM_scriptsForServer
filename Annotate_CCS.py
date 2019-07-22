@@ -361,7 +361,8 @@ def annotate_seq(sequence, ref_list, justCoords=False):
     sorted_annotations_list.sort(key=lambda elem: elem[0], reverse=True)
     print("SORTED-ANNOTATIONS-LIST")
     for elem in sorted_annotations_list:
-        print(elem)
+        print_str = "(" + str(elem[0]) + str(elem[1]) + ")"
+        print(print_str)
     print()
     ########
     ########
