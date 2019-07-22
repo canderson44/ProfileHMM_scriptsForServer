@@ -286,12 +286,12 @@ def should_we_keep(sample, barcode):
     barcodeRC_beg_score_sig = calc_score_sig(score_alignment(1,segments[0],barcode_rc,score_dict))
     barcode_end_score_sig = calc_score_sig(score_alignment(1,segments[1],barcode,score_dict))
     
-    if barcode_beg_score_sig >0.99999999:
+    if barcode_beg_score_sig >0.9999999999:
         return False            
-    elif  barcodeRC_beg_score_sig>0.99999999:
+    elif  barcodeRC_beg_score_sig>0.9999999999:
         return True
     #end                        
-    elif barcode_end_score_sig > 0.99999999:
+    elif barcode_end_score_sig > 0.9999999999:
         return True
     else: #if we've gottent to this point, either the barcode isn't in teh 
         #sample and/or the barcode rev comp is at the end, which we don't want

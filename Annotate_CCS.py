@@ -5,7 +5,7 @@ import CCS_Filter as cf
 import numpy as np
 import random as rd
 
-SCORE_SIG_THRESHOLD = 0.999999999 #score sig must be > this to be kept
+SCORE_SIG_THRESHOLD = 0.9999999999 #score sig must be > this to be kept
 
 
 #adaptation of CCS_Filter's score alignment, except this time: 
