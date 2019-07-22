@@ -120,7 +120,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         #         x_align[space] = str(space)
         start_coord = x_align.index(reference_char)
         stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
-        # print("appending coords", (start_coord, stop_coord))
+        print("appending coords", (start_coord, stop_coord, reference_char))
         # print()
         coords_list.append((start_coord,stop_coord, reference_char))
         x_alignments.append(x_align)
