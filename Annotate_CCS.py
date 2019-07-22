@@ -63,11 +63,14 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         scoreSig = cf.calc_score_sig(score)
         if scoreSig > SCORE_SIG_THRESHOLD:
             max_indices_list.append(i)
-            score_list.append(score)
+    #sort max_indices_list with highest scoring indices first
+    max_indices_list.sort(key=lambda index:F[num_rows-1][index], reverse=True)
+    for index in max_indices_list:
+        score_list.append(F[num_rows-1][index])
     print("number of columns:", len(F[num_rows-1]))
     print("last row of F", F[num_rows-1])
     print("max_indices_list", max_indices_list)
-    print("score_list")
+    print("score_list", score)
     x_alignments = []
     y_alignments = []
     coords_list = [] #list of start indices in sequence string
