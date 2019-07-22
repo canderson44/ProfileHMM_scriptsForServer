@@ -58,7 +58,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     #         max_indices_list.append(entry)
 
     #populate max_indices_list with indices where scoresig > threshold
-    for i in len(F[num_rows-1]):
+    for i in np.arange(len(F[num_rows-1])):
         score = F[num_rows-1][i]
         scoreSig = cf.calc_score_sig(score)
         if scoreSig > SCORE_SIG_THRESHOLD:
