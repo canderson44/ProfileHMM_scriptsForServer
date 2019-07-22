@@ -72,6 +72,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     y_alignments = []
     coords_list = [] #list of start indices in sequence string
     for trace_start_col in max_indices_list:
+        print("trace_start_col is ",trace_start_col)
         #start traceback
         x_align = [] #reference
         y_align = [] #seq
@@ -83,7 +84,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         j = j_fin
         traceback = T[i][j]
         current = ''
-        if j_fin < seq_length:
+        if j_fin < seq_length: #everything after j_fin is gapped for
             for n in np.arange(seq_length - j_fin):
                 x_align.append('-')
                 y_align.append(y[seq_length-n-1])
@@ -102,17 +103,19 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
             y_align.append('-')
 
         current = T[i][j]
-
+        initial_coord = -1
         while i>0 and j>0:
             if current == M:
                 i -= 1
                 j -= 1
                 y_align.append(y[j])
                 x_align.append(x[i])
+                initial_coord = j
             elif current == IY:
                 j -= 1
                 x_align.append('-')
                 y_align.append(y[j])
+                initial_coord = j
             else: #current == IX
                 i -= 1
                 x_align.append(x[i])
@@ -120,10 +123,11 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
             current = T[i][j]
 
         if j >0:
-            while j >0:
+            while j >0: #gapping in beg of sequence; region starts before sequence
                 j -= 1
                 x_align.append('-')
                 y_align.append(y[j])
+                initial_coord = j
         x_align_copy = x_align.copy() #copy of alignment in reverse order
         x_align.reverse()
         y_align.reverse()
@@ -134,6 +138,9 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         # for space in np.arange(len(x_align)):
         #     if x_align[space] == '-':
         #         x_align[space] = str(space)
+        print("initial coord is ", initial_coord)
+        print("final coord is", j_fin)
+        print("region alignment is", x_align)
         start_coord = x_align.index(reference_char)
         stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
         print("appending coords", (start_coord, stop_coord, reference_char))
@@ -331,7 +338,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                     reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
-        print("glocal alignment tuple is", gloc)
+        #print("glocal alignment tuple is", gloc)
         #this_ref_list: list of tuples: [(score,alignment string), ...]
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
 
