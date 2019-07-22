@@ -314,7 +314,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         refRC = cf.gen_rev_complement(ref)
         refRC_char = ref_char + 'r'
 
-
+        print("in annotate_seq. ref_char is", ref_char)
         ########
         ########
         ########
@@ -327,7 +327,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         gloc = glocal_alignment(gap_penalty=1, sequence=sequence,
                                     reference=ref, score_dict = cf.score_dict,
                                      reference_char = ref_char)
-
+        print("glocal alignment tuple is", gloc)
         #this_ref_list: list of tuples: [(score,alignment string), ...]
         this_ref_list = [(gloc[n][0],gloc[n][2]) for n in np.arange(len(gloc))]
 
@@ -366,7 +366,9 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         ########
         ########
         ########
+        print("ref scores list is", ref_scores)
         ref_scoreSig_list = [cf.calc_score_sig(ref_score) for ref_score in ref_scores]
+        print("ref scoreSig list is ", ref_scoreSig_list)
         max_ref_scoresig = max(ref_scoreSig_list)
         rc_scoreSig_list = [cf.calc_score_sig(rc_score) for rc_score in rc_scores]
         max_rc_scoresig = max(rc_scoreSig_list)
