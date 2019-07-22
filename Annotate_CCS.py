@@ -244,8 +244,7 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     #also, since beginning of 3 is 5' barcode exactly, makes sure 5' eliminated, not intended 3'
 
     #A_Sub3_3
-    test_aSub3_3 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[0] + "".join(
-        rd.choices(nucleotides, k=100))# + barcode
+    test_aSub3_3 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=100)) + barcode
     test_strings.append(test_aSub3_3)
     #A_Insert3_3
     test_aInsert3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[1] + "".join(
