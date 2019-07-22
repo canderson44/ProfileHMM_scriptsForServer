@@ -475,10 +475,14 @@ ref_list_3 = [[barcode3,'3'], [three_adapter,'A'], [fivePBarcode,'5']]
 ref_list_4 = [[barcode4,'4'], [four_adapter,'A'], [fivePBarcode,'5']]
 def test_annotateseq(ref_list, seq_list):
     for seq in seq_list:
+        print("CALC FINAL COORDS")
+        final_coords = annotate_seq(seq, ref_list, justCoords=True)
+        print("CALC FINAL FUSED STRING")
+        final_fused_list = annotate_seq(seq,ref_list,justCoords=False)
         print("format: final_coord_list: [(start,stop,char),(start,stop,char),etc]")
-        print(annotate_seq(seq, ref_list, justCoords=True))
+        print(final_coords)
         print("format: fused string")
-        print(annotate_seq(seq,ref_list,justCoords=False))
+        print(final_fused_list)
         print()
 
 
