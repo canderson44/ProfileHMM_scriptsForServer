@@ -5,6 +5,9 @@ import CCS_Filter as cf
 import numpy as np
 import random as rd
 
+SCORE_SIG_THRESHOLD = 0.999999999 #score sig must be > this to be kept
+
+
 #adaptation of CCS_Filter's score alignment, except this time: 
 #RETURNS list of score, tuple of start and end coordinates, and string traceback alignment (just reference portion)
 #FOR NOW: linear gap penalty d
@@ -47,13 +50,20 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     #now matrix is filled"
     last_row_array = np.array(F[num_rows-1])
 
-    # max_indices = np.where(last_row_array == max(F[num_rows-1])) #only use highest score
+    max_indices = np.where(last_row_array == max(F[num_rows-1])) #only use highest score
     max_indices_list = []
+    score_list = []
     # for elem in max_indices:
     #     for entry in elem:
     #         max_indices_list.append(entry)
-    max_indices_list = [n for n in np.arange(num_cols)]
-    score_list = [F[num_rows-1][i] for i in max_indices_list]
+
+    #populate max_indices_list with indices where scoresig > threshold
+    for i in len(F[num_rows-1]):
+        score = F[num_rows-1][i]
+        scoreSig = cf.calc_score_sig(score)
+        if scoreSig > SCORE_SIG_THRESHOLD:
+            max_indices_list.append(i)
+            score_list.append(score_list)
     x_alignments = []
     y_alignments = []
     coords_list = [] #list of start indices in sequence string
@@ -289,7 +299,7 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     #ref_list: list of lists
         #each entry is [reference(string), reference character]
 def annotate_seq(sequence, ref_list, justCoords=False):
-    SCORE_SIG_THRESHOLD = 0.999999999 #score sig must be > this to be kept
+
     final_coord_list = [] #for case 1
     fused_list = ['-'] * len(sequence) #for case 2
     sorted_annotations_list = [] #list of annotated regions sorted by scoreSig

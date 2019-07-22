@@ -34,13 +34,13 @@
         <counts>
           <entry key="Python Console" value="65" />
           <entry key="dummy" value="50" />
-          <entry key="py" value="36535" />
+          <entry key="py" value="36803" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="36600" />
+          <entry key="Python" value="36868" />
         </counts>
       </usages-collector>
     </session>
@@ -59,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-124">
-              <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
+            <state relative-caret-position="315">
+              <caret line="65" column="41" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -141,6 +141,7 @@
       <find>!</find>
       <find>mutation</find>
       <find>0.99</find>
+      <find>THRESHOLD</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -445,8 +446,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-124">
-          <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="53" />
+        <state relative-caret-position="315">
+          <caret line="65" column="41" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
         </state>
       </provider>
     </entry>
