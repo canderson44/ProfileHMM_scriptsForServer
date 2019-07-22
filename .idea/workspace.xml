@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CCS_Filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/CCS_Filter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Annotate_CCS.py" beforeDir="false" afterPath="$PROJECT_DIR$/Annotate_CCS.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,13 +34,13 @@
         <counts>
           <entry key="Python Console" value="65" />
           <entry key="dummy" value="50" />
-          <entry key="py" value="35332" />
+          <entry key="py" value="35611" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="35397" />
+          <entry key="Python" value="35676" />
         </counts>
       </usages-collector>
     </session>
@@ -56,20 +56,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="216" column="8" lean-forward="true" selection-start-line="216" selection-start-column="8" selection-end-line="216" selection-end-column="8" />
+            <state relative-caret-position="133">
+              <caret line="484" column="41" selection-start-line="484" selection-start-column="41" selection-end-line="484" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CCS_Filter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="77" column="90" selection-start-line="77" selection-start-column="90" selection-end-line="77" selection-end-column="90" />
+            <state relative-caret-position="-95">
+              <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
               <folding>
                 <marker date="1563760137852" expanded="true" signature="2554:3624" ph="..." />
               </folding>
@@ -139,6 +139,8 @@
       <find>print(&quot;</find>
       <find>ac</find>
       <find>!</find>
+      <find>mutation</find>
+      <find>0.99</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,8 +159,8 @@
         <option value="$PROJECT_DIR$/annotationCoordsReorganization_functions.py" />
         <option value="$PROJECT_DIR$/annotationCoordsReorganization_coordinatingScript.py" />
         <option value="$PROJECT_DIR$/annotateCoords_to_csv.py" />
-        <option value="$PROJECT_DIR$/Annotate_CCS.py" />
         <option value="$PROJECT_DIR$/CCS_Filter.py" />
+        <option value="$PROJECT_DIR$/Annotate_CCS.py" />
       </list>
     </option>
   </component>
@@ -431,20 +433,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="216" column="8" lean-forward="true" selection-start-line="216" selection-start-column="8" selection-end-line="216" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CCS_Filter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="77" column="90" selection-start-line="77" selection-start-column="90" selection-end-line="77" selection-end-column="90" />
+        <state relative-caret-position="-95">
+          <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
           <folding>
             <marker date="1563760137852" expanded="true" signature="2554:3624" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="484" column="41" selection-start-line="484" selection-start-column="41" selection-end-line="484" selection-end-column="41" />
         </state>
       </provider>
     </entry>
