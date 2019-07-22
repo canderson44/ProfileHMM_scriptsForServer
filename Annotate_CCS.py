@@ -150,10 +150,11 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
             print("appending coords", (start_coord, stop_coord, reference_char))
             # print()
             coords_list.append((start_coord,stop_coord, reference_char))
+            x_alignments.append(x_align)
+            y_alignments.append(y_align)
         else:
-            print("coords " + str((start_coord, stop_coord, reference_char)) + "already in coords list. don't add.")
-        x_alignments.append(x_align)
-        y_alignments.append(y_align)
+            print("coords " + str((start_coord, stop_coord, reference_char)) + "already in coords list. don't add this alignment.")
+
         
     return_list = list(zip(score_list,coords_list,x_alignments))
     return return_list
