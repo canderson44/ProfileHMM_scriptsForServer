@@ -225,7 +225,7 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     # test_aDel3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[2] + "".join(
     #     rd.choices(nucleotides, k=100)) + barcode
     # test_strings.append(test_aDel3_3)
-    # return test_strings
+    return test_strings
 
 #given a sequence, and a list of lists of [reference, reference character], 
 #annotates the sequence with the location(s) of the reference(s)
