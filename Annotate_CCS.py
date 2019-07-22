@@ -66,13 +66,13 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     #sort max_indices_list with highest scoring indices first
     max_indices_list.sort(key=lambda index:F[num_rows-1][index], reverse=True)
     for index in max_indices_list:
-        print("index is", index)
-        print("adding to score_list this score: ", F[num_rows-1][index])
+        #print("index is", index)
+        #print("adding to score_list this score: ", F[num_rows-1][index])
         score_list.append(F[num_rows-1][index])
     print("number of columns:", len(F[num_rows-1]))
     print("last row of F", F[num_rows-1])
     print("max_indices_list", max_indices_list)
-    print("score_list", score)
+    print("score_list", score_list)
     x_alignments = []
     y_alignments = []
     coords_list = [] #list of start indices in sequence string
