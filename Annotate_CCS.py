@@ -369,13 +369,18 @@ def annotate_seq(sequence, ref_list, justCoords=False):
         #                   appropriate direction (forward or rc)
         #             2. format: (scoreSig, coord tuple, alignment string)
         #             3. sort based on scoreSig
+        print("before filtering by score sig, list of potential regions is", current_coords)
         if useRef == True:
             for index in np.arange(len(ref_scoreSig_list)):
+                print("this potential annotation is: ", current_coords[index])
+                print("this score sig is: ", ref_scoreSig_list[index])
                 if ref_scoreSig_list[index]  > SCORE_SIG_THRESHOLD:
                     sorted_annotations_list.append((ref_scoreSig_list[index],
                                     current_coords[index], ref_alignments[index]))
         else: #use rc
             for rc_index in np.arange(len(rc_scoreSig_list)):
+                print("this potential annotation is: ", current_coords[index])
+                print("this score sig is: ", ref_scoreSig_list[index])
                 if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
                     sorted_annotations_list.append((rc_scoreSig_list[rc_index],
                             rc_current_coords[rc_index], rc_alignments[rc_index]))
