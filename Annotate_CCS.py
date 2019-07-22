@@ -236,10 +236,10 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
 
     #3sub 3
     test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=100)) + barcode)
-    #test 3insert 3
-    test_strings.append(threeBar_mutations[1]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
-    #test 3del 3
-    test_strings.append(threeBar_mutations[2]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
+    # #test 3insert 3
+    # test_strings.append(threeBar_mutations[1]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
+    # #test 3del 3
+    # test_strings.append(threeBar_mutations[2]+ "".join(rd.choices(nucleotides, k=100)) + barcode)
     #following check that keep all above threshold, not just highest scoring for some region
     #also, since beginning of 3 is 5' barcode exactly, makes sure 5' eliminated, not intended 3'
     # #A_3_3
@@ -380,8 +380,8 @@ def annotate_seq(sequence, ref_list, justCoords=False):
                                     current_coords[index], ref_alignments[index]))
         else: #use rc
             for rc_index in np.arange(len(rc_scoreSig_list)):
-                print("this potential annotation is: ", current_coords[index])
-                print("this score sig is: ", ref_scoreSig_list[index])
+                print("this potential annotation is: ", current_coords[rc_index])
+                print("this score sig is: ", ref_scoreSig_list[rc_index])
                 if rc_scoreSig_list[rc_index] > SCORE_SIG_THRESHOLD:
                     sorted_annotations_list.append((rc_scoreSig_list[rc_index],
                             rc_current_coords[rc_index], rc_alignments[rc_index]))
