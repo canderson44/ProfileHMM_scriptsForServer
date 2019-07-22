@@ -71,6 +71,38 @@ with open('/tier2/deweylab/data/thomson_lab/Pacbio/2_B01/m54178_180915_120213.ad
 #test "CCSs"
 nucleotides = ['A','C','G','T']
 
+def gen_mutated_barcodes(barcode):
+    barcode_list = list(barcode)
+    rand_subs_list = rd.choices(np.arange(len(barcode)), k=int(len(barcode) / 10))  # pacbio MUCH more accurate
+    # here, error in sequencing is 10%
+    # pacbio has error of about 0.001%
+    # source: https://www.pacb.com/uncategorized/a-closer-look-at-accuracy-in-pacbio/
+    sub_list = barcode_list.copy()
+    rand_nuc_list = rd.choices(nucleotides, k=len(rand_subs_list))
+
+    for i in np.arange(len(rand_nuc_list)):
+        sub_list[i] = rand_nuc_list[i]
+    sub_str = "".join(sub_list)
+
+    insert_list = barcode_list.copy()
+    for i in np.arange(len(rand_nuc_list)):
+        insert_list.insert(i, rand_nuc_list[i])
+    insert_str = "".join(insert_list)
+
+    delet_list = barcode_list.copy()
+    for i in np.arange(int(len(rand_nuc_list))):
+        del barcode_list[i]
+    delet_str = "".join(delet_list)
+    return [sub_str, insert_str, delet_str]
+
+bar2_mutations = gen_mutated_barcodes(barcode_2)
+bar2RC_mutations = gen_mutated_barcodes(barcode_2_rc)
+bar3_mutations = gen_mutated_barcodes(barcode_3)
+bar3RC_mutations = gen_mutated_barcodes(gen_rev_complement(barcode_3))
+bar4_mutations = gen_mutated_barcodes(barcode_4)
+bar4RC_mutations = gen_mutated_barcodes(gen_rev_complement(barcode_4))
+fivePbar_mutations = gen_mutated_barcodes(barcodes_list[0])
+fivePbarRC_mutations = gen_mutated_barcodes(gen_rev_complement(barcodes_list[0]))
 
 #generates a list of test strings given 3p barcode and its rev complement
 #list is: 
@@ -78,90 +110,69 @@ nucleotides = ['A','C','G','T']
 ##endsIn3RC, begIn3RC, endIn3, begIn3, rand, endIn3
 #substituted, inserted, and deleted versions of barcode:
 #endIn3RC * 3, begIn3RC * 3, endIn3 * 3, begIn3 * 3, endIn3 * 3
-def gen_test_strings(barcode, barcode_rc):
+def gen_test_strings(barcode, barcode_rc, threePbar_mutations, threePbarRC_mutations):
     test_strings = []
 
-    #First: exact matches
-    #exclude
-    test_end_in_3pBarcodeRC = "".join(rd.choices(nucleotides, k=1000)) + barcode_rc
-    test_strings.append(test_end_in_3pBarcodeRC)
-    #keep
-    test_beg_3pBarcodeRC = barcode_rc + "".join(rd.choices(nucleotides, k=1000))
-    test_strings.append(test_beg_3pBarcodeRC)
-    #keep
-    test_5pBarcodeRandom3pBarcode = barcodes_list[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
-    test_strings.append(test_5pBarcodeRandom3pBarcode)
-    #exclude
-    test_3pBarcodeThenRandom= barcode + "".join(rd.choices(nucleotides, k=(1000)))
-    test_strings.append(test_3pBarcodeThenRandom)
-    #exclude
-    test_random="".join(rd.choices(nucleotides, k=(1000)))
-    test_strings.append(test_random)
-    #keep
-    test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
-    test_strings.append(test_endIn3pBarcode)
+    # #First: exact matches
+    # #exclude
+    # test_end_in_3pBarcodeRC = "".join(rd.choices(nucleotides, k=1000)) + barcode_rc
+    # test_strings.append(test_end_in_3pBarcodeRC)
+    # #keep
+    # test_beg_3pBarcodeRC = barcode_rc + "".join(rd.choices(nucleotides, k=1000))
+    # test_strings.append(test_beg_3pBarcodeRC)
+    # #keep
+    # test_5pBarcodeRandom3pBarcode = barcodes_list[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
+    # test_strings.append(test_5pBarcodeRandom3pBarcode)
+    # #exclude
+    # test_3pBarcodeThenRandom= barcode + "".join(rd.choices(nucleotides, k=(1000)))
+    # test_strings.append(test_3pBarcodeThenRandom)
+    # #exclude
+    # test_random="".join(rd.choices(nucleotides, k=(1000)))
+    # test_strings.append(test_random)
+    # #keep
+    # test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
+    # test_strings.append(test_endIn3pBarcode)
 
 
     #Next: mutated matches
-    bar2_list = list(barcode)
-    rand_subs_list = rd.choices(np.arange(len(barcode)), k=int(len(barcode)/10)) #pacbio MUCH more accurate
-#here, error in sequencing is 10%
-#pacbio has error of about 0.001%
-#source: https://www.pacb.com/uncategorized/a-closer-look-at-accuracy-in-pacbio/
-    sub_bar2_list = bar2_list.copy()
-    rand_nuc_list = rd.choices(nucleotides, k=len(rand_subs_list))
-    for i in np.arange(len(rand_nuc_list)):
-        sub_bar2_list[i] = rand_nuc_list[i]
-    sub_bar2_str = "".join(sub_bar2_list)
-    sub_bar2_str_rc = gen_rev_complement(sub_bar2_str)
 
-    insert_bar2_list = bar2_list.copy()
-    for i in np.arange(len(rand_nuc_list)):
-        insert_bar2_list.insert(i, rand_nuc_list[i])
-    insert_bar2_str = "".join(insert_bar2_list)
-    insert_bar2_str_rc = gen_rev_complement(insert_bar2_str)
 
-    delet_bar2_list = bar2_list.copy()
-    for i in np.arange(int(len(rand_nuc_list))):     
-        del bar2_list[i]
-    delet_bar2_str = "".join(delet_bar2_list)
-    delet_bar2_str_rc = gen_rev_complement(delet_bar2_str)
 
     #exclude
-    test_end3RC_sub = "".join(rd.choices(nucleotides, k=1000)) + sub_bar2_str_rc
-    test_end3RC_insert = "".join(rd.choices(nucleotides, k=1000)) + insert_bar2_str_rc
-    test_end3RC_del = "".join(rd.choices(nucleotides, k=1000)) + delet_bar2_str_rc
+    test_end3RC_sub = "".join(rd.choices(nucleotides, k=1000)) + threePbarRC_mutations[0]
+    test_end3RC_insert = "".join(rd.choices(nucleotides, k=1000)) + threePbarRC_mutations[1]
+    test_end3RC_del = "".join(rd.choices(nucleotides, k=1000)) + threePbarRC_mutations[2]
     test_strings.append(test_end3RC_sub)
     test_strings.append(test_end3RC_insert)
     test_strings.append(test_end3RC_del)
     #keep
-    test_beg3RC_sub = sub_bar2_str_rc + "".join(rd.choices(nucleotides, k=1000))
-    test_beg3RC_insert = insert_bar2_str_rc + "".join(rd.choices(nucleotides, k=1000))
-    test_beg3RC_del = delet_bar2_str_rc + "".join(rd.choices(nucleotides, k=1000))
+    test_beg3RC_sub = threePbarRC_mutations[0] + "".join(rd.choices(nucleotides, k=1000))
+    test_beg3RC_insert = threePbarRC_mutations[1] + "".join(rd.choices(nucleotides, k=1000))
+    test_beg3RC_del = threePbarRC_mutations[2] + "".join(rd.choices(nucleotides, k=1000))
     test_strings.append(test_beg3RC_sub)
     test_strings.append(test_beg3RC_insert)
     test_strings.append(test_beg3RC_del)
 
     #keep
-    test_5pRand3p_sub = barcodes_list[0] + "".join(rd.choices(nucleotides, k=1000)) + sub_bar2_str
-    test_5pRand3p_insert = barcodes_list[0] + "".join(rd.choices(nucleotides, k=1000)) + insert_bar2_str
-    test_5pRand3p_del = barcodes_list[0] + "".join(rd.choices(nucleotides, k=1000)) + delet_bar2_str
+    test_5pRand3p_sub = fivePbar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + threePbar_mutations[0]
+    test_5pRand3p_insert = fivePbar_mutations[1] + "".join(rd.choices(nucleotides, k=1000)) + threePbar_mutations[1]
+    test_5pRand3p_del = fivePbar_mutations[2] + "".join(rd.choices(nucleotides, k=1000)) + threePbar_mutations[2]
     test_strings.append(test_5pRand3p_sub)
     test_strings.append(test_5pRand3p_insert)
     test_strings.append(test_5pRand3p_del)
 
     #exclude
-    test_beg3p_sub = sub_bar2_str + "".join(rd.choices(nucleotides, k=1000))
-    test_beg3p_insert = insert_bar2_str + "".join(rd.choices(nucleotides, k=(1000)))
-    test_beg3p_del = delet_bar2_str + "".join(rd.choices(nucleotides, k=(1000)))
+    test_beg3p_sub = threePbar_mutations[0] + "".join(rd.choices(nucleotides, k=1000))
+    test_beg3p_insert = threePbar_mutations[1] + "".join(rd.choices(nucleotides, k=(1000)))
+    test_beg3p_del = threePbar_mutations[2] + "".join(rd.choices(nucleotides, k=(1000)))
     test_strings.append(test_beg3p_sub)
     test_strings.append(test_beg3p_insert)
     test_strings.append(test_beg3p_del)
     
     #keep
-    test_end3p_sub = "".join(rd.choices(nucleotides, k=1000)) + sub_bar2_str
-    test_end3p_insert = "".join(rd.choices(nucleotides, k=1000)) + insert_bar2_str
-    test_end3p_del = "".join(rd.choices(nucleotides, k=1000)) + delet_bar2_str
+    test_end3p_sub = "".join(rd.choices(nucleotides, k=1000)) + threePbar_mutations[0]
+    test_end3p_insert = "".join(rd.choices(nucleotides, k=1000)) + threePbar_mutations[1]
+    test_end3p_del = "".join(rd.choices(nucleotides, k=1000)) + threePbar_mutations[2]
     test_strings.append(test_end3p_sub) 
     test_strings.append(test_end3p_insert) 
     test_strings.append(test_end3p_del)

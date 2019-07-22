@@ -168,9 +168,22 @@ three_adapter_RC = cf.gen_rev_complement(three_adapter)
 four_adapter_RC = cf.gen_rev_complement(four_adapter)
 
 #generates list of test strings given barcode, adapter, and respective rev compliments
-def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):    
+#PARAMETERS: barcode_index: index of 3' barcode:
+                # if cell is 2_B01, index is 2; 3_C01 index is 3; 4_D01 index is 4
+def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
+    if barcode_index == 2:
+        # list of substituted, inserted, deleted mutations on barcode
+        threeBar_mutations = cf.bar2_mutations
+        threeBarRC_mutations = cf.bar2RC_mutations
+    elif barcode_index == 3:
+        # list of substituted, inserted, deleted mutations on barcode
+        threeBar_mutations = cf.bar3_mutations
+        threeBarRC_mutations = cf.bar3RC_mutations
+    else: #barcode_index == 4
+        # list of substituted, inserted, deleted mutations on barcode
+        threeBar_mutations = cf.bar4_mutations
+        threeBarRC_mutations = cf.bar4RC_mutations
     test_strings = []
-    #First: exact matches
     #Ar3r5r
     test_ar3r5r = adapterRC + barcodeRC + fivePBarcodeRC
     test_strings.append(test_ar3r5r)
@@ -196,6 +209,22 @@ def gen_test_strings(barcode, barcodeRC, adapter, adapterRC):
     #end in 3
     test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
     test_strings.append(test_endIn3pBarcode)
+
+    #following check that keep all above threshold, not just highest scoring for some region
+    #also, since beginning of 3 is 5' barcode exactly, makes sure 5' eliminated, not intended 3'
+
+    #A_Sub3_3
+    test_aSub3_3 = test_aSub3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[0] + "".join(
+        rd.choices(nucleotides, k=100)) + barcode
+    test_strings.append(test_aSub3_3)
+    #A_Insert3_3
+    test_aInsert3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[1] + "".join(
+        rd.choices(nucleotides, k=100)) + barcode
+    test_strings.append(test_aInsert3_3)
+    #A_Del3_3
+    test_aDel3_3 = adapter + "".join(rd.choices(nucleotides, k=100)) + threeBar_mutations[2] + "".join(
+        rd.choices(nucleotides, k=100)) + barcode
+    test_strings.append(test_aDel3_3)
     return test_strings
 
 #given a sequence, and a list of lists of [reference, reference character], 
@@ -444,9 +473,10 @@ def test_annotateseq(ref_list, seq_list):
 
 
 # test annotateseq:
-#test_strings_2 = gen_test_strings(barcode2, barcode2RC, two_adapter, two_adapter_RC)
-#test_strings_3 = gen_test_strings(barcode3, barcode3RC, three_adapter, three_adapter_RC)
-#test_strings_4 = gen_test_strings(barcode4, barcode4RC, four_adapter, four_adapter_RC)
-#test_annotateseq(ref_list_2,test_strings_2)
+test_strings_2 = gen_test_strings(2,barcode2, barcode2RC, two_adapter, two_adapter_RC)
+
+#test_strings_3 = gen_test_strings(3,barcode3, barcode3RC, three_adapter, three_adapter_RC)
+#test_strings_4 = gen_test_strings(4,barcode4, barcode4RC, four_adapter, four_adapter_RC)
+test_annotateseq(ref_list_2,test_strings_2)
 #test_annotateseq(ref_list_3,test_strings_3)
 #test_annotateseq(ref_list_4, test_strings_4)
