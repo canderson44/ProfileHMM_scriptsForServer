@@ -386,6 +386,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
     #first: pop first element into the selected list, so we have something to compare to
     if len(sorted_annotations_list) >0:
         selected_annotations_list.append(sorted_annotations_list.pop(0))
+        print("first added to selected annotations: ", selected_annotations_list[0][1])
 
     # stop once we've considered all viable annotations
     while(len(sorted_annotations_list) > 0):
