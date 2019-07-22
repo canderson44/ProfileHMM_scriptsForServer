@@ -405,7 +405,7 @@ def annotate_seq(sequence, ref_list, justCoords=False):
             maybe_range = [n for n in np.arange(maybe_start, maybe_stop + 1)]
             print("maybe range", maybe_range)
             selected_range = [n for n in np.arange(selected_start, selected_stop + 1)]
-            print("selected range")
+            print("selected range", selected_range)
             #only want to keep maybe if no overlap between selected and maybe coords
             if ((selected_start in maybe_range) or (selected_stop in maybe_range) or
                     (maybe_start in selected_range) or (maybe_stop in selected_range)):
