@@ -390,9 +390,11 @@ def annotate_seq(sequence, ref_list, justCoords=False):
     # stop once we've considered all viable annotations
     while(len(sorted_annotations_list) > 0):
         maybe_annotation_tuple = sorted_annotations_list.pop(0)
+        print("maybe annotation: ", maybe_annotation_tuple[1])
         maybe_coords = maybe_annotation_tuple[1]
         maybe_start = maybe_coords[0]
         maybe_stop = maybe_coords[1]
+        addMaybe = True #if still true by end of for loop below, we'll add the maybe tuple
         for selected_tuple in selected_annotations_list:
             selected_coords = selected_tuple[1]
             selected_start = int(selected_coords[0])
@@ -400,12 +402,18 @@ def annotate_seq(sequence, ref_list, justCoords=False):
             #let's check for overlap
             #note: +1 in the np.arange stop because stop coords are inclusive
             maybe_range = [n for n in np.arange(maybe_start, maybe_stop + 1)]
+            print("maybe range", maybe_range)
             selected_range = [n for n in np.arange(selected_start, selected_stop + 1)]
+            print("selected range")
             #only want to keep maybe if no overlap between selected and maybe coords
-            if not ((selected_start in maybe_range) or (selected_stop in maybe_range) or
+            if ((selected_start in maybe_range) or (selected_stop in maybe_range) or
                     (maybe_start in selected_range) or (maybe_stop in selected_range)):
-                # then we do want to keep the maybe_annotation
-                selected_annotations_list.append(maybe_annotation_tuple)
+                print("this maybe won't be added")
+                addMaybe = False
+        if(addMaybe):
+            print("this maybe is added")
+            # then we do want to keep the maybe_annotation
+            selected_annotations_list.append(maybe_annotation_tuple)
 
     print("SELECTED_ANNOTATIONS_LIST")
     for elem in selected_annotations_list:
