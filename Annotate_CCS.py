@@ -66,6 +66,8 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     #sort max_indices_list with highest scoring indices first
     max_indices_list.sort(key=lambda index:F[num_rows-1][index], reverse=True)
     for index in max_indices_list:
+        print("index is", index)
+        print("adding to score_list this score: ", F[num_rows-1][index])
         score_list.append(F[num_rows-1][index])
     print("number of columns:", len(F[num_rows-1]))
     print("last row of F", F[num_rows-1])
@@ -113,12 +115,10 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
                 j -= 1
                 y_align.append(y[j])
                 x_align.append(x[i])
-                initial_coord = j
             elif current == IY:
                 j -= 1
                 x_align.append('-')
                 y_align.append(y[j])
-                initial_coord = j
             else: #current == IX
                 i -= 1
                 x_align.append(x[i])
@@ -130,7 +130,6 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
                 j -= 1
                 x_align.append('-')
                 y_align.append(y[j])
-                initial_coord = j
         x_align_copy = x_align.copy() #copy of alignment in reverse order
         x_align.reverse()
         y_align.reverse()
@@ -141,8 +140,6 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         # for space in np.arange(len(x_align)):
         #     if x_align[space] == '-':
         #         x_align[space] = str(space)
-        print("initial coord is ", initial_coord)
-        print("final coord is", j_fin)
         print("region alignment is", x_align)
         start_coord = x_align.index(reference_char)
         stop_coord = len(x_align) - 1 - x_align_copy.index(reference_char)
