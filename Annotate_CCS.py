@@ -46,11 +46,13 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
             F[i][j], T[i][j] = max(list(zip([iy,m,ix],T_list)))
     #now matrix is filled"
     last_row_array = np.array(F[num_rows-1])
-    max_indices = np.where(last_row_array == max(F[num_rows-1]))
+
+    # max_indices = np.where(last_row_array == max(F[num_rows-1])) #only use highest score
     max_indices_list = []
-    for elem in max_indices:
-        for entry in elem:
-            max_indices_list.append(entry)
+    # for elem in max_indices:
+    #     for entry in elem:
+    #         max_indices_list.append(entry)
+    max_indices_list = [n for n in np.arange(num_cols)]
     score_list = [F[num_rows-1][i] for i in max_indices_list]
     x_alignments = []
     y_alignments = []
