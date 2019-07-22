@@ -50,7 +50,7 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     #now matrix is filled"
     last_row_array = np.array(F[num_rows-1])
 
-    max_indices = np.where(last_row_array == max(F[num_rows-1])) #only use highest score
+    #max_indices = np.where(last_row_array == max(F[num_rows-1])) #only use highest score
     max_indices_list = []
     score_list = []
     # for elem in max_indices:
@@ -64,6 +64,9 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
         if scoreSig > SCORE_SIG_THRESHOLD:
             max_indices_list.append(i)
             score_list.append(score_list)
+    print("number of columns:", len(F[num_rows-1]))
+    print("last row of F", F[num_rows-1])
+    print("max_indices_list", max_indices_list)
     x_alignments = []
     y_alignments = []
     coords_list = [] #list of start indices in sequence string
@@ -247,10 +250,10 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     # test_strings.append(test_endIn3pBarcode)
 
     #just 3 sub
-    test_strings.append(threeBar_mutations[0])
+    #test_strings.append(threeBar_mutations[0])
 
     #3 sub 3 sub
-    test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + threeBar_mutations[0])
+    #test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=1000)) + threeBar_mutations[0])
     #3sub 3
     test_strings.append(threeBar_mutations[0] + "".join(rd.choices(nucleotides, k=10000)) + barcode)
     # #test 3insert 3
