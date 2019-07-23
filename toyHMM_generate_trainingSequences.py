@@ -78,10 +78,17 @@ for i in np.arange(num_sequences):
     all_sequences.append(" ".join(char_list))
     all_transitions.append("".join(transition))
 
-output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS_files/toyHMM_simple.sequences'
+output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.fasta'
 with open(output_name, 'w') as output:
     for index in np.arange(len(all_sequences)):
-        to_write_str = sequence_names[index] + ': ' + all_sequences[index] + '\n'
+        label = '>' + sequence_names[index] + '\n'
+        output.write(label)
+
+        # don't make new line if this is the last sequence
+        if index == len(all_sequences)-1:
+            to_write_str = all_sequences[index]
+        else:
+            to_write_str = all_sequences[index] + '\n'
         output.write(to_write_str)
 
 
