@@ -78,7 +78,7 @@ for i in np.arange(num_sequences):
     all_sequences.append("".join(char_list))
     all_transitions.append("".join(transition))
 
-output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.fasta'
+output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.txt'
 with open(output_name, 'w') as output:
     for index in np.arange(len(all_sequences)):
         label = '>' + sequence_names[index] + '\n'
