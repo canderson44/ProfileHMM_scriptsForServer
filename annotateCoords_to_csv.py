@@ -36,7 +36,7 @@ for i in np.arange(len(cells)):
     # Resolved: RESTORE INPUT FILENAME TO THAT OF ALL EXTRACTED CCS
     # input_filename = input_path_stub + cell + '_first10lines.csv'
     output_filename = output_path_stub + cell + '_annotation_coords.csv'
-    ordered_filename = output_path_stub + cell + '_annotationCoords_by_zmw.fasta'
+    ordered_filename = output_path_stub + cell + '_annotationChars_by_zmw.fasta'
     #input file format: zmw#, ccs
     ccs_list = [] #store tuples of (zmw number, ccs strings)
     with open(input_filename) as input:
