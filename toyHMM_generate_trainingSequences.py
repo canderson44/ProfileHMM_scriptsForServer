@@ -61,7 +61,8 @@ sample_space_transition_from_m0 += ['M2'] * 5 #represents going to D0, then M2
 sample_space_startState = ['M0'] * 95
 sample_space_startState += ['I0'] * 5
 #now let's try make a list of sequences
-all_sequences = []
+converter_all_sequences = []
+tops_all_sequences = []
 all_transitions = []
 transition = rd.choice(sample_space_startState)
 for i in np.arange(num_sequences):
@@ -87,25 +88,27 @@ for i in np.arange(num_sequences):
 #    print("".join(char_list))
 #    print(transition_list)
 
-    #all_sequences.append("".join(char_list)) #FOR HMMCONVERTER
-    all_sequences.append(" ".join(char_list))
+    converter_all_sequences.append("".join(char_list)) #FOR HMMCONVERTER
+    tops_all_sequences.append(" ".join(char_list))
     all_transitions.append("".join(transition))
 
-#output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.txt'
-output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS/toyHMM_simple.sequences'
-with open(output_name, 'w') as output:
-    for index in np.arange(len(all_sequences)):
-        # label = '>' + sequence_names[index] + '\n' #FOR HMMCONVERTER
-        # output.write(label)                         #FOR HMMCONVERTER
-        label= sequence_names[index] + ': '
+converter_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.txt'
+tops_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS/toyHMM_simple.sequences'
+with open(tops_output_name, 'w') as tops:
+    with open(converter_all_sequences,'w') as converter:
+        for index in np.arange(len(tops_all_sequences)):
+            converter_label = '>' + sequence_names[index] + '\n' #FOR HMMCONVERTER
+            converter.write(converter_label)                         #FOR HMMCONVERTER
+            tops_label= sequence_names[index] + ': '
 
-        # don't make new line if this is the last sequence
-        if index == len(all_sequences)-1:
-            # to_write_str = all_sequences[index] #FOR HMMCONVERTER
-            to_write_str = label + all_sequences[index]
-        else:
-            # to_write_str = all_sequences[index] + '\n' #FOR HMMCONVERTER
-            to_write_string = label + all_sequences[index] + '\n'
-        output.write(to_write_str)
+            # don't make new line if this is the last sequence
+            if index == len(tops_all_sequences)-1:
+                converter_to_write_str = converter_all_sequences[index] #FOR HMMCONVERTER
+                tops_to_write_str = tops_label + tops_all_sequences[index]
+            else:
+                converter_to_write_str = converter_all_sequences[index] + '\n' #FOR HMMCONVERTER
+                tops_to_write_string = tops_label + tops_all_sequences[index] + '\n'
+            tops.write(tops_to_write_str)
+            converter.write(converter_to_write_str)
 
 
