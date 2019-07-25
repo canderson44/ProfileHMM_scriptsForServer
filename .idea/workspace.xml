@@ -35,13 +35,13 @@
         <counts>
           <entry key="Python Console" value="65" />
           <entry key="dummy" value="50" />
-          <entry key="py" value="41290" />
+          <entry key="py" value="41408" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="41355" />
+          <entry key="Python" value="41473" />
         </counts>
       </usages-collector>
     </session>
@@ -87,8 +87,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/toyHMM_generate_trainingSequences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="111" column="50" selection-start-line="111" selection-start-column="50" selection-end-line="111" selection-end-column="50" />
+            <state relative-caret-position="341">
+              <caret line="117" lean-forward="true" selection-start-line="99" selection-end-line="117" />
               <folding>
                 <element signature="e#498#516#0" expanded="true" />
               </folding>
@@ -218,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Annotate_CCS">
+  <component name="RunManager" selected="Python.toyHMM_generate_trainingSequences">
     <configuration name="Annotate_CCS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProfileHMM_scriptsForServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -311,8 +311,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Annotate_CCS" />
         <item itemvalue="Python.toyHMM_generate_trainingSequences" />
+        <item itemvalue="Python.Annotate_CCS" />
         <item itemvalue="Python.generate_emission_probs" />
         <item itemvalue="Python.generate_transition_probs" />
       </list>
@@ -340,7 +340,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32986626" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32986626" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -445,8 +445,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/toyHMM_generate_trainingSequences.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="111" column="50" selection-start-line="111" selection-start-column="50" selection-end-line="111" selection-end-column="50" />
+        <state relative-caret-position="341">
+          <caret line="117" lean-forward="true" selection-start-line="99" selection-end-line="117" />
           <folding>
             <element signature="e#498#516#0" expanded="true" />
           </folding>

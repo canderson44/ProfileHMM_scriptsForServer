@@ -64,11 +64,14 @@ sample_space_startState += ['I0'] * 5
 converter_all_sequences = []
 tops_all_sequences = []
 all_transitions = []
+max_length = 100
 transition = rd.choice(sample_space_startState)
+
 for i in np.arange(num_sequences):
     char_list = []
     transition_list = []
-    while(transition != 'end'):
+    length = 0
+    while(transition != 'end' and len(char_list) < max_length):
         if transition == 'I0':
             char_list.append(rd.choice(nucleotides))
             transition= rd.choice(sample_space_transition_from_I0)
@@ -91,6 +94,8 @@ for i in np.arange(num_sequences):
     converter_all_sequences.append("".join(char_list)) #FOR HMMCONVERTER
     tops_all_sequences.append(" ".join(char_list))
     all_transitions.append("".join(transition))
+    # for entry in converter_all_sequences:
+    #         print (entry)
 
 converter_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.txt'
 tops_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS/toyHMM_simple.sequences'
