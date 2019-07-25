@@ -98,7 +98,7 @@ for i in np.arange(num_sequences):
     #         print (entry)
 
 converter_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.txt'
-tops_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS/toyHMM_simple.sequences'
+tops_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS_files/toyHMM_simple.sequences'
 with open(tops_output_name, 'w') as tops:
     with open(converter_all_sequences,'w') as converter:
         for index in np.arange(len(tops_all_sequences)):
