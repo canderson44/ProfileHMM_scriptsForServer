@@ -112,7 +112,7 @@ with open(tops_output_name, 'w') as tops:
                 tops_to_write_str = tops_label + tops_all_sequences[index]
             else:
                 converter_to_write_str = converter_all_sequences[index] + '\n' #FOR HMMCONVERTER
-                tops_to_write_string = tops_label + tops_all_sequences[index] + '\n'
+                tops_to_write_str = tops_label + tops_all_sequences[index] + '\n'
             tops.write(tops_to_write_str)
             converter.write(converter_to_write_str)
 
