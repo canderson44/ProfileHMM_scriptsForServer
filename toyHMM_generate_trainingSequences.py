@@ -39,14 +39,14 @@ import random as rd
 num_sequences = 1000
 sequence_names = [str(n) for n in np.arange(num_sequences)]
 #put into sample space 95 of .95 prob emission. rest, put in five.
-ninetyfive_As = ['a'] * 95
-ninetyfive_Cs = ['c'] * 95
-ninetyfive_Gs = ['g'] * 95
+ninetyfive_As = ['A'] * 95
+ninetyfive_Cs = ['C'] * 95
+ninetyfive_Gs = ['G'] * 95
 nucleotides = ['A', 'C', 'G', 'T']
-five_As= ['a'] * 5
-five_Cs = ['c'] * 5
-five_Gs = ['g'] * 5
-five_Ts = ['t'] * 5
+five_As= ['A'] * 5
+five_Cs = ['C'] * 5
+five_Gs = ['G'] * 5
+five_Ts = ['T'] * 5
 
 m0_sample_space = ninetyfive_As + five_Cs + five_Gs + five_Ts
 m1_sample_space = ninetyfive_Cs + five_As + five_Gs + five_Ts
