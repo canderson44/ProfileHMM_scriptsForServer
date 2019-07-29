@@ -64,7 +64,7 @@ sample_space_startState += ['I0'] * 5
 converter_all_sequences = []
 tops_all_sequences = []
 all_transitions = []
-max_length = 1000
+max_length = 10
 transition = rd.choice(sample_space_startState)
 
 for i in np.arange(num_sequences):
@@ -97,7 +97,7 @@ for i in np.arange(num_sequences):
     # for entry in converter_all_sequences:
     #         print (entry)
 
-converter_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple_sequences.txt'
+converter_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/toyHMM_simple/toyHMM_simple_sequences.txt'
 tops_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS_files/toyHMM_simple.sequences'
 with open(tops_output_name, 'w') as tops:
     with open(converter_output_name,'w') as converter:
