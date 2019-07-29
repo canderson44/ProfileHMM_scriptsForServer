@@ -36,7 +36,7 @@ I0 and I2 0.25 for each
 import numpy as np
 import random as rd
 
-num_sequences = 1000
+num_sequences = 15
 sequence_names = [str(n) for n in np.arange(num_sequences)]
 #put into sample space 95 of .95 prob emission. rest, put in five.
 ninetyfive_As = ['A'] * 95
@@ -64,7 +64,7 @@ sample_space_startState += ['I0'] * 5
 converter_all_sequences = []
 tops_all_sequences = []
 all_transitions = []
-max_length = 100
+max_length = 1000
 transition = rd.choice(sample_space_startState)
 
 for i in np.arange(num_sequences):
@@ -102,7 +102,7 @@ tops_output_name = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_h
 with open(tops_output_name, 'w') as tops:
     with open(converter_output_name,'w') as converter:
         for index in np.arange(len(tops_all_sequences)):
-            converter_label = '>' + sequence_names[index] + '\n' #FOR HMMCONVERTER
+            converter_label = '>seq' + sequence_names[index] + ' 1-'+ str(len(converter_all_sequences[index])) + ' forward\n' #FOR HMMCONVERTER
             converter.write(converter_label)                         #FOR HMMCONVERTER
             tops_label= sequence_names[index] + ': '
 
