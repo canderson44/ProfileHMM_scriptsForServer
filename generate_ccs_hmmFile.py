@@ -47,7 +47,7 @@ for i in np.arange(len(cells)):
                   'IRNAr']
     #combine into one list. Want start first, end last
     state_names_list = ["START"] + match_names + match_rev_names + insert_names + insert_rev_names + misc_names + ["END"]
-
+    emitting_states = match_names + match_rev_names + insert_names + insert_rev_names + misc_names
     # first: get transitions
     # format transitions: store in list
     # key is tuple:
@@ -84,7 +84,7 @@ for i in np.arange(len(cells)):
     ##################
     ##################
     with open(emission_filename, 'w') as output:
-        for index in np.arange(len(state_names_list)):
+        for index in np.arange(len(emitting_states)):
             name = state_names_list[index]
             if name != "START" and name != "END": #only want emitting states
                 id = "EP." + str(index)
@@ -94,8 +94,7 @@ for i in np.arange(len(cells)):
                 for nuc in nucleotides:
                     prob = emissions_dict[name][nuc]
                     emission_lines += nuc + ' ' + str(prob) + '\n'
-                if index<len(state_names_list)-3:
-                            #-1 for take away start, -1 for take away end, -1 for zero-index
+                if index<len(state_names_list)-1: #not last one
                     emission_lines += '\n'
                 output.write(emission_lines)
 
