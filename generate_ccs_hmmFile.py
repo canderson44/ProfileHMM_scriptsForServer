@@ -94,7 +94,7 @@ for i in np.arange(len(cells)):
                 for nuc in nucleotides:
                     prob = emissions_dict[name][nuc]
                     emission_lines += nuc + ' ' + str(prob) + '\n'
-                if id<len(state_names_list)-3:
+                if index<len(state_names_list)-3:
                             #-1 for take away start, -1 for take away end, -1 for zero-index
                     emission_lines += '\n'
                 output.write(emission_lines)
