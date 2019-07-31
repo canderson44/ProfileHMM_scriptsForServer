@@ -88,7 +88,7 @@ for i in np.arange(len(cells)):
             name = state_names_list[index]
             if name != "START" and name != "END": #only want emitting states
                 id = "EP." + str(index)
-                first_line = id + " " + name + " 1"
+                first_line = id + " " + name + " 1\n"
                 output.write(first_line)
                 emission_lines = ''
                 for nuc in nucleotides:
