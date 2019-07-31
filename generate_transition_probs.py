@@ -99,10 +99,10 @@ for i in np.arange(len(cells)):
     # no delete, no (Match, Match)
     # transitions: (R, M24), (I24, M24)
     new_dict[("I24", "M24")] = 0.05
-    new_dict[("R", "M24")] = 0.95
+    new_dict[("RNA", "M24")] = 0.95
     # I24 transitions
     new_dict[("I24", "I24")] = 0.5
-    new_dict[("R", "I24")] = 0.5
+    new_dict[("RNA", "I24")] = 0.5
 
     # transitions from RNAinsert
     selfCycle_prob = 1 - (1.0 / adjusted_length)
