@@ -29,13 +29,31 @@ for i in np.arange(3):
     new_dict[("M0", "START")] = 0.45 #90% of 0.5
     # insert state before forward sequence; for junk
     new_dict[("IS","START")] = 0.025 #5% OF 0.5
-    #delete state; skip first element of 5p barcode
-    new_dict[("DS","START")] = 0.025 #5% OF 0.5
+    #delete states; Start to M1, M2, ... , M24, RNA
+    #total probability allotted to deletion transitions
+    tot_startDel_prob = 0.05 * 0.5
+    num_startDel_toStates = 25 #M1 through and including RNA
+    for i in np.arange((1,26)):
+        if i == 25:
+            to_str = "RNA"
+        else:
+            to_str = "M" + str(i)
+        new_dict[(to_str, "START")] = tot_startDel_prob/num_startDel_toStates
+
+    #RC from start transitions
     new_dict[("Mr0", "START")] = 0.45 #90% of 0.5
     # insert state before reverse sequence; for junk
     new_dict[("ISr","START")] = 0.025
-    # delete state; skip first element of 5p barcode
-    new_dict[("DSr", "START")] = 0.025  # 5% OF 0.5
+    #delete transitions: Start to Mr1, Mr2, ..., Mr24, RNAr
+    # total probability allotted to deletion transitions
+    tot_startDel_prob = 0.05 * 0.5
+    num_startDel_toStates = 25  # M1 through and including RNA
+    for i in np.arange((1, 26)):
+        if i == 25:
+            to_str = "RNAr"
+        else:
+            to_str = "Mr" + str(i)
+        new_dict[(to_str, "START")] = tot_startDel_prob / num_startDel_toStates
 
     #transitions from starting junk states
     #forward
@@ -45,13 +63,6 @@ for i in np.arange(3):
     new_dict[("ISr", "ISr")] = 0.5
     new_dict[("Mr0", "ISr")] = 0.5
 
-    #transitions from starting delete states
-    #forward
-    new_dict[("D0", "DS")] = 0.5
-    new_dict[("M1", "DS")] = 0.5
-    #backward
-    new_dict[("Dr0", "DSr")] = 0.5
-    new_dict[("Mr1", "DSr")] = 0.5
     #############
     #############
     #############
@@ -64,34 +75,28 @@ for i in np.arange(3):
     for m_index in np.arange(24):  # M0 to M23
         match_str = "M" + str(m_index)
         next_match = "M" + str(m_index + 1)
-        two_ahead_match = "M" + str(m_index + 2)
-        del_str = "D" + str(m_index)
-        next_del = "D" + str(m_index + 1)
+#        two_ahead_match = "M" + str(m_index + 2)
         insert_str = "I" + str(m_index)
         # transition from match state M
         new_dict[(insert_str, match_str)] = 0.05
-        new_dict[(del_str, match_str)] = 0.05
         new_dict[(next_match, match_str)] = 0.9
+        #delete states: i+2 to RNA inclusive
+        tot_del_prob = 0.05
+        tot_delete_toStates = 25-(m_index+1)
+        for successor in np.arange(m_index+2, 25): #don't want immediate next, but two ahead and onward
+            to_delete_str = "M" + str(successor)
+            new_dict[(to_delete_str,match_str)] = tot_del_prob/tot_delete_toStates
+        #also delete transition to RNA
+        new_dict[("RNA",match_str)] = tot_del_prob/tot_delete_toStates
 
         # transition from insert state I
         new_dict[(insert_str, insert_str)] = 0.5  # self-cycle
         new_dict[(next_match, insert_str)] = 0.5
-
-        # transition from delete state
-        if m_index < 23:
-            new_dict[(next_del, del_str)] = 0.5
-            new_dict[(two_ahead_match, del_str)] = 0.5
-        else:  # no del->next_del transition
-            # no del->match transition
-            # only transition: d23 -> RNAinsert
-            new_dict[("R", del_str)] = 1.0
-
-    # END MATCH B4 RNAINSERT
+    # END MATCH before RNA-INSERT
 
     # M24: just before RNAinsert
     # no delete, no (Match, Match)
     # transitions: (R, M24), (I24, M24)
-    # transition from match state M
     new_dict[("I24", "M24")] = 0.05
     new_dict[("R", "M24")] = 0.95
     # I24 transitions
