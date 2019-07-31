@@ -130,7 +130,7 @@ for i in np.arange(len(cells)):
         output.write(first_lines)
         output.write(model_type_tag)
         output.write(alphabet_tag)
-        output.write(emission_tag)
+        output.write(emissions_tag)
         output.write(states_beg_tag)
 
 
