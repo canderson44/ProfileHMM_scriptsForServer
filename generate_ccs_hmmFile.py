@@ -216,6 +216,9 @@ for i in np.arange(len(cells)):
         end_param_tag = INDENT + "</parameter_training>\n"
         end_seqAnalysis_tag = "</sequence_analysis>\n\n"
         end_HMMConverter_tag = "</HMMConverter>\n"
+        output.write(end_param_tag)
+        output.write(end_seqAnalysis_tag)
+        output.write(end_HMMConverter_tag)
 
 
 
