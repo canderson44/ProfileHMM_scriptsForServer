@@ -31,7 +31,7 @@ for i in np.arange(3):
     #total probability allotted to deletion transitions
     tot_startDel_prob = 0.05 * 0.5
     num_startDel_toStates = 25 #M1 through and including RNA
-    for i in np.arange((1,26)):
+    for i in np.arange(1,26):
         if i == 25:
             to_str = "RNA"
         else:
@@ -46,7 +46,7 @@ for i in np.arange(3):
     # total probability allotted to deletion transitions
     tot_startDel_prob = 0.05 * 0.5
     num_startDel_toStates = 25  # M1 through and including RNA
-    for i in np.arange((1, 26)):
+    for i in np.arange(1, 26):
         if i == 25:
             to_str = "RNAr"
         else:
