@@ -21,6 +21,7 @@ cells = ['2_B01', '3_C01', '4_D01']
 
 transition_dict_list = []  # entry 0 is dict for 2B01, 1 for 3C01, 2 for 4D01
 for i in np.arange(len(cells)):
+    adjusted_length = avg_lens_adjusted[i]
     cell = cells[i]
     new_dict = {}
     # transition from start
@@ -103,7 +104,7 @@ for i in np.arange(len(cells)):
     new_dict[("R", "I24")] = 0.5
 
     # transitions from RNAinsert
-    selfCycle_prob = 1 - (1.0 / (avg_lens_adjusted[i]))
+    selfCycle_prob = 1 - (1.0 / adjusted_length)
     new_dict[("RNA", "RNA")] = selfCycle_prob
     remaining_prob = 1 - selfCycle_prob
     five_percent = 0.05 * remaining_prob
