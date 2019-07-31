@@ -9,6 +9,7 @@ import numpy as np
 avg_lengths = [1641.4098732872096, 1539.26103329929, 1652.740349292529]
 #subtract off 96 basepairs (5pbarcode + 3pbarcode)
 avg_lens_adjusted = [n-96 for n in avg_lengths]
+print(avg_lens_adjusted)
 cells = ['2_B01', '3_C01', '4_D01']
 
 #only difference in cell lines is prob of self-cycle-of  and from  RNA_insert
@@ -19,7 +20,7 @@ cells = ['2_B01', '3_C01', '4_D01']
 # entry 0 is dict for 2B01, 1 for 3C01, 2 for 4D01
 
 transition_dict_list = []  # entry 0 is dict for 2B01, 1 for 3C01, 2 for 4D01
-for i in np.arange(3):
+for i in np.arange(len(cells)):
     cell = cells[i]
     new_dict = {}
     # transition from start
