@@ -51,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generate_ccs_hmmFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="127" column="84" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="84" />
+            <state relative-caret-position="150">
+              <caret line="127" column="82" lean-forward="true" selection-start-line="127" selection-start-column="82" selection-end-line="127" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -413,8 +413,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generate_ccs_hmmFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="127" column="84" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="84" />
+        <state relative-caret-position="150">
+          <caret line="127" column="82" lean-forward="true" selection-start-line="127" selection-start-column="82" selection-end-line="127" selection-end-column="82" />
         </state>
       </provider>
     </entry>
