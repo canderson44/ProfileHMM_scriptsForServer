@@ -207,7 +207,7 @@ for i in np.arange(len(cells)):
         maxIter = 100
         threshold = 0.00001
         input_tag = INDENT + INDENT + "<input_files SeqFile=\"" + seq_filename + "\"/>\n"
-        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\" + threshold=\"" + threshold + '\">\n'
+        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\" + threshold=\"" + str(threshold) + '\">\n'
         output_tag = INDENT + INDENT + "<output_files XMLFile=\"" + cell + "_trainedHMM.xml\""
         output_tag += "EProbFile=\"" + cell + "_trainedEmissions.txt\"/>\n"
         output.write(input_tag)
@@ -221,103 +221,3 @@ for i in np.arange(len(cells)):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    states_string = ""
-    for entry in state_names_list:
-        if states_string != "":
-            states_string = states_string + ', ' + "\"" + entry + "\""
-        else: #first entry
-            states_string = "\"" + entry + "\""
- #   print(states_string)
-
-    #format transitions: store in list
-    #key is tuple:
-        #P(first|second)
-    transition_strings = []
-    num_items = len(transition_probs_list[i].values())
-    for key,value in transition_probs_list[i].items():
-        first_part = "\"" + key[0] + "\""
-        prob_string = first_part.ljust(10) + "| \"" + key[1] +"\": " + str(value)
-        if len(transition_strings) < num_items - 1 : #not adding last element
-            prob_string = prob_string + ";"
-        transition_strings.append(prob_string)
-
-
-    #format emissions: store in list
-    #key is state, value is probability dictionary for emissions
-    #so format will be:
-        #   "A"    | "<key>" : <value['A']>;
-        # and so on for C, G, T
-    nucleotides = ["A", "C", "G", "T"]
-    emission_strings = []
-    num_items = len(emission_probs_list[i].values())
-    for key,value in emission_probs_list[i].items():
-        current_string = ""
-        for nuc in nucleotides:
-            first_part = "\"" + nuc + "\""
-            current_string = first_part.ljust(5) + "| \"" + key +"\": " + str(value[nuc])
-            if len(emission_strings) < num_items*4 - 1: #not adding last element:
-                current_string = current_string + ";"
-            emission_strings.append(current_string)
-
- #   print()
-
-
-    #write file
-    with open(write_filename, 'w') as f:
-        f.write("# initial parameters for cell: " + cell + '\n')
-        f.write("model_name=\"HiddenMarkovModel\" \n")
-        f.write("state_names= (" + states_string + ') \n')
-        f.write("observation_symbols= (\"A\", \"C\", \"G\", \"T\" ) \n")
-
-        #transitions
-        f.write("# transition probabilities \n")
-        f.write("transitions = (" + transition_strings[0] + "\n")
-        for n in np.arange(1,len(transition_strings)-1): #all but first and last entry
-            f.write("".rjust(15) + transition_strings[n] + '\n')
-        f.write("".rjust(15) + transition_strings[-1] + " )\n")
-
-        #emissions
-        f.write("# emission probabilities \n")
-        f.write("emission_probabilities = (" + emission_strings[0] +"\n")
-        for n in np.arange(1, len(emission_strings) - 1):  # all but first and last
-            f.write("".rjust(26) + emission_strings[n] + '\n')
-        f.write("".rjust(26) + emission_strings[-1] + ")\n")
-
-        #initial probs
-        f.write("initial_probabilities= (\"START\": 1.0)")
