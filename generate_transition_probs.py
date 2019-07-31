@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-#generates transition probs to and from delete, insert, match (sequence), and RNA_insert positions
-#for now, just a high prob: 0.85
-# TODO add reverse complement!!!!!!
+#generates transition probs to and from insert, match (sequence), and RNA_insert positions
+#Reverse and forward sequence directions accounted for.
+#assume forward sequence is of format 5'barcode -> RNAinsert -> 3'barcode
 #FORMAT:  dictionary of tuples: {(A,B):0.05, (C,E):0.5}
 #in this example, we have prob of A given B is 0.05, prob of C given E is 0.5
 import numpy as np
 
 avg_lengths = [1641.4098732872096, 1539.26103329929, 1652.740349292529]
-#subtract off 141 basepairs (5pbarcode + 3pbarcode, adapter)
-avg_lens_adjusted = [n-141 for n in avg_lengths]
+#subtract off 96 basepairs (5pbarcode + 3pbarcode)
+avg_lens_adjusted = [n-96 for n in avg_lengths]
 cells = ['2_B01', '3_C01', '4_D01']
 
 #only difference in cell lines is prob of self-cycle-of  and from  RNA_insert

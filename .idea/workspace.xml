@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/generate_emission_probs.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_emission_probs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generate_transition_probs.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_transition_probs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,25 +24,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="22" />
+          <entry key="py" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="22" />
+          <entry key="Python" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="150" />
+          <entry key="Python Console" value="155" />
           <entry key="dummy" value="50" />
-          <entry key="py" value="44211" />
+          <entry key="py" value="44464" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="44361" />
+          <entry key="Python" value="44619" />
         </counts>
       </usages-collector>
     </session>
@@ -51,26 +52,50 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generate_ccs_hmmFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="123">
+              <caret line="36" column="69" selection-start-line="36" selection-start-column="69" selection-end-line="36" selection-end-column="69" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/generate_emission_probs.py">
+        <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret selection-end-column="21" />
+            <state relative-caret-position="105">
+              <caret line="164" column="23" lean-forward="true" selection-start-line="164" selection-start-column="23" selection-end-line="164" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CCS_Filter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3727">
+              <caret line="288" column="42" selection-start-line="288" selection-start-column="42" selection-end-line="288" selection-end-column="42" />
+              <folding>
+                <element signature="e#571#587#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/generate_emission_probs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-184">
+              <caret line="148" column="44" selection-start-line="148" selection-start-column="44" selection-end-line="148" selection-end-column="44" />
+              <folding>
+                <element signature="e#360#385#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="255" lean-forward="true" selection-start-line="255" selection-end-line="255" />
+            <state relative-caret-position="-1177">
+              <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -115,7 +140,6 @@
       <list>
         <option value="$PROJECT_DIR$/split_training_testing_ccs.py" />
         <option value="$PROJECT_DIR$/annotateCCS_findAdapter_script.py" />
-        <option value="$PROJECT_DIR$/generate_emission_probs.py" />
         <option value="$PROJECT_DIR$/annotateCoords_removeOverlaps_to_csv.py" />
         <option value="$PROJECT_DIR$/annotationCoordsReorganization_functions.py" />
         <option value="$PROJECT_DIR$/CCS_Filter.py" />
@@ -125,6 +149,7 @@
         <option value="$PROJECT_DIR$/toyHMM_generate_trainingSequences.py" />
         <option value="$PROJECT_DIR$/generate_ccs_hmmFile.py" />
         <option value="$PROJECT_DIR$/generate_transition_probs.py" />
+        <option value="$PROJECT_DIR$/generate_emission_probs.py" />
       </list>
     </option>
   </component>
@@ -285,7 +310,7 @@
     <frame x="256" y="71" width="1197" height="765" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32312927" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32312927" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -298,7 +323,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32986626" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32986626" />
+      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32986626" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -317,13 +342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="104" column="56" selection-start-line="99" selection-start-column="16" selection-end-line="104" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8805">
-          <caret line="589" column="13" selection-start-line="589" selection-start-column="13" selection-end-line="589" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -368,13 +386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CCS_Filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="288" column="42" selection-start-line="288" selection-start-column="42" selection-end-line="288" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/split_training_testing_ccs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -382,24 +393,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1177">
+          <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate_CCS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="164" column="23" lean-forward="true" selection-start-line="164" selection-start-column="23" selection-end-line="164" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CCS_Filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3727">
+          <caret line="288" column="42" selection-start-line="288" selection-start-column="42" selection-end-line="288" selection-end-column="42" />
+          <folding>
+            <element signature="e#571#587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/generate_ccs_hmmFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="123">
+          <caret line="36" column="69" selection-start-line="36" selection-start-column="69" selection-end-line="36" selection-end-column="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generate_emission_probs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="255" lean-forward="true" selection-start-line="255" selection-end-line="255" />
+        <state relative-caret-position="-184">
+          <caret line="148" column="44" selection-start-line="148" selection-start-column="44" selection-end-line="148" selection-end-column="44" />
+          <folding>
+            <element signature="e#360#385#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

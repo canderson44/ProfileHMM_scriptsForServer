@@ -2,7 +2,6 @@
 #for each cell line, creates dictionary of emission probabilities for the following regions of the CCS sequence: 
 
 #sequence
-    #adapter (TODO: WHERE IS IT? BEGINNING OR END?)
     #5p barcode
     #RNA insert
     #3p barcode
@@ -14,8 +13,8 @@
 import Annotate_CCS as ac
 import numpy as np
 
-barcode2 = ac.barcode2
-barcode2rc = ac.barcode2RC
+barcode2 = ac.barcode2RC #as found analyzing annotation coords
+barcode2rc = ac.barcode2 #as found analyzing annotation coords
 barcode3 = ac.barcode3
 barcode3rc = ac.barcode3RC
 barcode4 = ac.barcode4
@@ -99,21 +98,14 @@ for i in np.arange(3):
         this_dict[insert_str] = random_dict
 
     #RNAinsert
-    this_dict["R"] = random_dict
-    this_dict["IR"] = random_dict
-
-    #adapter
-    for index in np.arange(25,70): # 25-69
-        match_str = "M" + str(index)
-        insert_str = "I" + str(index)
-        this_dict[match_str] = this_adapter_emission_list[index - 25]
-        this_dict[insert_str] = random_dict
+    this_dict["RNA"] = random_dict
+    this_dict["IRNA"] = random_dict
 
     #3p barcode
-    for index in np.arange(70,141): #70-140
+    for index in np.arange(25,96): #25-95; len 71
         match_str = "M" + str(index)
         insert_str = "I" + str(index)
-        this_dict[match_str] = this_bar_emission_list[index-70]
+        this_dict[match_str] = this_bar_emission_list[index-25]
         this_dict[insert_str] = random_dict
 
     #initial junk insert state
@@ -149,22 +141,15 @@ for i in np.arange(3):
         this_dict[match_str] = this_bar_emission_list[index]
         this_dict[insert_str] = random_dict
 
-    # adapter
-    for index in np.arange(71, 116):  # 71-115
-        match_str = "Mr" + str(index)
-        insert_str = "Ir" + str(index)
-        this_dict[match_str] = this_adapter_emission_list[index - 71]
-        this_dict[insert_str] = random_dict
-
     # RNAinsert
-    this_dict["Rr"] = random_dict
-    this_dict["IRr"] = random_dict
+    this_dict["RNAr"] = random_dict
+    this_dict["IRNAr"] = random_dict
 
     # 5p barcode
-    for index in np.arange(116, 141):  # 116-140
+    for index in np.arange(71, 96):  # 71-96
         match_str = "Mr" + str(index)
         insert_str = "Ir" + str(index)
-        this_dict[match_str] = RCfiveP_emission_list[index - 116]
+        this_dict[match_str] = RCfiveP_emission_list[index - 71]
         this_dict[insert_str] = random_dict
 
     #initial junk insert state
