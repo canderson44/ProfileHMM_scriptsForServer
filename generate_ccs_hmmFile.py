@@ -24,31 +24,212 @@ import numpy as np
 transition_probs_list = tp.get_transition_probs()
 emission_probs_list = ep.get_all_cells_emissions()
 
-path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/ToPS_files/'
+path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/cell_lines/'
 
-cells = ['2_B01', '3_C01', '4_D01']
-
-for i in np.arange(3):
+#cells = ['2_B01', '3_C01', '4_D01']
+#TODO RESTORE TO ALL CELLS
+cells=['2_B01']
+INDENT = '        '#eight spaces
+nucleotides = ['A','C','G','T']
+for i in np.arange(len(cells)):
     cell = cells[i]
-    write_filename = path_stub + cell + '_hmm_initial.txt'
+    write_filename = path_stub + cell + '_hmm_initial.xml'
+    emission_filename = path_stub + cell + '_emissions_initial.txt'
+    seq_filename = path_stub + cell + '_trainingSequences.txt'
 
     #state names list
-
-    # TODO Change delete states into transitions from prev to next match
-    # TODO set up S.# ID label
-    # TODO change formatting of file to match HMMConverter
-
-    match_names = ["M"+str(n) for n in np.arange(141)]
-    match_rev_names = ["Mr"+str(n) for n in np.arange(141)]
-    insert_names = ["I"+str(n) for n in np.arange(141)]
-    insert_rev_names = ["I"+str(n) for n in np.arange(141)]
-    delete_names = ["D"+str(n) for n in np.arange(139)]
-    delete_rev_names = ["Dr"+str(n) for n in np.arange(139)]
+    match_names = ["M"+str(n) for n in np.arange(96)]
+    match_rev_names = ["Mr"+str(n) for n in np.arange(96)]
+    insert_names = ["I"+str(n) for n in np.arange(96)]
+    insert_rev_names = ["I"+str(n) for n in np.arange(96)]
     #start, end, junk states, RNAinsert states
-    misc_names = ['START','END', 'IS', 'ISr', 'DS', 'DSr', 'R', 'Rr', 'IR',
-                  'IRr', 'DR', 'DRr']
-    #combine into one list
-    state_names_list = match_names + match_rev_names + insert_names + insert_rev_names + delete_names + delete_rev_names + misc_names
+    misc_names = ['IS', 'ISr', 'RNA', 'RNAr', 'IRNA',
+                  'IRNAr']
+    #combine into one list. Want start first, end last
+    state_names_list = ["START"] + match_names + match_rev_names + insert_names + insert_rev_names + misc_names + ["END"]
+
+    # first: get transitions
+    # format transitions: store in list
+    # key is tuple:
+    # P(first|second)
+    # value is prob
+    transition_dict = dict()
+    # format of transition_dict:
+    # key is from name, value is list of (to_name, probability) tuples
+    num_items = len(transition_probs_list[i].values())
+    for key, value in transition_probs_list[i].items():
+        from_state_name = key[1]
+        to_state_name = key[0]
+        if from_state_name in transition_dict:  # already a list for this state
+            transition_dict[from_state_name].append((to_state_name, value))
+        else:  # no list yet
+            transition_dict[from_state_name] = [(to_state_name, value)]
+
+
+    #get emissions
+    emissions_dict = emission_probs_list[i]
+    #format for emissions_dict:
+    # key is state name, value is probability dictionary for emissions
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+    # Emission file  #
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+    with open(emission_filename, 'w') as output:
+        for index in np.arange(len(state_names_list)):
+            name = state_names_list[index]
+            if name != "START" and name != "END": #only want emitting states
+                id = "EP." + str(index)
+                first_line = id + " " + name + " 1"
+                output.write(first_line)
+                emission_lines = ''
+                for nuc in nucleotides:
+                    prob = emissions_dict[name][nuc]
+                    emission_lines += nuc + ' ' + str(prob) + '\n'
+                if id<len(state_names_list)-3:
+                            #-1 for take away start, -1 for take away end, -1 for zero-index
+                    emission_lines += '\n'
+                output.write(emission_lines)
+
+
+
+
+
+
+
+
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+    # Main input file#
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+    ##################
+
+
+
+    #start writing file
+    with open(write_filename,'w') as output:
+        first_lines = '<?xml version="1.0"?>\n<HMMConverter>\n\n<model>'
+        model_type_tag = INDENT + '<Model_Type name=\"' + cell + 'HMM\"/>\n\n'
+        alphabet_tag = INDENT + '<Alphabets set=\"ACGT\" />\n\n'
+        emissions_tag = INDENT + '<Emission_Probs id=\"EP\" size=\"388\" file=\"' + emission_filename + '\"/>\n\n'
+        states_beg_tag = INDENT + '<States>'
+        output.write(first_lines)
+        output.write(model_type_tag)
+        output.write(alphabet_tag)
+        output.write(emission_filename)
+        output.write(states_beg_tag)
+
+
+        ########
+        #States#
+        ########
+
+        id_name_dict = dict() #key is name, value is id
+        for index in np.arange(len(state_names_list)):
+            #now list all the state tags
+            this_indent = INDENT + INDENT
+            name=state_names_list[index]
+            id = "S." + str(index)
+            #add id-name combo to dict
+            id_name_dict[name] = id
+            if name == 'START' or name=='END': #don't emmit any characters
+                xdim = str(0)
+            else:
+                xdim = str(1)
+            this_str = this_indent + "<State id=\"" + id + "\" name=\"" + name + "\" xdim=\"" + xdim + "\"/>\n"
+            output.write(this_str)
+
+
+
+
+        end_states_tag =INDENT+"</States>\n\n"
+        start_transitions_tag = INDENT + "<Transitions>\n"
+        output.write(end_states_tag)
+        output.write(start_transitions_tag)
+
+        #############
+        #Transitions#
+        #############
+        #now write all transition tags
+        for index in np.arange(len(state_names_list)): #iterate through each state
+            from_indent = INDENT + INDENT
+            to_indent = from_indent + INDENT
+            from_name = state_names_list[index]
+            from_id = id_name_dict[name]
+            if from_name != "END":
+                from_start_tag = from_indent + "<from idref=\"" + id + "\">\n"
+                output.write(from_start_tag)
+     #           to_tag_list = []
+                for pair in transition_dict[from_name]: #format (to_name, prob)
+                    to_name = pair[0]
+                    to_id = id_name_dict[to_name]
+                    prob = str(pair[1])
+                    this_str = to_indent + "<to idref=\"" + to_id + "\" exp=\"" + prob + "\"/>\n"
+                    output.write(this_str)
+                end_from_tag = from_indent + "</from>\n"
+                output.write(end_from_tag)
+            else: #this is the END state
+                from_tag = from_indent + "<from idref=\"" + from_id + "\"/>\n"
+                output.write(from_tag)
+
+        #end transition, end model
+        end_transition_tag = INDENT + "</Transitions>\n"
+        end_model_tag = "</model>\n\n"
+        output.write(end_transition_tag)
+        output.write(end_model_tag)
+
+        ###################
+        #Sequence Analysis#
+        ###################
+
+        start_seqAnalysis_tag = "<sequence_analysis>\n"
+        output.write(start_seqAnalysis_tag)
+        start_param_tag = INDENT + "<parameter_training>\n"
+        output.write(start_param_tag)
+        #max vol, max iter, threshold for Baum Welch totally arbitrary
+        maxVol = 1000000
+        maxIter = 100
+        threshold = 0.00001
+        input_tag = INDENT + INDENT + "<input_files SeqFile=\"" + seq_filename + "\"/>\n"
+        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\" + threshold=\"" + threshold + '\">\n'
+        output_tag = INDENT + INDENT + "<output_files XMLFile=\"" + cell + "_trainedHMM.xml\""
+        output_tag += "EProbFile=\"" + cell + "_trainedEmissions.txt\"/>\n"
+        output.write(input_tag)
+        output.write(alg_tag)
+        output.write(output)
+
+        #wrap up parameter training, sequence analysis, and HMMConverter tags
+        end_param_tag = INDENT + "</parameter_training>\n"
+        end_seqAnalysis_tag = "</sequence_analysis>\n\n"
+        end_HMMConverter_tag = "</HMMConverter>\n"
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
