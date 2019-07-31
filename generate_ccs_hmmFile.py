@@ -34,8 +34,8 @@ nucleotides = ['A','C','G','T']
 for i in np.arange(len(cells)):
     cell = cells[i]
     write_filename = path_stub + cell + '_hmm_initial.xml'
-    emission_filename = path_stub + cell + '_emissions_initial.txt'
-    seq_filename = path_stub + cell + '_trainingSequences.txt'
+    emission_filename = cell + '_emissions_initial.txt'
+    seq_filename = cell + '_trainingSequences.txt'
 
     #state names list
     match_names = ["M"+str(n) for n in np.arange(96)]
