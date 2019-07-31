@@ -125,8 +125,8 @@ for i in np.arange(len(cells)):
         first_lines = '<?xml version="1.0"?>\n<HMMConverter>\n\n<model>\n'
         model_type_tag = INDENT + '<Model_Type name=\"' + cell + 'HMM\"/>\n\n'
         alphabet_tag = INDENT + '<Alphabets set=\"ACGT\" />\n\n'
-        emissions_tag = INDENT + '<Emission_Probs id=\"EP\" size=\"388\" file=\"' + emission_filename + '\"/>\n\n'
-        states_beg_tag = INDENT + '<States>'
+        emissions_tag = INDENT + '<Emission_Probs id=\"EP\" size=\"390\" file=\"' + emission_filename + '\"/>\n\n'
+        states_beg_tag = INDENT + '<States>\n'
         output.write(first_lines)
         output.write(model_type_tag)
         output.write(alphabet_tag)
@@ -169,7 +169,7 @@ for i in np.arange(len(cells)):
             from_indent = INDENT + INDENT
             to_indent = from_indent + INDENT
             from_name = state_names_list[index]
-            from_id = id_name_dict[name]
+            from_id = id_name_dict[from_name]
             if from_name != "END":
                 from_start_tag = from_indent + "<from idref=\"" + id + "\">\n"
                 output.write(from_start_tag)
