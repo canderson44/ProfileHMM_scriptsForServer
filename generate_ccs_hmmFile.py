@@ -212,7 +212,7 @@ for i in np.arange(len(cells)):
         output_tag += "EProbFile=\"" + cell + "_trainedEmissions.txt\"/>\n"
         output.write(input_tag)
         output.write(alg_tag)
-        output.write(output)
+        output.write(output_tag)
 
         #wrap up parameter training, sequence analysis, and HMMConverter tags
         end_param_tag = INDENT + "</parameter_training>\n"
