@@ -19,8 +19,6 @@ cells = ['2_B01', '3_C01', '4_D01']
 # entry 0 is dict for 2B01, 1 for 3C01, 2 for 4D01
 
 transition_dict_list = []  # entry 0 is dict for 2B01, 1 for 3C01, 2 for 4D01
-match_b4_RNAinsert = 25  # just 5p barcode
-match_after_RNAinsert = 116  # adapter + 3p barcode
 for i in np.arange(3):
     cell = cells[i]
     new_dict = {}
@@ -71,7 +69,7 @@ for i in np.arange(3):
     #############
     #############
     #############
-    # match before RNA insert
+    # match before RNA insert: 5' barcode
     for m_index in np.arange(24):  # M0 to M23
         match_str = "M" + str(m_index)
         next_match = "M" + str(m_index + 1)
@@ -104,58 +102,57 @@ for i in np.arange(3):
     new_dict[("R", "I24")] = 0.5
 
     # transitions from RNAinsert
-    p = 1 - 1.0 / (avg_lens_adjusted[i])
-    new_dict[("R", "R")] = p
-    remaining_prob = 1 - p
+    selfCycle_prob = 1 - (1.0 / (avg_lens_adjusted[i]))
+    new_dict[("RNA", "RNA")] = selfCycle_prob
+    remaining_prob = 1 - selfCycle_prob
     five_percent = 0.05 * remaining_prob
-    new_dict[("M25", "R")] = remaining_prob - five_percent - five_percent
-    new_dict[("DR", "R")] = five_percent
-    new_dict[("IR", "R")] = five_percent
-    # transitions from IR
-    new_dict[("IR", "IR")] = 0.5
-    new_dict[("M25", "IR")] = 0.5
-    # transitions from DR
-    new_dict[("D25", "DR")] = 0.5
-    new_dict[("M26", "DR")] = 0.5
+    new_dict[("M25", "RNA")] = remaining_prob - five_percent - five_percent
+    new_dict[("IRNA", "RNA")] = five_percent
+    #delete transitions: M26, M27, ... , M95, End
+    num_del_toStates = 71 #M26 to M95 and End
+    tot_del_prob = five_percent
+    for successor in np.arange(26,97):
+        if successor == 96:
+            to_delete_str = "END"
+        else:
+            to_delete_str = "M" + str(successor)
+        new_dict[(to_delete_str, "RNA")] = tot_del_prob/num_del_toStates
 
-    # after RNA
-    for m_index in np.arange(25, 140):  # excludes last match state, M140
+    # transitions from IR
+    new_dict[("IRNA", "IRNA")] = 0.5
+    new_dict[("M25", "IRNA")] = 0.5
+
+    # after RNA: M25 to M95 and END: 3' barcode
+    for m_index in np.arange(25, 95):  # excludes last match state, M95
         match_str = "M" + str(m_index)
         next_match = "M" + str(m_index + 1)
-        two_ahead_match = "M" + str(m_index + 2)
-        del_str = "D" + str(m_index)
-        next_del = "D" + str(m_index + 1)
         insert_str = "I" + str(m_index)
 
         # transition from match state M
         new_dict[(insert_str, match_str)] = 0.05
-        new_dict[(del_str, match_str)] = 0.05
         new_dict[(next_match, match_str)] = 0.9
+        #Deletions: transitions to all succeeding states starting with M_index + 2, to END
+        tot_del_prob = 0.05
+        num_del_toStates = 95 - (m_index + 1)
+        for successor in np.arange(m_index+2, 96): #transitions up to including M95
+            to_delete_str = "M" + str(successor)
+            new_dict[(to_delete_str, match_str)] = tot_del_prob/num_del_toStates
+        #also transition to end state
+        new_dict[("END", match_str)] = tot_del_prob/num_del_toStates
 
         # transition from insert state I
         new_dict[(insert_str, insert_str)] = 0.5  # self-cycle
         new_dict[(next_match, insert_str)] = 0.5
 
-        # transition from delete state
-        if m_index < 139:
-            new_dict[(next_del, del_str)] = 0.5
-            new_dict[(two_ahead_match, del_str)] = 0.5
-
-
-        else:  # no del->next_del transition
-            # no del->match transition
-            # only transition: d139 -> END
-            new_dict[("END", del_str)] = 1.0
-
-    # transitions from M140. Last match state
+    # transitions from M95 (last match state)
     # no delete, no (Match, Match)
-    # transitions: (END, M140), (I140, M140)
+    # transitions: (END, M95), (I95, M95)
     # transition from match state M
-    new_dict[("I140", "M140")] = 0.05
-    new_dict[("END", "M140")] = 0.95
-    # I24 transitions
-    new_dict[("I140", "I140")] = 0.5
-    new_dict[("END", "I140")] = 0.5
+    new_dict[("I95", "M95")] = 0.05
+    new_dict[("END", "M95")] = 0.95
+    # I transitions
+    new_dict[("I95", "I95")] = 0.5
+    new_dict[("END", "I95")] = 0.5
 
     ##############
     ##############
@@ -165,98 +162,90 @@ for i in np.arange(3):
     ##############
     ##############
     ##############
-    match_after_RNAinsert = 25  # just 5p barcode       Mr116 to Mr140
-    match_b4_RNAinsert = 116  # adapter + 3p barcode   Mr0 to Mr115
 
-    # match before RNA insert
-    for m_index in np.arange(115):  # M0 to Mr114
+    # match before RNA insert: 3' barcode RC
+    for m_index in np.arange(71):  # M0 to Mr70 ; len 71
         match_str = "Mr" + str(m_index)
         next_match = "Mr" + str(m_index + 1)
-        two_ahead_match = "Mr" + str(m_index + 2)
-        del_str = "Dr" + str(m_index)
-        next_del = "Dr" + str(m_index + 1)
         insert_str = "Ir" + str(m_index)
         # transition from match state M
         new_dict[(insert_str, match_str)] = 0.05
-        new_dict[(del_str, match_str)] = 0.05
         new_dict[(next_match, match_str)] = 0.9
+        #deletions: transition to M[m_index+2] up to RNAr inclusive
+        tot_del_prob = 0.05
+        tot_delete_toStates = 71 -(m_index + 2)
+        for successor in np.arange(71): #transitions up to including Mr70
+            to_delete_str = "Mr" + str(successor)
+            new_dict[(to_delete_str, match_str)] = tot_del_prob/tot_delete_toStates
+        #also deletion transition to RNAr
+        new_dict[("RNAr", match_str)] = tot_del_prob/tot_delete_toStates
 
         # transition from insert state I
         new_dict[(insert_str, insert_str)] = 0.5  # self-cycle
         new_dict[(next_match, insert_str)] = 0.5
+    # END MATCH before RNA-INSERT
 
-        # transition from delete state
-        if m_index < 114:
-            new_dict[(next_del, del_str)] = 0.5
-            new_dict[(two_ahead_match, del_str)] = 0.5
-        else:  # no del->next_del transition
-            # no del->match transition
-            # only transition: d114 -> RNAinsert
-            new_dict[("Rr", del_str)] = 1.0
-
-    # END MATCH B4 RNAINSERT
-
-    # M115: just before RNAinsert
+    # Mr70: just before RNAinsert
     # no delete, no (Match, Match)
-    # transitions: (Rr, M115), (I114, M115)
+    # transitions: (Rr, Mr70), (Ir95, Mr70)
     # transition from match state M
-    new_dict[("Ir115", "Mr115")] = 0.05
-    new_dict[("Rr", "Mr115")] = 0.95
+    new_dict[("Ir70", "Mr70")] = 0.05
+    new_dict[("RNAr", "Mr70")] = 0.95
     # I24 transitions
-    new_dict[("Ir115", "Ir115")] = 0.5
-    new_dict[("Rr", "Ir115")] = 0.5
+    new_dict[("Ir70", "Ir70")] = 0.5
+    new_dict[("RNAr", "Ir70")] = 0.5
 
-    # Transitions from Rr
-    new_dict[("Rr", "Rr")] = p
-    remaining_prob = 1 - p
+    # Transitions from RNAr
+    new_dict[("RNAr", "RNAr")] = selfCycle_prob
+    remaining_prob = 1 - selfCycle_prob
     five_percent = 0.05 * remaining_prob
-    new_dict[("Mr116", "Rr")] = remaining_prob - five_percent - five_percent
-    new_dict[("DRr", "Rr")] = five_percent
-    new_dict[("IRr", "Rr")] = five_percent
-    # transitions from IR
-    new_dict[("IRr", "IRr")] = 0.5
-    new_dict[("Mr116", "IRr")] = 0.5
-    # transitions from DR
-    new_dict[("Dr116", "DRr")] = 0.5
-    new_dict[("Mr117", "DRr")] = 0.5
+    tot_del_prob = five_percent
+    #next match: M71
+    new_dict[("Mr71", "RNAr")] = remaining_prob - five_percent - five_percent
+    new_dict[("IRNAr", "RNAr")] = five_percent
+    #RNAr delete transitions: to Mr72, Mr73, ... , Mr95, END len 25
+    tot_delete_toStates = 25
+    for successor in np.arange(72,97):
+        if successor == 96:
+            to_delete_str = "END"
+        else:
+            to_delete_str = "Mr" + str(successor)
+        new_dict[(to_delete_str, "RNAr")] = tot_del_prob/tot_delete_toStates
 
-    # after RNA
-    for m_index in np.arange(116, 140):  # excludes last match state, M140
+    # transitions from IRNAr
+    new_dict[("IRNAr", "IRNAr")] = 0.5
+    new_dict[("Mr71", "IRNAr")] = 0.5
+
+    # after RNAr
+    for m_index in np.arange(71, 95):  # excludes last match state Mr95
         match_str = "Mr" + str(m_index)
         next_match = "Mr" + str(m_index + 1)
-        two_ahead_match = "Mr" + str(m_index + 2)
-        del_str = "Dr" + str(m_index)
-        next_del = "Dr" + str(m_index + 1)
         insert_str = "Ir" + str(m_index)
 
         # transition from match state M
         new_dict[(insert_str, match_str)] = 0.05
-        new_dict[(del_str, match_str)] = 0.05
         new_dict[(next_match, match_str)] = 0.9
+        tot_del_prob = 0.05
+        num_del_toStates = 95 - (m_index + 1)
+        #deletions: to M[m_index + 2] up to including END
+        for successor in np.arange(m_index+2, 96): #Mr[m_index + 2] to Mr95
+            to_delete_str = "Mr" + str(successor)
+            new_dict[(to_delete_str,match_str)] = tot_del_prob/num_del_toStates
+        #also deletion transition to END
+        new_dict[("END", match_str)] = tot_del_prob/num_del_toStates
 
         # transition from insert state I
         new_dict[(insert_str, insert_str)] = 0.5  # self-cycle
         new_dict[(next_match, insert_str)] = 0.5
 
-        # transition from delete state
-        if m_index < 139:
-            new_dict[(next_del, del_str)] = 0.5
-            new_dict[(two_ahead_match, del_str)] = 0.5
-        else:  # no del->next_del transition
-            # no del->match transition
-            # only transition: d139 -> END
-            new_dict[("END", del_str)] = 1.0
-
-    # transitions from M140. Last match state
+    # transitions from Mr95. Last match state
     # no delete, no (Match, Match)
-    # transitions: (END, M140), (I140, M140)
-    # transition from match state M
-    new_dict[("Ir140", "Mr140")] = 0.05
-    new_dict[("END", "Mr140")] = 0.95
+    # transitions: (END, M95), (I95, M95)
+    new_dict[("Ir95", "Mr95")] = 0.05
+    new_dict[("END", "Mr95")] = 0.95
     # I140 transitions
-    new_dict[("Ir140", "Ir140")] = 0.5
-    new_dict[("END", "Ir140")] = 0.5
-
+    new_dict[("Ir95", "Ir95")] = 0.5
+    new_dict[("END", "Ir95")] = 0.5
     transition_dict_list.append(new_dict)
 
 #getter
