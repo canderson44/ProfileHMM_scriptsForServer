@@ -122,10 +122,10 @@ for i in np.arange(len(cells)):
 
     #start writing file
     with open(write_filename,'w') as output:
-        first_lines = '<?xml version="1.0"?>\n<HMMConverter>\n\n<model>'
+        first_lines = '<?xml version="1.0"?>\n<HMMConverter>\n\n<model>\n'
         model_type_tag = INDENT + '<Model_Type name=\"' + cell + 'HMM\"/>\n\n'
         alphabet_tag = INDENT + '<Alphabets set=\"ACGT\" />\n\n'
-        emissions_tag = INDENT + '<Emission_Probs id=\"EP\" size=\"388\" file=\"' + emission_filename + '\"/>\n\n'
+        emissions_tag = INDENT + '<Emission_Probs id=\"EP\" size=\"388\" file=\"' + '\n'# + emission_filename + '\"/>\n\n'
         states_beg_tag = INDENT + '<States>'
         output.write(first_lines)
         output.write(model_type_tag)
