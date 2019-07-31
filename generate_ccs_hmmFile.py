@@ -41,7 +41,7 @@ for i in np.arange(len(cells)):
     match_names = ["M"+str(n) for n in np.arange(96)]
     match_rev_names = ["Mr"+str(n) for n in np.arange(96)]
     insert_names = ["I"+str(n) for n in np.arange(96)]
-    insert_rev_names = ["I"+str(n) for n in np.arange(96)]
+    insert_rev_names = ["Ir"+str(n) for n in np.arange(96)]
     #start, end, junk states, RNAinsert states
     misc_names = ['IS', 'ISr', 'RNA', 'RNAr', 'IRNA',
                   'IRNAr']
