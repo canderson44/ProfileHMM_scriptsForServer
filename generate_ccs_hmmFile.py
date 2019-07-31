@@ -171,7 +171,7 @@ for i in np.arange(len(cells)):
             from_name = state_names_list[index]
             from_id = id_name_dict[from_name]
             if from_name != "END":
-                from_start_tag = from_indent + "<from idref=\"" + id + "\">\n"
+                from_start_tag = from_indent + "<from idref=\"" + from_id + "\">\n"
                 output.write(from_start_tag)
      #           to_tag_list = []
                 for pair in transition_dict[from_name]: #format (to_name, prob)
