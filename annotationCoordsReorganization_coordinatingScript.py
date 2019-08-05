@@ -36,8 +36,8 @@ for i in np.arange(len(cells)):
 #    print("pair_zmw_dict is", pair_zmw_dict)
     #3: get combo counts
     combo_counts = af.count_combos(pair_zmw_dict)
-    print()
-    print("combo counts is",combo_counts)
+    # print()
+    # print("combo counts is",combo_counts)
 
     #4: export combo counts to csv
     output_filename = path_stub + cell + '_comboCounts.csv'

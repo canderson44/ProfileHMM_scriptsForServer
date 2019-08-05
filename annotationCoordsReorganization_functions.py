@@ -201,24 +201,24 @@ RETURNS:new dict cataloguing counts of each pair combo
 def count_combos(zmw_dict):
     combo_counts = {'five_three':0, 'fiveR_three':0, 'fiveR_threeR':0, 'five_threeR':0,
                     'three_five':0, 'threeR_five':0, 'threeR_fiveR':0, 'three_fiveR':0}
-    print()
-    print("in count_combos function")
-    print("three_name is", three_name)
-    print("threeR_name is", threeR_name)
+    # print()
+    # print("in count_combos function")
+    # print("three_name is", three_name)
+    # print("threeR_name is", threeR_name)
     for zmw, zmw_region_dict in zmw_dict.items():
         five_type = '' #will be Five_Barcode or Five_Barcode_Reverse
         three_type = ''# will be Three_Barcode or Three_Barcode_Reverse
 
         #what regions present?
-        print("regions are", zmw_region_dict.keys())
+        # print("regions are", zmw_region_dict.keys())
         for region in zmw_region_dict.keys():
-            print("region is", region)
+            # print("region is", region)
             if region == five_name or region == fiveR_name:
                 five_type = region
             elif region == three_name or region == threeR_name:
                 three_type = region
-        print("five type is", five_type)
-        print("three type is:", three_type)
+        # print("five type is", five_type)
+        # print("three type is:", three_type)
         #now update combo_counts
         three_coords_list = []
         five_coords_list = []
@@ -226,8 +226,8 @@ def count_combos(zmw_dict):
             five_coords_list = zmw_region_dict[five_type]
         if three_type in zmw_region_dict:
             three_coords_list = zmw_region_dict[three_type]
-        print("five_coord_list",five_coords_list)
-        print("three_coord_list",three_coords_list)
+        # print("five_coord_list",five_coords_list)
+        # print("three_coord_list",three_coords_list)
         for five_coords in five_coords_list:
             for three_coords in three_coords_list:
                 #five type before three type: five end < three start
@@ -246,45 +246,45 @@ def count_combos(zmw_dict):
 #                print("three first?")
 #                print(threeFirst)
                 if five_end < three_start:
-                    print("five is first")
+                    # print("five is first")
                     if five_type == five_name: #5
                         if three_type == three_name:#53
-                            print("adding to five_three")
-                            print()
+                            # print("adding to five_three")
+                            # print()
                             combo_counts['five_three'] += 1
                         else: #53r
-                            print("adding to five_threeR")
-                            print()
+                            # print("adding to five_threeR")
+                            # print()
                             combo_counts['five_threeR'] += 1
                     else: #5r
                         if three_type == three_name:  # 5r3
-                            print("adding to fiveR_three")
-                            print()
+                            # print("adding to fiveR_three")
+                            # print()
                             combo_counts['fiveR_three'] += 1
                         else:  # 5r3r
-                            print("adding to fiveR_threeR")
-                            print()
+                            # print("adding to fiveR_threeR")
+                            # print()
                             combo_counts['fiveR_threeR'] += 1
 
                 elif three_end < five_start: #3(r) 5(r)
-                    print("three is first")
+                    # print("three is first")
                     if five_type == five_name: #5
                         if three_type == three_name:#35
-                            print("ADDING to three_five")
-                            print()
+                            # print("ADDING to three_five")
+                            # print()
                             combo_counts['three_five'] += 1
                         else: #3r5
-                            print("adding to threeR_five")
-                            print()
+                            # print("adding to threeR_five")
+                            # print()
                             combo_counts['threeR_five'] += 1
                     else: #5r
                         if three_type == three_name:  # 35r
-                            print("adding to three_fiveR")
-                            print()
+                            # print("adding to three_fiveR")
+                            # print()
                             combo_counts['three_fiveR'] += 1
                         else:  # 3r5r
-                            print("adding to threeR_fiveR")
-                            print()
+                            # print("adding to threeR_fiveR")
+                            # print()
                             combo_counts['threeR_fiveR'] += 1
                 else:
                     print("ERROR: DIDN'T ADD TO ANY COMBO COUNTS!!!")
