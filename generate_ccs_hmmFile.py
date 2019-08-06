@@ -26,9 +26,8 @@ emission_probs_list = ep.get_all_cells_emissions()
 
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/cell_lines/'
 
-#cells = ['2_B01', '3_C01', '4_D01']
-#TODO RESTORE TO ALL CELLS
-cells=['2_B01']
+cells = ['2_B01', '3_C01', '4_D01']
+
 INDENT = '        '#eight spaces
 nucleotides = ['A','C','G','T']
 for i in np.arange(len(cells)):

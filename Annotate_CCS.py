@@ -158,13 +158,19 @@ def glocal_alignment(gap_penalty, sequence, reference, score_dict, reference_cha
     return return_list
 
 #important strings
-nucleotides = cf.nucleotides
-fivePBarcode = cf.barcodes_list[0]
+nucleotides = ['A','C','G','T']
+barcodes_list = []
+with open('/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/barcodes_for_profileHMM.fasta') as f:
+    for line in f:
+        line = line.strip()
+        if line[0]!='>':
+            barcodes_list.append(line)
+barcode4 = barcodes_list[1]
+barcode3 = barcodes_list[2]
+barcode2 = barcodes_list[3]
+fivePBarcode = barcodes_list[0]
 fivePBarcodeRC = cf.gen_rev_complement(fivePBarcode)
-barcode2 = cf.barcode_2
-barcode3 = cf.barcode_3
-barcode4 = cf.barcode_4
-barcode2RC = cf.barcode_2_rc
+barcode2RC = cf.gen_rev_complement(barcode2)
 barcode3RC = cf.gen_rev_complement(barcode3)
 barcode4RC = cf.gen_rev_complement(barcode4)
 #adapter
@@ -194,9 +200,19 @@ with open(filename4) as f:
 two_adapter_RC = cf.gen_rev_complement(two_adapter)
 three_adapter_RC = cf.gen_rev_complement(three_adapter)
 four_adapter_RC = cf.gen_rev_complement(four_adapter)
+
+#mutations
 twoAdapter_mutations = cf.gen_mutated_barcodes(two_adapter)
 threeAdapter_mutations = cf.gen_mutated_barcodes(three_adapter)
 fourAdapter_mutations = cf.gen_mutated_barcodes(four_adapter)
+bar2_mutations = cf.gen_mutated_barcodes(barcode2)
+bar2RC_mutations = cf.gen_mutated_barcodes(barcode2RC)
+bar3_mutations = cf.gen_mutated_barcodes(barcode3)
+bar3RC_mutations = cf.gen_mutated_barcodes(barcode3RC)
+bar4_mutations = cf.gen_mutated_barcodes(barcode4)
+bar4RC_mutations = cf.gen_mutated_barcodes(barcode4RC)
+fivePbar_mutations = cf.gen_mutated_barcodes(fivePBarcode)
+fivePbarRC_mutations = cf.gen_mutated_barcodes(fivePBarcodeRC)
 
 #generates list of test strings given barcode, adapter, and respective rev compliments
 #PARAMETERS: barcode_index: index of 3' barcode:
@@ -204,18 +220,18 @@ fourAdapter_mutations = cf.gen_mutated_barcodes(four_adapter)
 def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     if barcode_index == 2:
         # list of substituted, inserted, deleted mutations on barcode
-        threeBar_mutations = cf.bar2_mutations
-        threeBarRC_mutations = cf.bar2RC_mutations
+        threeBar_mutations = bar2_mutations
+        threeBarRC_mutations = bar2RC_mutations
         adapter_mutations = twoAdapter_mutations
     elif barcode_index == 3:
         # list of substituted, inserted, deleted mutations on barcode
-        threeBar_mutations = cf.bar3_mutations
-        threeBarRC_mutations = cf.bar3RC_mutations
+        threeBar_mutations = bar3_mutations
+        threeBarRC_mutations = bar3RC_mutations
         adapter_mutations = threeAdapter_mutations
     else: #barcode_index == 4
         # list of substituted, inserted, deleted mutations on barcode
-        threeBar_mutations = cf.bar4_mutations
-        threeBarRC_mutations = cf.bar4RC_mutations
+        threeBar_mutations = bar4_mutations
+        threeBarRC_mutations = bar4RC_mutations
         adapter_mutations = fourAdapter_mutations
     test_strings = []
     #Ar3r5r
@@ -235,13 +251,13 @@ def gen_test_strings(barcode_index, barcode, barcodeRC, adapter, adapterRC):
     test_start5= fivePBarcode + "".join(rd.choices(nucleotides, k=(1000)))
     test_strings.append(test_start5)
     #start5Sub
-    test_start5Sub =  cf.fivePbar_mutations[0]+ "".join(rd.choices(nucleotides, k=(1000)))
+    test_start5Sub =  fivePbar_mutations[0]+ "".join(rd.choices(nucleotides, k=(1000)))
     test_strings.append(test_start5Sub)
     #start5Insert
-    test_start5Insert = cf.fivePbar_mutations[1] + "".join(rd.choices(nucleotides, k=(1000)))
+    test_start5Insert = fivePbar_mutations[1] + "".join(rd.choices(nucleotides, k=(1000)))
     test_strings.append(test_start5Insert)
     #start5Delete
-    test_start5Del = cf.fivePbar_mutations[2] + "".join(rd.choices(nucleotides, k=(1000)))
+    test_start5Del = fivePbar_mutations[2] + "".join(rd.choices(nucleotides, k=(1000)))
     test_strings.append(test_start5Del)
     #A_rand_A
     test_a_rand_a = adapter + "".join(rd.choices(nucleotides, k=900)) + adapter

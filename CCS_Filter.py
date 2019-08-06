@@ -49,7 +49,7 @@ def get_beg_and_end(sample, barcode_length):
     return [beg,end]
 
 barcodes_list = []
-with open('/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/barcodes_for_profileHMM.fasta') as f: 
+with open('/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/barcodes_allForward_forHMM.fasta') as f:
     for line in f:
         line = line.strip()
         if line[0]!='>':
@@ -113,25 +113,25 @@ fivePbarRC_mutations = gen_mutated_barcodes(gen_rev_complement(barcodes_list[0])
 def gen_test_strings(barcode, barcode_rc, threePbar_mutations, threePbarRC_mutations):
     test_strings = []
 
-    # #First: exact matches
-    # #exclude
-    # test_end_in_3pBarcodeRC = "".join(rd.choices(nucleotides, k=1000)) + barcode_rc
-    # test_strings.append(test_end_in_3pBarcodeRC)
-    # #keep
-    # test_beg_3pBarcodeRC = barcode_rc + "".join(rd.choices(nucleotides, k=1000))
-    # test_strings.append(test_beg_3pBarcodeRC)
-    # #keep
-    # test_5pBarcodeRandom3pBarcode = barcodes_list[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
-    # test_strings.append(test_5pBarcodeRandom3pBarcode)
-    # #exclude
-    # test_3pBarcodeThenRandom= barcode + "".join(rd.choices(nucleotides, k=(1000)))
-    # test_strings.append(test_3pBarcodeThenRandom)
-    # #exclude
-    # test_random="".join(rd.choices(nucleotides, k=(1000)))
-    # test_strings.append(test_random)
-    # #keep
-    # test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
-    # test_strings.append(test_endIn3pBarcode)
+    #First: exact matches
+    #exclude
+    test_end_in_3pBarcodeRC = "".join(rd.choices(nucleotides, k=1000)) + barcode_rc
+    test_strings.append(test_end_in_3pBarcodeRC)
+    #keep
+    test_beg_3pBarcodeRC = barcode_rc + "".join(rd.choices(nucleotides, k=1000))
+    test_strings.append(test_beg_3pBarcodeRC)
+    #keep
+    test_5pBarcodeRandom3pBarcode = barcodes_list[0] + "".join(rd.choices(nucleotides, k=1000)) + barcode
+    test_strings.append(test_5pBarcodeRandom3pBarcode)
+    #exclude
+    test_3pBarcodeThenRandom= barcode + "".join(rd.choices(nucleotides, k=(1000)))
+    test_strings.append(test_3pBarcodeThenRandom)
+    #exclude
+    test_random="".join(rd.choices(nucleotides, k=(1000)))
+    test_strings.append(test_random)
+    #keep
+    test_endIn3pBarcode= "".join(rd.choices(nucleotides, k=1000)) + barcode
+    test_strings.append(test_endIn3pBarcode)
 
 
     #Next: mutated matches
@@ -314,6 +314,7 @@ a=1
 
 
 #given csv file and desired file name for kept CCSs, filters CCS
+#output: fasta file of kept CCSes
 def filter_ccs(all_ccs_filename, filtered_filename, barcode):
     retained_csv_list = []
     with open(all_ccs_filename,'r') as f:
@@ -325,17 +326,25 @@ def filter_ccs(all_ccs_filename, filtered_filename, barcode):
                 line_list = line.split(',')
                 ccs = line_list[1]
                 if should_we_keep(ccs, barcode):
-                    retained_csv_list.append(line_list)
+                    retained_csv_list.append(line_list) #[ZMW number, ccs] appended
             try:
+                line_index = 0
+                len_retainedList = len(retained_csv_list)
                 f = open(filtered_filename, 'w+')
                 for entry in retained_csv_list:
-                    f.write(entry[0] + ',' + entry[1])
+                    name_string = '>' + entry[0] + '\n'
+                    ccs_string = entry[1]
+                    if (line_index < len_retainedList-1):# not last line
+                        ccs_string += '\n'
+                    f.write(name_string)
+                    f.write(ccs_string)
                     sleep(0.2)
                     f.write('\n')
+                    line_index += 1
                 f.close()  
             except:
                 print("Exception: something went wrong working with filtered_filename: " + filtered_filename)
-                print("here's the traceback: " + traceback + print_exc())
+                print("here's the traceback: " + traceback.print_exc())
         else:
             print("Sorry!! all_ccs_filepath: " + all_ccs_filename + "doesn't exist!!") 
 
