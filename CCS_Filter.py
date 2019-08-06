@@ -332,14 +332,11 @@ def filter_ccs(all_ccs_filename, filtered_filename, barcode):
                 len_retainedList = len(retained_csv_list)
                 f = open(filtered_filename, 'w+')
                 for entry in retained_csv_list:
-                    name_string = '>' + entry[0] + '\n'
-                    ccs_string = entry[1]
-                    if (line_index < len_retainedList-1):# not last line
-                        ccs_string += '\n'
-                    f.write(name_string)
-                    f.write(ccs_string)
+                    entry_line = entry[0] + ',' + entry[1]
+                    if line_index < len_retainedList-1:
+                        entry_line += '\n'
+                    f.write(entry_line)
                     sleep(0.2)
-                    f.write('\n')
                     line_index += 1
                 f.close()  
             except:
