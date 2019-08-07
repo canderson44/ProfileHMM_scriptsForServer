@@ -12,7 +12,7 @@ import random as rd
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/'
 cells = ['2_B01', '3_C01', '4_D01']
 num_train = 1000
-num_test = 1000
+#num_test = 1000
 for i in np.arange(3):
     cell = cells[i]
     input_filename = path_stub + cell + '_filtered_ccs.csv'
@@ -25,7 +25,7 @@ for i in np.arange(3):
             line = line.strip()
             line_list = line.split(',') #[ZMW number, ccs]
             all_ccs.append(line_list)
-    ccs_to_use = rd.sample(all_ccs,k=(num_train + num_test)) #selection without replacement
+    ccs_to_use = rd.sample(all_ccs,num_train) #+ num_test)) #selection without replacement
     training_ccs = ccs_to_use[:num_train]
     test_ccs = ccs_to_use[num_train:]
 
