@@ -11,8 +11,8 @@ import random as rd
 
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/'
 cells = ['2_B01', '3_C01', '4_D01']
-num_train = 10000
-num_test = 10000
+num_train = 1000
+num_test = 1000
 for i in np.arange(3):
     cell = cells[i]
     input_filename = path_stub + cell + '_filtered_ccs.fasta'
