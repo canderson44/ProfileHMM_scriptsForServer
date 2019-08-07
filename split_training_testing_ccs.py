@@ -15,7 +15,7 @@ num_train = 1000
 num_test = 1000
 for i in np.arange(3):
     cell = cells[i]
-    input_filename = path_stub + cell + '_filtered_ccs.fasta'
+    input_filename = path_stub + cell + '_filtered_ccs.csv'
     training_filename = path_stub + 'HMMConverter/cell_lines/' + cell + '_trainingSequences.txt'
     testing_filename = path_stub + 'HMMConverter/cell_lines/' + cell + '_testingSequences.txt'
     all_ccs = [] #all filtered ccs. format [ [ZMW,ccs],...]
