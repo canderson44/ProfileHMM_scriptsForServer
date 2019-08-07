@@ -204,7 +204,7 @@ for i in np.arange(len(cells)):
         maxIter = 100
         threshold = 0.00001
         input_tag = INDENT + INDENT + "<input_files SeqFile=\"" + seq_filename + "\"/>\n"
-        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\" + threshold=\"" + str(threshold) + '\">\n'
+        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\" + threshold=\"" + str(threshold) + '\"/>\n'
         output_tag = INDENT + INDENT + "<output_files XMLFile=\"" + cell + "_trainedHMM.xml\""
         output_tag += " EProbFile=\"" + cell + "_trainedEmissions.txt\"/>\n"
         output.write(input_tag)
