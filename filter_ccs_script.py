@@ -6,7 +6,8 @@ import CCS_Filter as cf
 
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/'
 start_ccs_path_stub = path_stub + 'demultiplexed_full_bams/no_passes/'
-cells = ['2_B01', '3_C01', '4_D01']
+cells = ['2_B01']#, '3_C01', '4_D01']
+#TODO RESTORE CELLS TO ALL CELLS
 destination_stub = path_stub + 'profile_hmm/'
 
 #3p barcodes
