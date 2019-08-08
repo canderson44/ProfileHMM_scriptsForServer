@@ -274,5 +274,7 @@ def get_3C01_transitions():
 def get_4D01_transitions():
     return transition_dict_list[2]
 
-for key,value in get_2B01_transitions().items():
-    print(str(key) + ':' + str(value))
+
+#for testing purposes:
+# for key,value in get_2B01_transitions().items():
+#     print(str(key) + ':' + str(value))
