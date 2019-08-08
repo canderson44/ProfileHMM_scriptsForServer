@@ -89,6 +89,7 @@ for i in np.arange(len(cells)):
             id = "EP." + str(index)
             first_line = id + FOUR_SPACES + name + FOUR_SPACES + "1\n"
             output.write(first_line)
+            print(first_line)
             emission_lines = ''
             for nuc in nucleotides:
                 prob = emissions_dict[name][nuc]
