@@ -21,12 +21,27 @@ import generate_emission_probs as ep
 import generate_transition_probs as tp
 import numpy as np
 
-transition_probs_list = tp.get_transition_probs()
-emission_probs_list = ep.get_all_cells_emissions()
+
+transition_probs_list = [ {
+    ('M0','START'): 1,
+    ('M1','M0'): 1,
+    ('M2','M1'):1,
+    ('I2','M2'):0.5,
+    ('END','M2'):0.5,
+    ('I2','I2'):0.5,
+    ('END','I2'):0.5
+}
+]
+emission_probs_list = [{
+    "M0":{'A':0.94,'C':0.02,'G':0.02,'T':0.02},
+    "M1":{'A':0.02,'C':0.94,'G':0.25,'T':0.25},
+    "M2":{'A':0.02,'C':0.02,'G':0.94,'T':0.02},
+    "I2":{'A':0.15,'C':0.25,'G':0.25,'T':0.25}
+}]
 
 path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMConverter/cell_lines/'
 
-cells = ['2_B01', '3_C01', '4_D01']
+cells = ['toy']
 
 INDENT = '        '#eight spaces
 nucleotides = ['A','C','G','T']
@@ -37,16 +52,11 @@ for i in np.arange(len(cells)):
     seq_filename = cell + '_trainingSequences.txt'
 
     #state names list
-    match_names = ["M"+str(n) for n in np.arange(96)]
-    match_rev_names = ["Mr"+str(n) for n in np.arange(96)]
-    insert_names = ["I"+str(n) for n in np.arange(96)]
-    insert_rev_names = ["Ir"+str(n) for n in np.arange(96)]
-    #start, end, junk states, RNAinsert states
-    misc_names = ['IS', 'ISr', 'RNA', 'RNAr', 'IRNA',
-                  'IRNAr']
+    match_names = ["M0","M1","M2"]
+    insert_names = ["I2"]
     #combine into one list. Want start first, end last
-    state_names_list = ["START"] + match_names + match_rev_names + insert_names + insert_rev_names + misc_names + ["END"]
-    emitting_states = match_names + match_rev_names + insert_names + insert_rev_names + misc_names
+    state_names_list = ["START"] + match_names + insert_names + ["END"]
+    emitting_states = match_names + insert_names
     # first: get transitions
     # format transitions: store in list
     # key is tuple:
@@ -204,7 +214,7 @@ for i in np.arange(len(cells)):
         maxIter = 100
         threshold = 0.00001
         input_tag = INDENT + INDENT + "<input_files SeqFile=\"" + seq_filename + "\"/>\n"
-        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\"" + "threshold=\"" + str(threshold) + '\"/>\n'
+        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\" + threshold=\"" + str(threshold) + '\"/>\n'
         output_tag = INDENT + INDENT + "<output_files XMLFile=\"" + cell + "_trainedHMM.xml\""
         output_tag += " EProbFile=\"" + cell + "_trainedEmissions.txt\"/>\n"
         output.write(input_tag)
