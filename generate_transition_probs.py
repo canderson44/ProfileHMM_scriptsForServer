@@ -167,7 +167,7 @@ for i in np.arange(len(cells)):
     ##############
 
     # match before RNA insert: 3' barcode RC
-    for m_index in np.arange(71):  # M0 to Mr70 ; len 71
+    for m_index in np.arange(70):  # M0 to Mr69; excludes last state M70
         match_str = "Mr" + str(m_index)
         next_match = "Mr" + str(m_index + 1)
         insert_str = "Ir" + str(m_index)
@@ -178,7 +178,7 @@ for i in np.arange(len(cells)):
         tot_del_prob = 0.05
         tot_delete_toStates = 71 -(m_index + 1)
         if tot_delete_toStates >0:
-            for successor in np.arange(71): #transitions up to including Mr70
+            for successor in np.arange(m_index+2,71): #transitions up to including Mr70
                 to_delete_str = "Mr" + str(successor)
                 new_dict[(to_delete_str, match_str)] = tot_del_prob/tot_delete_toStates
             #also deletion transition to RNAr
@@ -274,3 +274,5 @@ def get_3C01_transitions():
 def get_4D01_transitions():
     return transition_dict_list[2]
 
+for key,value in get_2B01_transitions().items():
+    print(str(key) + ':' + str(value))
