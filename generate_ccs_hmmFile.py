@@ -92,7 +92,7 @@ for i in np.arange(len(cells)):
             for nuc in nucleotides:
                 prob = emissions_dict[name][nuc]
                 emission_lines += nuc + ' ' + str(prob) + '\n'
-            if index<len(state_names_list)-1: #not last one
+            if index<len(emitting_states)-1: #not last one
                 emission_lines += '\n'
             output.write(emission_lines)
 
@@ -204,7 +204,8 @@ for i in np.arange(len(cells)):
         maxIter = 100
         threshold = 0.00001
         input_tag = INDENT + INDENT + "<input_files SeqFile=\"" + seq_filename + "\"/>\n"
-        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" + str(maxIter) + "\"" + "threshold=\"" + str(threshold) + '\"/>\n'
+        alg_tag = INDENT + INDENT + "<algorithm alg=\"0\" MaxVolume=\"" + str(maxVol) + "\" Maxiter=\"" \
+                  + str(maxIter) + "\" threshold=\"" + str(threshold) + '\"/>\n'
         output_tag = INDENT + INDENT + "<output_files XMLFile=\"" + cell + "_trainedHMM.xml\""
         output_tag += " EProbFile=\"" + cell + "_trainedEmissions.txt\"/>\n"
         output.write(input_tag)
