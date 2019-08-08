@@ -29,6 +29,7 @@ path_stub = '/tier2/deweylab/scratch/ipsc_pacbio/demultiplexing/profile_hmm/HMMC
 cells = ['2_B01', '3_C01', '4_D01']
 
 INDENT = '        '#eight spaces
+FOUR_SPACES = '    '#just four spaces
 nucleotides = ['A','C','G','T']
 for i in np.arange(len(cells)):
     cell = cells[i]
@@ -86,7 +87,7 @@ for i in np.arange(len(cells)):
         for index in np.arange(len(emitting_states)):
             name = emitting_states[index]
             id = "EP." + str(index)
-            first_line = id + " " + name + " 1\n"
+            first_line = id + FOUR_SPACES + name + FOUR_SPACES + "1\n"
             output.write(first_line)
             emission_lines = ''
             for nuc in nucleotides:

@@ -276,5 +276,5 @@ def get_4D01_transitions():
 
 
 #for testing purposes:
-# for key,value in get_2B01_transitions().items():
-#     print(str(key) + ':' + str(value))
+for key,value in get_2B01_transitions().items():
+    print(str(key) + ':' + str(value))
