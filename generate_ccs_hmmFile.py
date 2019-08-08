@@ -220,5 +220,7 @@ for i in np.arange(len(cells)):
         output.write(end_seqAnalysis_tag)
         output.write(end_HMMConverter_tag)
 
+    if cell == '2_B01':
+        print (id_name_dict)
 
 

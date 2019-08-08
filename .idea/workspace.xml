@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6a4367a-f1d7-48d4-865e-ce02d1983d72" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/generate_transition_probs.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_transition_probs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate_ccs_hmmFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_ccs_hmmFile.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,13 +37,13 @@
         <counts>
           <entry key="Python Console" value="175" />
           <entry key="dummy" value="50" />
-          <entry key="py" value="52225" />
+          <entry key="py" value="52293" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="52400" />
+          <entry key="Python" value="52468" />
         </counts>
       </usages-collector>
     </session>
@@ -68,20 +68,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generate_ccs_hmmFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="281">
+              <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1639">
-              <caret line="97" column="34" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="97" selection-end-column="34" />
+            <state relative-caret-position="3037">
+              <caret line="216" column="68" selection-start-line="216" selection-start-column="68" selection-end-line="216" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -184,8 +184,8 @@
         <option value="$PROJECT_DIR$/filter_ccs_script.py" />
         <option value="$PROJECT_DIR$/split_training_testing_ccs.py" />
         <option value="$PROJECT_DIR$/toy_gen_ccs_hmmFile.py" />
-        <option value="$PROJECT_DIR$/generate_ccs_hmmFile.py" />
         <option value="$PROJECT_DIR$/generate_transition_probs.py" />
+        <option value="$PROJECT_DIR$/generate_ccs_hmmFile.py" />
       </list>
     </option>
   </component>
@@ -229,7 +229,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.generate_transition_probs">
+  <component name="RunManager" selected="Python.generate_ccs_hmmFile">
     <configuration name="Annotate_CCS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProfileHMM_scriptsForServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -243,6 +243,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Annotate_CCS.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="generate_ccs_hmmFile" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ProfileHMM_scriptsForServer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/generate_ccs_hmmFile.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -319,9 +340,11 @@
       <item itemvalue="Python.generate_emission_probs" />
       <item itemvalue="Python.toyHMM_generate_trainingSequences" />
       <item itemvalue="Python.Annotate_CCS" />
+      <item itemvalue="Python.generate_ccs_hmmFile" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.generate_ccs_hmmFile" />
         <item itemvalue="Python.generate_transition_probs" />
         <item itemvalue="Python.toyHMM_generate_trainingSequences" />
         <item itemvalue="Python.Annotate_CCS" />
@@ -454,17 +477,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate_ccs_hmmFile.py">
+    <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="3037">
+          <caret line="216" column="68" selection-start-line="216" selection-start-column="68" selection-end-line="216" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate_transition_probs.py">
+    <entry file="file://$PROJECT_DIR$/generate_ccs_hmmFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1639">
-          <caret line="97" column="34" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="97" selection-end-column="34" />
+        <state relative-caret-position="281">
+          <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
         </state>
       </provider>
     </entry>
