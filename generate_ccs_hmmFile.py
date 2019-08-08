@@ -34,7 +34,8 @@ nucleotides = ['A','C','G','T']
 for i in np.arange(len(cells)):
     cell = cells[i]
     write_filename = path_stub + cell + '_hmm_initial.xml'
-    emission_filename = path_stub + cell + '_emissions_initial.txt'
+    emission_pathname = path_stub + cell + '_emissions_initial.txt'
+    emission_filename = cell + '_emissions_initial.txt'
     seq_filename = cell + '_trainingSequences.txt'
 
     #state names list
@@ -83,11 +84,11 @@ for i in np.arange(len(cells)):
     ##################
     ##################
     ##################
-    with open(emission_filename, 'w') as output:
+    with open(emission_pathname, 'w') as output:
         for index in np.arange(len(emitting_states)):
             name = emitting_states[index]
             id = "EP." + str(index)
-            first_line = id + " " + name +  " 1\n"
+            first_line = id + " " + name + " 1\n"
             output.write(first_line)
             emission_lines = ''
             for nuc in nucleotides:
