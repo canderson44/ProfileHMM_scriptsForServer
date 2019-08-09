@@ -37,7 +37,7 @@ for i in np.arange(len(cells)):
             to_str = "RNA"
         else:
             to_str = "M" + str(i)
-        new_dict[(to_str, "START")] = tot_startDel_prob/num_startDel_toStates
+        new_dict[(to_str, "START")] = str(tot_startDel_prob)+'/'+str(num_startDel_toStates)
 
     #RC from start transitions
     new_dict[("Mr0", "START")] = 0.45 #90% of 0.5
