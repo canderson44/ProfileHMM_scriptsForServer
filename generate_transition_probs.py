@@ -52,7 +52,7 @@ for i in np.arange(len(cells)):
             to_str = "RNAr"
         else:
             to_str = "Mr" + str(i)
-        new_dict[(to_str, "START")] = tot_startDel_prob / num_startDel_toStates
+        new_dict[(to_str, "START")] = str(tot_startDel_prob) + '/'+ str(num_startDel_toStates)
 
     #transitions from starting junk states
     #forward
