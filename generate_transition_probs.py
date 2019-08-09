@@ -37,7 +37,7 @@ for i in np.arange(len(cells)):
             to_str = "RNA"
         else:
             to_str = "M" + str(i)
-        new_dict[(to_str, "START")] = str(tot_startDel_prob)+'/'+str(num_startDel_toStates)
+        new_dict[(to_str, "START")] = tot_startDel_prob/num_startDel_toStates
 
     #RC from start transitions
     new_dict[("Mr0", "START")] = 0.45 #90% of 0.5
@@ -52,7 +52,7 @@ for i in np.arange(len(cells)):
             to_str = "RNAr"
         else:
             to_str = "Mr" + str(i)
-        new_dict[(to_str, "START")] = str(tot_startDel_prob) + '/'+ str(num_startDel_toStates)
+        new_dict[(to_str, "START")] = tot_startDel_prob/num_startDel_toStates
 
     #transitions from starting junk states
     #forward
@@ -84,9 +84,9 @@ for i in np.arange(len(cells)):
         if tot_delete_toStates >0: #else at state 24; shouldn't happen
             for successor in np.arange(m_index+2, 25): #don't want immediate next, but two ahead and onward
                 to_delete_str = "M" + str(successor)
-                new_dict[(to_delete_str,match_str)] = str(tot_del_prob) + '/' + str(tot_delete_toStates)
+                new_dict[(to_delete_str,match_str)] = tot_del_prob/tot_delete_toStates
             #also delete transition to RNA
-            new_dict[("RNA",match_str)] = str(tot_del_prob)+'/'+str(tot_delete_toStates)
+            new_dict[("RNA",match_str)] = tot_del_prob/tot_delete_toStates
 
 
         # transition from insert state I
@@ -118,7 +118,7 @@ for i in np.arange(len(cells)):
             to_delete_str = "END"
         else:
             to_delete_str = "M" + str(successor)
-        new_dict[(to_delete_str, "RNA")] = str(tot_del_prob)+'/'+ str(num_del_toStates)
+        new_dict[(to_delete_str, "RNA")] = tot_del_prob/num_del_toStates
 
     # transitions from IR
     new_dict[("IRNA", "IRNA")] = 0.5
@@ -139,9 +139,9 @@ for i in np.arange(len(cells)):
         if num_del_toStates >0:
             for successor in np.arange(m_index+2, 96): #transitions up to including M95
                 to_delete_str = "M" + str(successor)
-                new_dict[(to_delete_str, match_str)] = str(tot_del_prob)+'/'+str(num_del_toStates)
+                new_dict[(to_delete_str, match_str)] = tot_del_prob/num_del_toStates
             #also transition to end state
-            new_dict[("END", match_str)] = str(tot_del_prob)+'/'+str(num_del_toStates)
+            new_dict[("END", match_str)] = tot_del_prob/num_del_toStates
 
         # transition from insert state I
         new_dict[(insert_str, insert_str)] = 0.5  # self-cycle
@@ -180,9 +180,9 @@ for i in np.arange(len(cells)):
         if tot_delete_toStates >0:
             for successor in np.arange(m_index+2,71): #transitions up to including Mr70
                 to_delete_str = "Mr" + str(successor)
-                new_dict[(to_delete_str, match_str)] = str(tot_del_prob)+'/'+str(tot_delete_toStates)
+                new_dict[(to_delete_str, match_str)] = tot_del_prob/tot_delete_toStates
             #also deletion transition to RNAr
-            new_dict[("RNAr", match_str)] = str(tot_del_prob)+'/'+str(tot_delete_toStates)
+            new_dict[("RNAr", match_str)] = tot_del_prob/tot_delete_toStates
 
         # transition from insert state I
         new_dict[(insert_str, insert_str)] = 0.5  # self-cycle
@@ -214,7 +214,7 @@ for i in np.arange(len(cells)):
             to_delete_str = "END"
         else:
             to_delete_str = "Mr" + str(successor)
-        new_dict[(to_delete_str, "RNAr")] = str(tot_del_prob)+'/'+str(tot_delete_toStates)
+        new_dict[(to_delete_str, "RNAr")] = tot_del_prob/tot_delete_toStates
 
     # transitions from IRNAr
     new_dict[("IRNAr", "IRNAr")] = 0.5
@@ -235,9 +235,9 @@ for i in np.arange(len(cells)):
         if num_del_toStates >0:
             for successor in np.arange(m_index+2, 96): #Mr[m_index + 2] to Mr95
                 to_delete_str = "Mr" + str(successor)
-                new_dict[(to_delete_str,match_str)] = str(tot_del_prob)+'/'+str(num_del_toStates)
+                new_dict[(to_delete_str,match_str)] = tot_del_prob/num_del_toStates
             #also deletion transition to END
-            new_dict[("END", match_str)] = str(tot_del_prob)+'/'+str(num_del_toStates)
+            new_dict[("END", match_str)] = tot_del_prob/num_del_toStates
 
         # transition from insert state I
         new_dict[(insert_str, insert_str)] = 0.5  # self-cycle
